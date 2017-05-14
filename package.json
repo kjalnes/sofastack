@@ -6,6 +6,12 @@
   "repository": "https://github.com/kjalnes/sofastack.git",
   "author": "kjalnes <kris.alnes@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "postinstall": "npm run webpack",
+    "start": "node index.js",
+    "start:local": "npm run webpack -- -w & nodemon --ignore dist/ --ignore src/ index.js",
+    "webpack": "./node_modules/webpack/bin/webpack.js"
+  },
   "dependencies": {
     "babel-core": "^6.24.1",
     "babel-loader": "^7.0.0",
