@@ -5,15 +5,19 @@ import uuidV4 from 'uuid/v4';
 class ModelForm extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            modelName: '',
-            rows: [{}],
-            showBtn: false,
-        };
+        this.state = props.existingState || this.getDefaultState();
         this.saveRow = this.saveRow.bind(this);
         this.addNewRow = this.addNewRow.bind(this);
         this.deleteRow = this.deleteRow.bind(this);
         this.saveModel = this.saveModel.bind(this);
+    }
+
+    getDefaultState() {
+        return {
+            modelName: '',
+            rows: [{}],
+            showBtn: false,
+        };
     }
 
     onChange(type, ev) {
@@ -24,43 +28,44 @@ class ModelForm extends Component {
         // add row to rows and show button
         let rows = this.state.rows;
         let rowUpdated = false;
+
         // update row or add new row
         rows = rows.map( _row => {
             if(_row.index === row.index) {
                 _row = row;
                 rowUpdated = true;
             }
-            return _row
+            return _row;
         });
+
         if(!rowUpdated) {
-            rows[ rows.length-1] = row;
+            rows[ rows.length - 1 ] = row;
         }
+
         this.setState({ showBtn: true, rows });
     }
 
     addNewRow() {
         let rows = this.state.rows;
+
         rows.push({});
         this.setState({ showBtn: false, rows });
     }
 
     deleteRow(index) {
         let rows = this.state.rows;
+
         rows = rows.filter(row => row.index !== index);
         this.setState({ rows });
     }
 
     // save completed model to redux store
     saveModel() {
-        const model = { modelName: this.state.modelName, rows: this.state.rows }
+        const { modelName, rows } = this.state;
+        const model = { modelName, rows };
+
         this.props.saveModel(model);
-        // reset the state to allow new model to be created.
-        // probably a better way to do this..
-        this.setState({
-            modelName: '',
-            rows: [{}],
-            showBtn: false,
-        });
+        this.setState(this.getDefaultState()); // reset the state to default
     }
 
     generateRows() {
@@ -85,13 +90,12 @@ class ModelForm extends Component {
                 <h3>Create Sequelize Model</h3>
                 <hr />
                 <div className='panel-group' classID='accordion'>
-                   <h4> Model name: </h4>
+                    <h4> Model name: </h4>
                     <input
                         onChange={ this.onChange.bind(this, 'modelName') }
                         className="form-control"
                         value={ this.state.modelName }
                         placeholder='Table name'/>
-
                     { this.generateRows() }
                     { this.state.showBtn ?
                         <button onClick={ this.addNewRow } className='btn btn-primary'>+</button>
@@ -100,7 +104,7 @@ class ModelForm extends Component {
                     <button onClick={ this.saveModel } className='btn btn-default pull-right'>Save Model</button>
                 </div>
             </div>
-        )
+        );
     }
 }
 

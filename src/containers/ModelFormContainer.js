@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { saveModel } from '../actions/model';
 
 const ModelFormContainer = (props) => {
-    console.log('props.models', props.models)
     return (
         <div className='row'>
             <div className='col-xs-6'>
@@ -14,7 +13,9 @@ const ModelFormContainer = (props) => {
                 Your models:
                 <br />
                 <ul>
-                { props.models.map( model => <li>{model.modelName}</li> )}
+                {
+                    props.models.map((model, index) => <li key={index}>{model.modelName}</li>)
+                }
                 </ul>
             </div>
         </div>

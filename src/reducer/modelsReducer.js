@@ -1,5 +1,5 @@
 const defaultState = [];
-const defaultModel ={name:'', attrs:[]}
+const defaultModel ={ name: '', attrs: [] };
 
 import { SAVE_MODEL_SUCCESS } from '../constants';
 
