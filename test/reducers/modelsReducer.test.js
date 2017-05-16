@@ -24,5 +24,6 @@ describe('Models Reducer', () => {
     const reducer = modelsReducer(undefined, savedModel);
     expect(reducer.length).to.equal(1);
     expect(reducer[0].name).to.eql('test');
+    expect(reducer[0].attrs).to.be.a('array');
   });
 });
