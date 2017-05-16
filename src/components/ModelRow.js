@@ -16,7 +16,7 @@ class ModelRow extends Component {
     addRowAndArchive() {
         const { attr, type } = this.state;
         // this.setState({ rowTitle: attr });
-        this.props.saveRow({ attr, type });
+        this.props.saveRow(this.state);
     }
 
     render() {

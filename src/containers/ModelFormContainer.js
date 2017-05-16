@@ -1,5 +1,6 @@
 import React from 'react';
 import ModelForm from '../components/ModelForm';
+import { connect } from 'react-redux';
 
 const ModelFormContainer = () => {
 

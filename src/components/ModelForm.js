@@ -19,9 +19,10 @@ class ModelForm extends Component {
 
     saveRow(row) {
         // add the row to this.state.rows and show the button
-        const rows = this.state.rows;
+        let rows = this.state.rows;
         // replace {} with new row
-        rows[ rows.length - 1 ] = row;
+        // update row or add new row
+        rows[ row.index ] = row;
         this.setState({ showBtn: true, rows });
     }
 
@@ -45,6 +46,7 @@ class ModelForm extends Component {
     }
 
     render() {
+        console.log('this.state.rows', this.state.rows)
         return (
             <div>
                 <h3>Create Sequelize Model</h3>
