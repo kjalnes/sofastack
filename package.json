@@ -10,7 +10,8 @@
     "postinstall": "npm run webpack",
     "start": "node index.js",
     "start:local": "npm run webpack -- -w & nodemon --ignore dist/ --ignore src/ index.js",
-    "webpack": "./node_modules/webpack/bin/webpack.js"
+    "webpack": "./node_modules/webpack/bin/webpack.js",
+    "test": "node_modules/.bin/mocha ./test --recursive --compilers js:babel-register"
   },
   "dependencies": {
     "babel-core": "^6.24.1",

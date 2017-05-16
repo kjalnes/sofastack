@@ -3,7 +3,7 @@
         "react",
         "es2015"
     ],
-    "plugin":[
+    "plugins":[
       "transform-object-rest-spread"
     ]
 }
