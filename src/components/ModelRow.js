@@ -6,17 +6,19 @@ class ModelRow extends Component {
         this.state = {
             attr: props.attr || '',
             type: props.type || 'string',
-            // rowTitle: props.attr || '',
             index: props.index
         };
         this.onChange = this.props.onChange.bind(this);
-        this.addRowAndArchive = this.addRowAndArchive.bind(this);
+        this.saveRowAndArchive = this.saveRowAndArchive.bind(this);
+        this.deleteRow = this.deleteRow.bind(this);
     }
 
-    addRowAndArchive() {
-        const { attr, type } = this.state;
-        // this.setState({ rowTitle: attr });
+    saveRowAndArchive() {
         this.props.saveRow(this.state);
+    }
+
+    deleteRow() {
+        this.props.deleteRow(this.state.index)
     }
 
     render() {
@@ -41,7 +43,8 @@ class ModelRow extends Component {
                                 <option value="date">Date</option>
                                 <option value="bool">Boolean</option>
                             </select>
-                            <a data-toggle="collapse" data-parent={`#accordion${index}`} href={`#collapse${index}`}><button onClick={ this.addRowAndArchive } className='btn btn-primary'>Save row</button></a>
+                            <a data-toggle="collapse" data-parent={`#accordion${index}`} href={`#collapse${index}`}><button onClick={ this.saveRowAndArchive } className='btn btn-primary'>Save row</button></a>
+                            <button onClick={ this.deleteRow } className='btn btn-danger'>Delete row</button>
                         </form>
                     </div>
                 </div>
