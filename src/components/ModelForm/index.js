@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ModelRow from './ModelRow';
+import ModelAttr from './ModelAttr';
 import uuidV4 from 'uuid/v4';
 
 class ModelForm extends Component {
@@ -75,7 +75,7 @@ class ModelForm extends Component {
         return this.state.attrs.map(attr => {
             const id = attr.id || uuidV4();
 
-            return <ModelRow
+            return <ModelAttr
                 saveAttr={ this.saveAttr }
                 deleteAttr={ this.deleteAttr }
                 onChange={ this.onChange }
@@ -92,20 +92,29 @@ class ModelForm extends Component {
             <div>
                 <h3>Create Sequelize Model</h3>
                 <hr />
-                <div className='panel-group' classID='accordion'>
-                    <h4> Model name: </h4>
+                <div className='well'>
+                    <h4> Model name</h4>
                     <input
                         onChange={ this.onChange.bind(this, 'name') }
                         className="form-control"
                         value={ this.state.name }
                         placeholder='Table name'/>
+                    <hr />
+                    <div className='row'>
+                        <div className='col-xs-5'>
+                            <label>Name <span className="glyphicon glyphicon-question-sign pull-right"></span></label>
+                        </div>
+                        <div className='col-xs-7'>
+                            <label>Type <span className="glyphicon glyphicon-question-sign pull-right"></span></label>
+                        </div>
+                    </div>
                     { this.generateAttrs() }
                     { this.state.showBtn ?
-                        <button onClick={ this.addNewAttr } className='btn btn-primary'>+</button>
+                        <button onClick={ this.addNewAttr } className='btn btn-primary'>Add attribute</button>
                         : null
                     }
-                    <button onClick={ this.saveModel } className='btn btn-default pull-right'>Save Model</button>
                 </div>
+                <button onClick={ this.saveModel } className='btn btn-default pull-right'>Save Model</button>
             </div>
         );
     }
