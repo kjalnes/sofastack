@@ -25,33 +25,26 @@ class ModelAttr extends Component {
         const id = this.state.id;
 
         return (
-            <div className="panel panel-default well">
-                <div className="panel-heading">
-                    <h4 className="panel-title"><a data-toggle="collapse" data-parent={`#accordion${id}`} href={`#collapse${id}`}>{ this.state.name || 'Row' }</a></h4>
-                </div>
-                <div id={`collapse${id}`} className="panel-collapse collapse in">
-                    <div className="panel-body">
-                        <div className='col-xs-5'>
-                            <input
-                                onChange={ this.onChange.bind(this, 'name') }
-                                className="form-control"
-                                value={ this.state.name }
-                                placeholder='Attribute key'/>
-                        </div>
-                        <div className='col-xs-4'>
-                            <select onChange={ this.onChange.bind(this, 'type') } className='selectpicker form-control show-tick' data-width=''>
-                                <option value="string">String</option>
-                                <option value="integer">Integer</option>
-                                <option value="date">Date</option>
-                                <option value="bool">Boolean</option>
-                            </select>
-                        </div>
-                        <div className='col-xs-3'>
-                            <a data-toggle="collapse" data-parent={`#accordion${id}`} href={`#collapse${id}`}><button onClick={ this.saveAttrAndArchive } className='btn btn-primary'>+</button></a>
-                            <button onClick={ this.deleteAttr } className='btn btn-danger'>x</button>
-                        </div>
+            <div className="row">
+                    <div className='col-xs-5'>
+                        <input
+                            onChange={ this.onChange.bind(this, 'name') }
+                            className="form-control"
+                            value={ this.state.name }
+                            placeholder='Attribute key'/>
                     </div>
-                </div>
+                    <div className='col-xs-4'>
+                        <select onChange={ this.onChange.bind(this, 'type') } className='selectpicker form-control show-tick' data-width=''>
+                            <option value="string">String</option>
+                            <option value="integer">Integer</option>
+                            <option value="date">Date</option>
+                            <option value="bool">Boolean</option>
+                        </select>
+                    </div>
+                    <div className='col-xs-3'>
+                        <button onClick={ this.saveAttrAndArchive } className='btn btn-primary'>+</button>
+                        <button onClick={ this.deleteAttr } className='btn btn-danger'>x</button>
+                    </div>
             </div>
         )
     }
