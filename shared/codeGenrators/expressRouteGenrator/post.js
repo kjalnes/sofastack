@@ -1,5 +1,5 @@
 const capitalizeFirstLetter = require('../../capitalizeFirstLetter');
-const get = ({name}) => {
+const post = ({name}) => {
   return `router.post('/${name}s/:id', (req, res, next) => {
   const {body} = req;
   db.models.${capitalizeFirstLetter(name)}.create(body)
@@ -8,4 +8,4 @@ const get = ({name}) => {
 });`;
 };
 
-module.export = get;
+module.export = post;
