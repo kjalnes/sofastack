@@ -1,5 +1,5 @@
 const capitalizeFirstLetter = require('../../capitalizeFirstLetter');
-const delete = ({name}) => {
+const del = ({name}) => {
   return `router.delete('/${capitalizeFirstLetter(name)}/:id', (req, res, next) => {
   const {id} = req.params;
   db.models.Albums.destroy({where: {id}})
@@ -8,4 +8,4 @@ const delete = ({name}) => {
 });`;
 };
 
-module.export = delete;
+module.export = del;
