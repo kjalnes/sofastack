@@ -4,6 +4,8 @@ const sequelizeGenrator = ({name, attrs}) => {
   attrs = attrs.map(attrLine);
   attrs.join(',\n');
   return `const conn = require('./conn');
+const Sequelize = require('sequelize');
+
 const attrs = {
 ${attrs}
 };
