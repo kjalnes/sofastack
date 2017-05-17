@@ -1,3 +1,5 @@
+//types used for Attrs
+
 const DATE = 'DATE';
 const STRING = 'STRING';
 const INTEGER = 'INTEGER';
