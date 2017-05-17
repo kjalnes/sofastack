@@ -10,7 +10,8 @@
     "postinstall": "npm run webpack",
     "start": "node index.js",
     "start:local": "npm run webpack -- -w & nodemon --ignore dist/ --ignore src/ index.js",
-    "webpack": "./node_modules/webpack/bin/webpack.js"
+    "webpack": "./node_modules/webpack/bin/webpack.js",
+    "test": "node_modules/.bin/mocha ./test --compilers js:babel-register"
   },
   "dependencies": {
     "babel-core": "^6.24.1",
@@ -30,5 +31,10 @@
     "sequelize": "^3.30.4",
     "uuid": "^3.0.1",
     "webpack": "^2.5.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.4.1",
+    "supertest": "^3.0.0"
   }
 }
