@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ModelRow from './ModelRow';
+import ModelAttr from './ModelAttr';
 import uuidV4 from 'uuid/v4';
 
 class ModelForm extends Component {
@@ -75,7 +75,7 @@ class ModelForm extends Component {
         return this.state.attrs.map(attr => {
             const id = attr.id || uuidV4();
 
-            return <ModelRow
+            return <ModelAttr
                 saveAttr={ this.saveAttr }
                 deleteAttr={ this.deleteAttr }
                 onChange={ this.onChange }

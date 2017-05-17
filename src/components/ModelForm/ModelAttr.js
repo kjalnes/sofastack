@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class ModelRow extends Component {
+class ModelAttr extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -31,21 +31,25 @@ class ModelRow extends Component {
                 </div>
                 <div id={`collapse${id}`} className="panel-collapse collapse in">
                     <div className="panel-body">
-                        <form className='custom-form'>
+                        <div className='col-xs-5'>
                             <input
                                 onChange={ this.onChange.bind(this, 'name') }
                                 className="form-control"
                                 value={ this.state.name }
                                 placeholder='Attribute key'/>
-                            <select onChange={ this.onChange.bind(this, 'type') } className='selectpicker form-control show-tick' data-width='350px'>
+                        </div>
+                        <div className='col-xs-4'>
+                            <select onChange={ this.onChange.bind(this, 'type') } className='selectpicker form-control show-tick' data-width=''>
                                 <option value="string">String</option>
                                 <option value="integer">Integer</option>
                                 <option value="date">Date</option>
                                 <option value="bool">Boolean</option>
                             </select>
-                            <a data-toggle="collapse" data-parent={`#accordion${id}`} href={`#collapse${id}`}><button onClick={ this.saveAttrAndArchive } className='btn btn-primary'>Save Attr</button></a>
-                            <button onClick={ this.deleteAttr } className='btn btn-danger'>Delete row</button>
-                        </form>
+                        </div>
+                        <div className='col-xs-3'>
+                            <a data-toggle="collapse" data-parent={`#accordion${id}`} href={`#collapse${id}`}><button onClick={ this.saveAttrAndArchive } className='btn btn-primary'>+</button></a>
+                            <button onClick={ this.deleteAttr } className='btn btn-danger'>x</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -53,4 +57,4 @@ class ModelRow extends Component {
     }
 }
 
-export default ModelRow;
+export default ModelAttr;
