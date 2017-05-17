@@ -1,7 +1,6 @@
 const capitalizeFirstLetter = require('../../capitalizeFirstLetter');
 const get = ({name}) => {
-  return `const router = require('express').Router();
-const db = require('../../db');
+  return `const db = require('../../db');
 
 router.get('/${name}s', (req, res, next) => {
   db.models.${capitalizeFirstLetter(name)}.findAll()
