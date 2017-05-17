@@ -1,8 +1,6 @@
 const capitalizeFirstLetter = require('../../capitalizeFirstLetter');
 const get = ({name}) => {
-  return `const db = require('../../db');
-
-router.get('/${name}s', (req, res, next) => {
+  return `router.get('/${name}s', (req, res, next) => {
   db.models.${capitalizeFirstLetter(name)}.findAll()
   .then(objs => ( objs.length ? obj.json(objs) : res.sendStatus(404)))
   .catch(next);
