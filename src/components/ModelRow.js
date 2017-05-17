@@ -4,38 +4,38 @@ class ModelRow extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            attr: props.attr || '',
+            name: props.name || '',
             type: props.type || 'string',
-            index: props.index
+            id: props.id
         };
         this.onChange = this.props.onChange.bind(this);
-        this.saveRowAndArchive = this.saveRowAndArchive.bind(this);
-        this.deleteRow = this.deleteRow.bind(this);
+        this.saveAttrAndArchive = this.saveAttrAndArchive.bind(this);
+        this.deleteAttr = this.deleteAttr.bind(this);
     }
 
-    saveRowAndArchive() {
-        this.props.saveRow(this.state);
+    saveAttrAndArchive() {
+        this.props.saveAttr(this.state);
     }
 
-    deleteRow() {
-        this.props.deleteRow(this.state.index)
+    deleteAttr() {
+        this.props.deleteAttr(this.state.id)
     }
 
     render() {
-        const index = this.state.index;
+        const id = this.state.id;
 
         return (
             <div className="panel panel-default well">
                 <div className="panel-heading">
-                    <h4 className="panel-title"><a data-toggle="collapse" data-parent={`#accordion${index}`} href={`#collapse${index}`}>{ this.state.attr || 'Row' }</a></h4>
+                    <h4 className="panel-title"><a data-toggle="collapse" data-parent={`#accordion${id}`} href={`#collapse${id}`}>{ this.state.name || 'Row' }</a></h4>
                 </div>
-                <div id={`collapse${index}`} className="panel-collapse collapse in">
+                <div id={`collapse${id}`} className="panel-collapse collapse in">
                     <div className="panel-body">
                         <form className='custom-form'>
                             <input
-                                onChange={ this.onChange.bind(this, 'attr') }
+                                onChange={ this.onChange.bind(this, 'name') }
                                 className="form-control"
-                                value={ this.state.attr }
+                                value={ this.state.name }
                                 placeholder='Attribute key'/>
                             <select onChange={ this.onChange.bind(this, 'type') } className='selectpicker form-control show-tick' data-width='350px'>
                                 <option value="string">String</option>
@@ -43,8 +43,8 @@ class ModelRow extends Component {
                                 <option value="date">Date</option>
                                 <option value="bool">Boolean</option>
                             </select>
-                            <a data-toggle="collapse" data-parent={`#accordion${index}`} href={`#collapse${index}`}><button onClick={ this.saveRowAndArchive } className='btn btn-primary'>Save row</button></a>
-                            <button onClick={ this.deleteRow } className='btn btn-danger'>Delete row</button>
+                            <a data-toggle="collapse" data-parent={`#accordion${id}`} href={`#collapse${id}`}><button onClick={ this.saveAttrAndArchive } className='btn btn-primary'>Save Attr</button></a>
+                            <button onClick={ this.deleteAttr } className='btn btn-danger'>Delete row</button>
                         </form>
                     </div>
                 </div>

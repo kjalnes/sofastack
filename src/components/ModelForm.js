@@ -5,17 +5,21 @@ import uuidV4 from 'uuid/v4';
 class ModelForm extends Component {
     constructor(props) {
         super(props);
-        this.state = props.existingState || this.getDefaultState();
-        this.saveRow = this.saveRow.bind(this);
-        this.addNewRow = this.addNewRow.bind(this);
-        this.deleteRow = this.deleteRow.bind(this);
+        this.state =  {
+            name: '',
+            attrs: [{}],
+            showBtn: false,
+        };
+        this.saveAttr = this.saveAttr.bind(this);
+        this.addNewAttr = this.addNewAttr.bind(this);
+        this.deleteAttr = this.deleteAttr.bind(this);
         this.saveModel = this.saveModel.bind(this);
     }
 
     getDefaultState() {
         return {
-            modelName: '',
-            rows: [{}],
+            name: '',
+            attrs: [{}],
             showBtn: false,
         };
     }
@@ -24,62 +28,61 @@ class ModelForm extends Component {
         this.setState({ [type] : ev.target.value });
     }
 
-    saveRow(row) {
+    saveAttr(attr) {
         // add row to rows and show button
-        let rows = this.state.rows;
-        let rowUpdated = false;
+        let attrs = this.state.attrs;
+        let attrUpdated = false;
 
         // update row or add new row
-        rows = rows.map( _row => {
-            if(_row.index === row.index) {
-                _row = row;
-                rowUpdated = true;
+        attrs = attrs.map( _attr => {
+            if(_attr.id === attr.id) {
+                _attr = attr;
+                attrUpdated = true;
             }
-            return _row;
+            return _attr;
         });
 
-        if(!rowUpdated) {
-            rows[ rows.length - 1 ] = row;
+        if(!attrUpdated) {
+            attrs[ attrs.length - 1 ] = attr;
         }
 
-        this.setState({ showBtn: true, rows });
+        this.setState({ showBtn: true, attrs });
     }
 
-    addNewRow() {
-        let rows = this.state.rows;
-
-        rows.push({});
-        this.setState({ showBtn: false, rows });
+    addNewAttr() {
+        let attrs = this.state.attrs;
+        attrs.push({});
+        this.setState({ showBtn: false, attrs });
     }
 
-    deleteRow(index) {
-        let rows = this.state.rows;
+    deleteAttr(id) {
+        let attrs = this.state.attrs;
 
-        rows = rows.filter(row => row.index !== index);
-        this.setState({ rows });
+        attrs = attrs.filter(attr => attr.id !== id);
+        this.setState({ attrs });
     }
 
     // save completed model to redux store
     saveModel() {
-        const { modelName, rows } = this.state;
-        const model = { modelName, rows };
+        const { name, attrs } = this.state;
+        const model = { name, attrs };
 
         this.props.saveModel(model);
         this.setState(this.getDefaultState()); // reset the state to default
     }
 
-    generateRows() {
-        return this.state.rows.map(row => {
-            const index = row.index || uuidV4();
+    generateAttrs() {
+        return this.state.attrs.map(attr => {
+            const id = attr.id || uuidV4();
 
             return <ModelRow
-                saveRow={ this.saveRow }
-                deleteRow={ this.deleteRow }
+                saveAttr={ this.saveAttr }
+                deleteAttr={ this.deleteAttr }
                 onChange={ this.onChange }
-                attr={ row.attr }
-                type= { row.type }
-                key={ index }
-                index={ index }
+                name={ attr.name }
+                type= { attr.type }
+                key={ id }
+                id={ id }
             />;
         });
     }
@@ -92,13 +95,13 @@ class ModelForm extends Component {
                 <div className='panel-group' classID='accordion'>
                     <h4> Model name: </h4>
                     <input
-                        onChange={ this.onChange.bind(this, 'modelName') }
+                        onChange={ this.onChange.bind(this, 'name') }
                         className="form-control"
-                        value={ this.state.modelName }
+                        value={ this.state.name }
                         placeholder='Table name'/>
-                    { this.generateRows() }
+                    { this.generateAttrs() }
                     { this.state.showBtn ?
-                        <button onClick={ this.addNewRow } className='btn btn-primary'>+</button>
+                        <button onClick={ this.addNewAttr } className='btn btn-primary'>+</button>
                         : null
                     }
                     <button onClick={ this.saveModel } className='btn btn-default pull-right'>Save Model</button>

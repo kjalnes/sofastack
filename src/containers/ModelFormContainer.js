@@ -14,7 +14,11 @@ const ModelFormContainer = (props) => {
                 <br />
                 <ul>
                 {
-                    props.models.map((model, index) => <li key={index}>{model.modelName}</li>)
+                    props.models.map((model, index) => {
+                        return (
+                            <li key={index}>{model.name}</li>
+                        )
+                    })
                 }
                 </ul>
             </div>
