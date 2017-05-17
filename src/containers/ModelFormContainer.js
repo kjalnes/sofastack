@@ -1,5 +1,5 @@
 import React from 'react';
-import ModelForm from '../components/ModelForm';
+import ModelForm from '../components/ModelForm/';
 import { connect } from 'react-redux';
 import { saveModel } from '../actions/model';
 
