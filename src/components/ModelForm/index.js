@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ModelAttr from './ModelAttr';
-import InputName from './InputName';
-import InputLabels from './InputLabels';
+import ModelName from './ModelName';
+import ModelLabels from './ModelLabels';
 import uuidV4 from 'uuid/v4';
 
 class ModelForm extends Component {
@@ -13,7 +13,7 @@ class ModelForm extends Component {
         this.deleteAttr = this.deleteAttr.bind(this);
         this.saveModel = this.saveModel.bind(this);
         this.onChange = this.onChange.bind(this);
-        this.toggleNameInput = this.toggleNameInput.bind(this);
+        this.toggleShowName = this.toggleShowName.bind(this);
     }
 
     getDefaultState() {
@@ -21,27 +21,24 @@ class ModelForm extends Component {
             name: '',
             attrs: [{}],
             showBtn: false,
-            showNameInput: true
+            showModelName: false
         };
     }
 
-    toggleNameInput() {
-        return this.state.showNameInput
-        ? this.setState({ showNameInput: false })
-        : this.setState({ showNameInput: true })
-    }
-
     onChange(type, ev) {
-        console.log(ev.target.value)
         this.setState({ [type] : ev.target.value });
     }
 
+    toggleShowName() {
+        return this.state.showModelName
+        ? this.setState({ showModelName: false })
+        : this.setState({ showModelName: true })
+    }
+
     saveAttr(attr) {
-        // add row to rows and show button
         let attrs = this.state.attrs;
         let attrUpdated = false;
 
-        // update attr or add new attr
         attrs = attrs.map( _attr => {
             if(_attr.id === attr.id) {
                 _attr = attr;
@@ -69,7 +66,7 @@ class ModelForm extends Component {
         this.setState({ attrs });
     }
 
-    // save completed model to redux store
+    // save model to redux store
     saveModel() {
         const { name, attrs } = this.state;
         const model = { name, attrs };
@@ -81,13 +78,13 @@ class ModelForm extends Component {
         return this.state.attrs.map(attr => {
             const id = attr.id || uuidV4();
             return <ModelAttr
-                saveAttr={ this.saveAttr }
-                deleteAttr={ this.deleteAttr }
-                onChange={ this.onChange }
-                name={ attr.name }
-                type= { attr.type }
-                key={ id }
-                id={ id } />;
+                saveAttr={this.saveAttr}
+                deleteAttr={this.deleteAttr}
+                onChange={this.onChange}
+                name={attr.name}
+                type= {attr.type}
+                key={id}
+                id={id} />;
         });
     }
 
@@ -96,17 +93,17 @@ class ModelForm extends Component {
             <div>
                 <h3>Create Sequelize Model</h3>
                 <div className='well row'>
-                    <InputName
-                        showNameInput={this.state.showNameInput}
-                        toggleNameInput={this.toggleNameInput}
+                    <ModelName
+                        showModelName={this.state.showModelName}
+                        toggleShowName={this.toggleShowName}
                         name={this.state.name}
                         onChange={this.onChange} />
                     <hr />
-                    <InputLabels />
+                    <ModelLabels />
                     { this.generateAttrs() }
-                    { this.state.showBtn ? <button onClick={ this.addNewAttr } className='btn btn-primary'>+</button> : null }
+                    { this.state.showBtn ? <button onClick={this.addNewAttr} className='btn btn-primary'>+</button> : null }
                 </div>
-                <button onClick={ this.saveModel } className='btn btn-default pull-right'>Save Model</button>
+                <button onClick={this.saveModel} className='btn btn-default pull-right'>Save Model</button>
             </div>
         );
     }
