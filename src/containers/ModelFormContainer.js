@@ -30,7 +30,7 @@ const mapStateToProps = (state) => {
     return {
         models: state.models
     }
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
     return {

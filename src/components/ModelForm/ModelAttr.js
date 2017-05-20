@@ -32,6 +32,7 @@ class ModelAttr extends Component {
 
     render() {
         const btn = this.props.name ? 'Update' : 'Save';
+        // constants not being rendered as value strings, not sure why. see redux store
         return (
             <div className="row">
                     <div className='col-xs-4'>
