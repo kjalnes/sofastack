@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import ModelAttr from './ModelAttr';
+import ModelName from './ModelName';
+import ModelLabels from './ModelLabels';
 import uuidV4 from 'uuid/v4';
 
 class ModelForm extends Component {
     constructor(props) {
         super(props);
-        this.state =  {
-            name: '',
-            attrs: [{}],
-            showBtn: false,
-        };
+        this.state =  this.getDefaultState();
         this.saveAttr = this.saveAttr.bind(this);
         this.addNewAttr = this.addNewAttr.bind(this);
         this.deleteAttr = this.deleteAttr.bind(this);
         this.saveModel = this.saveModel.bind(this);
+        this.onChange = this.onChange.bind(this);
+        this.toggleShowName = this.toggleShowName.bind(this);
     }
 
     getDefaultState() {
@@ -21,6 +21,7 @@ class ModelForm extends Component {
             name: '',
             attrs: [{}],
             showBtn: false,
+            showModelName: false
         };
     }
 
@@ -28,12 +29,16 @@ class ModelForm extends Component {
         this.setState({ [type] : ev.target.value });
     }
 
+    toggleShowName() {
+        return this.state.showModelName
+        ? this.setState({ showModelName: false })
+        : this.setState({ showModelName: true })
+    }
+
     saveAttr(attr) {
-        // add row to rows and show button
         let attrs = this.state.attrs;
         let attrUpdated = false;
 
-        // update row or add new row
         attrs = attrs.map( _attr => {
             if(_attr.id === attr.id) {
                 _attr = attr;
@@ -57,33 +62,29 @@ class ModelForm extends Component {
 
     deleteAttr(id) {
         let attrs = this.state.attrs;
-
         attrs = attrs.filter(attr => attr.id !== id);
         this.setState({ attrs });
     }
 
-    // save completed model to redux store
+    // save model to redux store
     saveModel() {
         const { name, attrs } = this.state;
         const model = { name, attrs };
-
         this.props.saveModel(model);
-        this.setState(this.getDefaultState()); // reset the state to default
+        this.setState(this.getDefaultState()); // reset
     }
 
     generateAttrs() {
         return this.state.attrs.map(attr => {
             const id = attr.id || uuidV4();
-
             return <ModelAttr
-                saveAttr={ this.saveAttr }
-                deleteAttr={ this.deleteAttr }
-                onChange={ this.onChange }
-                name={ attr.name }
-                type= { attr.type }
-                key={ id }
-                id={ id }
-            />;
+                saveAttr={this.saveAttr}
+                deleteAttr={this.deleteAttr}
+                onChange={this.onChange}
+                name={attr.name}
+                type= {attr.type}
+                key={id}
+                id={id} />;
         });
     }
 
@@ -91,30 +92,18 @@ class ModelForm extends Component {
         return (
             <div>
                 <h3>Create Sequelize Model</h3>
-                <hr />
-                <div className='well'>
-                    <h4> Model name</h4>
-                    <input
-                        onChange={ this.onChange.bind(this, 'name') }
-                        className="form-control"
-                        value={ this.state.name }
-                        placeholder='Table name'/>
+                <div className='well row'>
+                    <ModelName
+                        showModelName={this.state.showModelName}
+                        toggleShowName={this.toggleShowName}
+                        name={this.state.name}
+                        onChange={this.onChange} />
                     <hr />
-                    <div className='row'>
-                        <div className='col-xs-5'>
-                            <label>Name <span className="glyphicon glyphicon-question-sign pull-right"></span></label>
-                        </div>
-                        <div className='col-xs-7'>
-                            <label>Type <span className="glyphicon glyphicon-question-sign pull-right"></span></label>
-                        </div>
-                    </div>
+                    <ModelLabels />
                     { this.generateAttrs() }
-                    { this.state.showBtn ?
-                        <button onClick={ this.addNewAttr } className='btn btn-primary'>Add attribute</button>
-                        : null
-                    }
+                    { this.state.showBtn ? <button onClick={this.addNewAttr} className='btn btn-primary'>+</button> : null }
                 </div>
-                <button onClick={ this.saveModel } className='btn btn-default pull-right'>Save Model</button>
+                <button onClick={this.saveModel} className='btn btn-default pull-right'>Save Model</button>
             </div>
         );
     }

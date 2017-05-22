@@ -1,16 +1,25 @@
 import React, { Component } from 'react';
+import {
+    DATE,
+    STRING,
+    INTEGER,
+    BOOLEAN } from '../../../shared/attrTypes';
 
 class ModelAttr extends Component {
     constructor(props) {
         super(props);
         this.state = {
             name: props.name || '',
-            type: props.type || 'string',
+            type: props.type || {STRING},
             id: props.id
         };
-        this.onChange = this.props.onChange.bind(this);
         this.saveAttrAndArchive = this.saveAttrAndArchive.bind(this);
         this.deleteAttr = this.deleteAttr.bind(this);
+        this.onChange = this.onChange.bind(this);
+    }
+
+    onChange(type, ev) {
+        this.setState({ [type] : ev.target.value });
     }
 
     saveAttrAndArchive() {
@@ -22,28 +31,28 @@ class ModelAttr extends Component {
     }
 
     render() {
-        const id = this.state.id;
-
+        const btn = this.props.name ? 'Update' : 'Save';
+        // constants not being rendered as value strings, not sure why. see redux store
         return (
             <div className="row">
-                    <div className='col-xs-5'>
+                    <div className='col-xs-4'>
                         <input
-                            onChange={ this.onChange.bind(this, 'name') }
+                            onChange={this.onChange.bind(null, 'name')}
                             className="form-control"
-                            value={ this.state.name }
-                            placeholder='Attribute key'/>
+                            value={this.state.name}
+                            placeholder='Name'/>
                     </div>
                     <div className='col-xs-4'>
-                        <select onChange={ this.onChange.bind(this, 'type') } className='selectpicker form-control show-tick' data-width=''>
-                            <option value="string">String</option>
-                            <option value="integer">Integer</option>
-                            <option value="date">Date</option>
-                            <option value="bool">Boolean</option>
+                        <select onChange={this.onChange.bind(null, 'type')} className='selectpicker form-control show-tick'>
+                            <option value={STRING}>{STRING}</option>
+                            <option value={INTEGER}>{INTEGER}</option>
+                            <option value={DATE}>{DATE}</option>
+                            <option value={BOOLEAN}>{BOOLEAN}</option>
                         </select>
                     </div>
-                    <div className='col-xs-3'>
-                        <button onClick={ this.saveAttrAndArchive } className='btn btn-primary'>+</button>
-                        <button onClick={ this.deleteAttr } className='btn btn-danger'>x</button>
+                    <div className='col-xs-4'>
+                        <button onClick={this.saveAttrAndArchive} className='btn btn-primary model-form-btn'>{btn}</button>
+                        <button onClick={this.deleteAttr} className='btn btn-danger model-form-btn'>Delete</button>
                     </div>
             </div>
         )
