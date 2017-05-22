@@ -1,4 +1,5 @@
 const attrLine = require('./attrLine');
+const capitalizeFirstLetter = require('../../capitalizeFirstLetter');
 
 const sequelizeGenrator = ({name, attrs}) => {
   attrs = attrs.map(attrLine).join(`,\n`);
@@ -9,9 +10,9 @@ const attrs = {
 ${attrs}
 };
 
-const ${name} = dbInstance.define(${name},attrs)
+const ${capitalizeFirstLetter(name)} = dbInstance.define(${name},attrs)
 
-module.exports = ${name};`;
+module.exports = ${capitalizeFirstLetter(name)};`;
 };
 
 module.exports = sequelizeGenrator;

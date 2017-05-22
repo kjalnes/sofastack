@@ -27,9 +27,9 @@ const attrs = {
   testDate: Sequelize.DATE
 };
 
-const test = dbInstance.define(test,attrs)
+const Test = dbInstance.define(test,attrs)
 
-module.exports = test;`;
+module.exports = Test;`;
     expect(generatedCode).to.equal(expected);
   });
 });
