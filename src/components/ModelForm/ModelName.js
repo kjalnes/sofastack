@@ -6,19 +6,21 @@ const ModelName = (props) => {
     return (
         <div>
             { !showModelName ?
-                <div className='row'>
-                    <div className='col-xs-12'>
+                <div>
+                    <div>
                         <h4 className=''>Model name</h4>
                     </div>
-                    <div className='col-xs-10'>
-                        <input
-                            onChange={onChange.bind(null, 'name')}
-                            className="form-control"
-                            value={name}
-                            placeholder='Model name'/>
-                    </div>
-                    <div className='col-xs-2'>
-                        <button onClick={toggleShowName} className='btn btn-primary model-form-btn'>Save</button>
+                    <div className='row'>
+                        <div className='col-xs-10'>
+                            <input
+                                onChange={onChange.bind(null, 'name')}
+                                className="form-control"
+                                value={name}
+                                placeholder='Model name'/>
+                        </div>
+                        <div className='col-xs-2'>
+                            <button onClick={toggleShowName} className='btn btn-primary'>Save</button>
+                        </div>
                     </div>
                 </div>
                 :

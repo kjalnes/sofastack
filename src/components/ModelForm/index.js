@@ -30,9 +30,7 @@ class ModelForm extends Component {
     }
 
     toggleShowName() {
-        return this.state.showModelName
-        ? this.setState({ showModelName: false })
-        : this.setState({ showModelName: true })
+        this.setState({ showModelName: !this.state.showModelName });
     }
 
     saveAttr(attr) {
@@ -90,20 +88,23 @@ class ModelForm extends Component {
 
     render() {
         return (
-            <div>
+            <div className='col-xs-6 box'>
                 <h3>Create Sequelize Model</h3>
-                <div className='well row'>
-                    <ModelName
-                        showModelName={this.state.showModelName}
-                        toggleShowName={this.toggleShowName}
-                        name={this.state.name}
-                        onChange={this.onChange} />
-                    <hr />
-                    <ModelLabels />
-                    { this.generateAttrs() }
-                    { this.state.showBtn ? <button onClick={this.addNewAttr} className='btn btn-primary'>+</button> : null }
+                <div className='model-form'>
+                    <div className=''>
+                        <ModelName
+                            showModelName={this.state.showModelName}
+                            toggleShowName={this.toggleShowName}
+                            name={this.state.name}
+                            onChange={this.onChange} />
+                        <hr />
+                        <ModelLabels />
+                        { this.generateAttrs() }
+                        { this.state.showBtn ? <button onClick={this.addNewAttr} className='btn btn-primary'>+</button> : null }
+                    </div>
+                    <br />
+                    <button onClick={this.saveModel} className='btn btn-default pull-right model-save-btn'>Save Model</button>
                 </div>
-                <button onClick={this.saveModel} className='btn btn-default pull-right'>Save Model</button>
             </div>
         );
     }
