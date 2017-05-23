@@ -12,8 +12,7 @@ ${attrs}
 
 const ${capitalizeFirstLetter(name)} = dbInstance.define(${name},attrs)
 
-module.exports = ${capitalizeFirstLetter(name)};
-`;
+module.exports = ${capitalizeFirstLetter(name)};`;
 };
 
 module.exports = sequelizeGenrator;
