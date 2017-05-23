@@ -9,7 +9,7 @@ const AppContainer = ({children}) => {
     <nav className="navbar navbar-default">
   <div className="container-fluid">
     <div className="navbar-header">
-      <a className="navbar-brand" href="#">Sofa Stack - Cushioning for the Lazy Dev</a>
+      <a className="navbar-brand" href="#"><span className='logo'>SOFA STACK</span> - Cushioning for the Lazy Dev</a>
     </div>
     <ul className="nav navbar-nav" />
   </div>

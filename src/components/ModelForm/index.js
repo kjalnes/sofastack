@@ -30,9 +30,7 @@ class ModelForm extends Component {
     }
 
     toggleShowName() {
-        return this.state.showModelName
-        ? this.setState({ showModelName: false })
-        : this.setState({ showModelName: true })
+        this.setState({ showModelName: !this.state.showModelName });
     }
 
     saveAttr(attr) {
@@ -90,9 +88,9 @@ class ModelForm extends Component {
 
     render() {
         return (
-            <div>
+            <div className='col-xs-6'>
                 <h3>Create Sequelize Model</h3>
-                <div className='well row'>
+                <div className='well'>
                     <ModelName
                         showModelName={this.state.showModelName}
                         toggleShowName={this.toggleShowName}
