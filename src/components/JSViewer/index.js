@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ace from 'brace';
 import 'brace/mode/javascript';
-import 'brace/theme/clouds';
+import 'brace/theme/solarized_light';
 import sequelizeGenerator from '../../../shared/codeGenrators/sequelizeGenrator';
 import expressRouteGenerator from '../../../shared/codeGenrators/expressRouteGenrator';
 
@@ -27,7 +27,7 @@ class JSViewer extends Component {
         this.editor = ace.edit('JSviewer');
         this.editor.$blockScrolling = Infinity;
         this.editor.getSession().setMode('ace/mode/javascript');
-        this.editor.setTheme('ace/theme/clouds');
+        this.editor.setTheme('ace/theme/solarized_light');
         this.editor.setOptions({
             readOnly: true,
             hScrollBarAlwaysVisible: true,
@@ -47,7 +47,7 @@ class JSViewer extends Component {
 
     render() {
         return (
-            <div className='col-xs-6'>
+            <div className='col-xs-6 box'>
                 <h3>JavaScript</h3>
                 <div id='JSviewer'></div>
             </div>

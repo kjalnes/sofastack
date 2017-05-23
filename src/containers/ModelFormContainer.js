@@ -10,12 +10,12 @@ const ModelFormContainer = (props) => {
         <div>
             <div className='row'>
                 <ModelForm saveModel={ props.saveModel } />
-                <JSViewer models={ props.models }/>
+                <JSViewer models={ props.models } />
             </div>
             <div className='row'>
-                <JSONViewer />
-                <div className='col-xs-6'>
-                    <h3>Your models</h3>
+                <JSONViewer models={ props.models } />
+                <div className='col-xs-6 box'>
+                    <h3>Your models </h3>
                     <ul>
                     { props.models ? props.models.map( (model, index) => <li key={index}>{model.name}</li>) : null }
                     </ul>
@@ -26,6 +26,7 @@ const ModelFormContainer = (props) => {
         </div>
     )
 }
+
 
 const mapStateToProps = (state) => {
     return {
