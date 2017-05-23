@@ -5,7 +5,7 @@ import JSONViewer from '../components/JSONViewer';
 import { connect } from 'react-redux';
 import { saveModel } from '../actions/model';
 
-const ModelFormContainer = (props) => {
+const ModelDetailContainer = (props) => {
     return (
         <div>
             <div className='row'>
@@ -20,7 +20,6 @@ const ModelFormContainer = (props) => {
                     { props.models ? props.models.map( (model, index) => <li key={index}>{model.name}</li>) : null }
                     </ul>
                     { props.models.length ? <button className='btn btn-default'>Download zip</button>: null }
-
                 </div>
             </div>
         </div>
@@ -41,4 +40,4 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(ModelFormContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(ModelDetailContainer);

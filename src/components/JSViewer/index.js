@@ -9,6 +9,7 @@ class JSViewer extends Component {
     constructor(props) {
         super(props);
         this.editor = null;
+        this.element = null;
         this.generateCode = this.generateCode.bind(this);
         this.generateOutput = this.generateOutput.bind(this);
     }
@@ -24,7 +25,7 @@ class JSViewer extends Component {
     }
 
     componentDidMount() {
-        this.editor = ace.edit('JSviewer');
+        this.editor = ace.edit(this.element);
         this.editor.$blockScrolling = Infinity;
         this.editor.getSession().setMode('ace/mode/javascript');
         this.editor.setTheme('ace/theme/solarized_light');
@@ -32,24 +33,29 @@ class JSViewer extends Component {
             readOnly: true,
             hScrollBarAlwaysVisible: true,
             vScrollBarAlwaysVisible: true,
-            minLines: 20,
+            minLines: 19,
             maxLines: 20
         });
 
         this.generateOutput(this.props.models);
     }
 
+    //will need to change to check uuid. Might need to research didUpdate vs will
     componentWillUpdate(nextProps) {
         if(nextProps.models !== this.props.models) {
             this.generateOutput(nextProps.models);
         }
     }
 
+    componentWillUnmount() {
+        this.editor.destroy();
+    }
+
     render() {
         return (
             <div className='col-xs-6 box'>
                 <h3>JavaScript</h3>
-                <div id='JSviewer'></div>
+                <div ref={(el) => {this.element = el;}}></div>
             </div>
         )
     }

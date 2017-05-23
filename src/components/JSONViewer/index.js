@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import dummyJSON from './MOCK_DATA';
 
 class JSONViewer extends Component {
     constructor(props) {
@@ -13,21 +13,24 @@ class JSONViewer extends Component {
         var options = { mode: 'tree' };
         this.editor = new JSONEditor(container, options);
         if(this.props.models) {
-            this.generateJSON(this.props.models);
+            this.generateJSON(dummyJSON);
         }
     }
 
-    generateJSON(models) {
-        // console.log('models', models)
+    generateJSON(json) {
         // var json = JSON.stringify(models[0]);
-        this.editor.set(models[0]);
-        var json = this.editor.get();
+        this.editor.set(json);
+        // var json = this.editor.get();
     }
 
     componentWillUpdate(nextProps) {
         if(nextProps.models !== this.props.models) {
-            this.generateJSON(nextProps.models);
+            // this.generateJSON(nextProps.models);
         }
+    }
+
+    componentWillUnmount() {
+        this.editor.destroy();
     }
 
     render(){

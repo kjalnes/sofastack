@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 
 const AppContainer = ({children}) => {
 
-
   return (
   <div>
     <nav className="navbar navbar-default">
