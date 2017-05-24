@@ -17,20 +17,17 @@ class JSViewer extends Component {
     }
 
     generateCode(fn, models) {
-        return models.map( model => fn(model)).join(`\n`);
+        return models.map( model => fn(model)).join('');
     }
 
     generateOutput(models, view) {
-        let code;
-        if(view === 'models') {
-            code = this.generateCode(sequelizeGenerator, models);
-        } else {
-            code = this.generateCode(expressRouteGenerator, models);
-        }
+        let code = view === 'models'
+        ? this.generateCode(sequelizeGenerator, models)
+        : this.generateCode(expressRouteGenerator, models);
         this.editor.setValue(code);
     }
 
-    onClick(view, ev) {
+    onClick(view) {
         this.setState({view});
     }
 
@@ -52,8 +49,11 @@ class JSViewer extends Component {
 
     //will need to change to check uuid. Might need to research didUpdate vs will
     componentWillUpdate(nextProps, nextState) {
-        if(nextProps.models !== this.props.models || nextState.view !== this.state.view) {
-            this.generateOutput(nextProps.models, nextState.view);
+        if(nextProps.models !== this.props.models) {
+            this.generateOutput(nextProps.models, this.state.view);
+        }
+        if(nextState.view !== this.state.view) {
+            this.generateOutput(this.props.models, nextState.view);
         }
     }
 
@@ -62,13 +62,14 @@ class JSViewer extends Component {
     }
 
     render() {
-
+        const classNameModels = this.state.view === 'models' ? 'active' : '';
+        const classNameRoutes = this.state.view === 'routes' ? 'active' : '';
         return (
             <div className='col-xs-6 box'>
                 <h3>JavaScript</h3>
                 <ul className="nav nav-tabs">
-                  <li onClick={ this.onClick.bind(null, 'model')} className="active"><a href="#">Model</a></li>
-                  <li onClick={ this.onClick.bind(null, 'routes')} className=''><a href="#">Routes</a></li>
+                  <li onClick={ this.onClick.bind(null, 'models')} className={classNameModels}><a href="#">Model</a></li>
+                  <li onClick={ this.onClick.bind(null, 'routes')} className={classNameRoutes}><a href="#">Routes</a></li>
                 </ul>
                 <div ref={(el) => {this.element = el;}}></div>
 
