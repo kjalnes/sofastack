@@ -3,4 +3,5 @@ describe('Shared Code', () => {
   require('./sequelizeGenrator.test');
   require('./routerGenrator.test');
   require('./packageJsonGenerator.test');
+  require('./dbIndexGenerator.test');
 });
