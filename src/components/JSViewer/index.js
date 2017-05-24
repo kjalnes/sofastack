@@ -8,20 +8,30 @@ import expressRouteGenerator from '../../../shared/codeGenrators/expressRouteGen
 class JSViewer extends Component {
     constructor(props) {
         super(props);
+        this.state = { view: 'models' }
         this.editor = null;
         this.element = null;
         this.generateCode = this.generateCode.bind(this);
         this.generateOutput = this.generateOutput.bind(this);
+        this.onClick = this.onClick.bind(this);
     }
 
     generateCode(fn, models) {
         return models.map( model => fn(model)).join(`\n`);
     }
 
-    generateOutput(models) {
-        const sequelizeCode = this.generateCode(sequelizeGenerator, models);
-        const expressCode = this.generateCode(expressRouteGenerator, models);
-        this.editor.setValue(sequelizeCode + `\n\n` + expressCode);
+    generateOutput(models, view) {
+        let code;
+        if(view === 'models') {
+            code = this.generateCode(sequelizeGenerator, models);
+        } else {
+            code = this.generateCode(expressRouteGenerator, models);
+        }
+        this.editor.setValue(code);
+    }
+
+    onClick(view, ev) {
+        this.setState({view});
     }
 
     componentDidMount() {
@@ -37,13 +47,13 @@ class JSViewer extends Component {
             maxLines: 20
         });
 
-        this.generateOutput(this.props.models);
+        this.generateOutput(this.props.models, this.state.view);
     }
 
     //will need to change to check uuid. Might need to research didUpdate vs will
-    componentWillUpdate(nextProps) {
-        if(nextProps.models !== this.props.models) {
-            this.generateOutput(nextProps.models);
+    componentWillUpdate(nextProps, nextState) {
+        if(nextProps.models !== this.props.models || nextState.view !== this.state.view) {
+            this.generateOutput(nextProps.models, nextState.view);
         }
     }
 
@@ -52,10 +62,16 @@ class JSViewer extends Component {
     }
 
     render() {
+
         return (
             <div className='col-xs-6 box'>
                 <h3>JavaScript</h3>
+                <ul className="nav nav-tabs">
+                  <li onClick={ this.onClick.bind(null, 'model')} className="active"><a href="#">Model</a></li>
+                  <li onClick={ this.onClick.bind(null, 'routes')} className=''><a href="#">Routes</a></li>
+                </ul>
                 <div ref={(el) => {this.element = el;}}></div>
+
             </div>
         )
     }

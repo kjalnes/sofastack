@@ -11,7 +11,7 @@ const root = document.getElementById('root');
 const RenderStuff = (<Provider store = {store}>
    <Router history={ hashHistory }>
     <Route path="/" component={ App }>
-      <IndexRoute component={ ModelDetailContainer } />
+        <IndexRoute component={ ModelDetailContainer } />
     </Route>
    </Router>
 </Provider>);
