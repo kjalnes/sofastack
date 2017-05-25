@@ -1,4 +1,4 @@
-const req = ({name}) => `const ${name}Routes = require('./${name}');`;
+const req = ({name}) => `const ${name}Routes = require('./${name}s');`;
 const routerUse = ({name}) => `router.use('/', ${name}Routes);`;
 
 module.exports = (models) => {
