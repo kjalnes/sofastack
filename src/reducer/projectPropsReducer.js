@@ -1,4 +1,4 @@
-const defaultState ={ name: '' };
+const defaultState ={ name: ''};
 
 import { SAVE_PROJECT_NAME_SUCCESS } from '../constants';
 

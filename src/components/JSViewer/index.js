@@ -8,7 +8,7 @@ import expressRouteGenerator from '../../../shared/codeGenrators/expressRouteGen
 class JSViewer extends Component {
     constructor(props) {
         super(props);
-        this.state = { view: 'models' }
+        this.state = { view: 'model' }
         this.editor = null;
         this.element = null;
         this.generateCode = this.generateCode.bind(this);
@@ -21,13 +21,14 @@ class JSViewer extends Component {
     }
 
     generateOutput(models, view) {
-        let code = view === 'models'
+        let code = view === 'model'
         ? this.generateCode(sequelizeGenerator, models)
         : this.generateCode(expressRouteGenerator, models);
         this.editor.setValue(code);
     }
 
-    onClick(view) {
+    onClick(view, ev) {
+        ev.preventDefault();
         this.setState({view});
     }
 
@@ -44,7 +45,9 @@ class JSViewer extends Component {
             maxLines: 20
         });
 
-        this.generateOutput(this.props.models, this.state.view);
+        if(this.props.models.length) {
+            this.generateOutput(this.props.models, this.state.view);
+        }
     }
 
     //will need to change to check uuid. Might need to research didUpdate vs will
@@ -68,7 +71,7 @@ class JSViewer extends Component {
             <div className='col-xs-6 box'>
                 <h3>JavaScript</h3>
                 <ul className="nav nav-tabs">
-                  <li onClick={ this.onClick.bind(null, 'models')} className={classNameModels}><a href="#">Model</a></li>
+                  <li onClick={ this.onClick.bind(null, 'model')} className={classNameModels}><a href="#">Model</a></li>
                   <li onClick={ this.onClick.bind(null, 'routes')} className={classNameRoutes}><a href="#">Routes</a></li>
                 </ul>
                 <div ref={(el) => {this.element = el;}}></div>
