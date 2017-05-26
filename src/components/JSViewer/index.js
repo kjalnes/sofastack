@@ -7,6 +7,7 @@ import expressRouteGenerator from '../../../shared/codeGenrators/expressRouteGen
 
 class JSViewer extends Component {
     constructor(props) {
+        console.log('JSViewer props', props)
         super(props);
         this.state = { view: 'model' }
         this.editor = null;
@@ -16,16 +17,17 @@ class JSViewer extends Component {
         this.onClick = this.onClick.bind(this);
     }
 
-    generateCode(fn, models) {
-        return models.map( model => fn(model)).join('');
+    generateCode(fn, model) {
+        return fn(model);
     }
 
-    generateOutput(models, view) {
+    generateOutput(model, view) {
         let code = view === 'model'
-        ? this.generateCode(sequelizeGenerator, models)
-        : this.generateCode(expressRouteGenerator, models);
+        ? this.generateCode(sequelizeGenerator, model)
+        : this.generateCode(expressRouteGenerator, model);
         this.editor.setValue(code);
     }
+
 
     onClick(view, ev) {
         ev.preventDefault();
@@ -45,19 +47,25 @@ class JSViewer extends Component {
             maxLines: 20
         });
 
-        if(this.props.models.length) {
-            this.generateOutput(this.props.models, this.state.view);
+        if(this.props.model) {
+            this.generateOutput(this.props.model, this.state.view);
         }
     }
 
-    //will need to change to check uuid. Might need to research didUpdate vs will
     componentWillUpdate(nextProps, nextState) {
-        if(nextProps.models !== this.props.models) {
-            this.generateOutput(nextProps.models, this.state.view);
+        // console.log("this.props", this.props)
+        // console.log("nextProps", nextProps)
+        if(nextProps.model !== this.props.model) {
+            this.generateOutput(nextProps.model, this.state.view);
         }
         if(nextState.view !== this.state.view) {
-            this.generateOutput(this.props.models, nextState.view);
+            this.generateOutput(this.props.model, nextState.view);
         }
+    }
+
+    componentDidUpdate() {
+        // console.log('this.props js viewer', this.props)
+
     }
 
     componentWillUnmount() {

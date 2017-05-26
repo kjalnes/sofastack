@@ -3,6 +3,8 @@ import ModelAttr from './ModelAttr';
 import ModelName from './ModelName';
 import ModelLabels from './ModelLabels';
 import uuidV4 from 'uuid/v4';
+import { browserHistory } from 'react-router';
+
 
 class ModelForm extends Component {
     constructor(props) {
@@ -72,12 +74,14 @@ class ModelForm extends Component {
         const id = this.state.id || uuidV4();
         const model = { name, attrs, id };
         this.props.saveModel(model);
+        browserHistory.push(`/${id}`);
     }
 
     updateModel() {
         const { name, attrs, id } = this.state;
         const model = { name, attrs, id };
         this.props.updateModel(model);
+        browserHistory.push(`/${id}`);
     }
 
     generateAttrs() {

@@ -3,7 +3,6 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
 const Home = (props) => {
-    console.log("props from home", props)
     return (
         <div>
             <div className='row'>

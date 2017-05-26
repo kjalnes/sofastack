@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { browserHistory } from 'react-router';
 import ModelForm from '../components/ModelForm/';
 import JSViewer from '../components/JSViewer';
 import JSONViewer from '../components/JSONViewer';
@@ -6,23 +7,33 @@ import { connect } from 'react-redux';
 import { saveModel, updateModel } from '../actions/model';
 
 class ModelDetailContainer extends Component {
+    constructor() {
+        super();
+        this.findModel = this.findModel.bind(this);
+    }
 
-    findModel() {
-        return this.props.models.find(model => model.id === this.props.params.id);
+    findModel(models) {
+        console.log("this.props in findModel", this.props)
+        console.log("models in findModel", models)
+        // doesnt work when browserHistory.push ...
+        // console.log('find model fired', 'this.props.params.id', this.props.params.id)
+        return models.find(model => model.id === this.props.params.id);
     }
 
     componentDidUpdate(){
-        if(this.props.params.id !== 'create' && !this.findModel() ) {
-            this.props.router.push('/')
+        if(this.props.params.id !== 'create' && !this.findModel(this.props.models) ) {
+            // this.props.router.push('/')
+            // console.log('fhdsjakgfhdslahfjdlhasjflkdshajklfds')
         }
     }
+
 
     render() {
         return (
             <div>
                 <div className='row'>
-                    <ModelForm saveModel={ this.props.saveModel } model={ this.findModel() } />
-                    <JSViewer models={ this.props.models } />
+                    <ModelForm saveModel={ this.props.saveModel } model={ this.findModel(this.props.models) } />
+                    <JSViewer models={ this.props.models } model={ this.findModel(this.props.models) } />
                 </div>
                 <div className='row'>
                     <JSONViewer models={ this.props.models } />

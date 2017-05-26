@@ -1,8 +1,8 @@
 import { combineReducers} from 'redux';
 import models from './modelsReducer';
-import project from './projectPropsReducer';
+import projects from './projectPropsReducer';
 
 export default combineReducers({
     models,
-    project
+    projects
 });
