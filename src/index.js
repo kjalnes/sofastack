@@ -5,12 +5,14 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import store from './store';
 import App from './containers/AppContainer.jsx';
 import ModelDetailContainer from './containers/ModelDetailContainer';
+import ProjectContainer from './containers/ProjectsContainer';
 
 const root = document.getElementById('root');
 
 const RenderStuff = (<Provider store = {store}>
    <Router history={ hashHistory }>
     <Route path="/" component={ App }>
+    	<Route path="/home" component={ProjectContainer}/>
       <IndexRoute component={ ModelDetailContainer } />
     </Route>
    </Router>
