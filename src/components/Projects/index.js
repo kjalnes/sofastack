@@ -21,7 +21,6 @@ class ProjectForm extends Component {
     getDefaultState() {
         return {
             name: '',
-            // id: null,
             showBtn: false,
             showProjectName: false
         };
@@ -37,8 +36,6 @@ class ProjectForm extends Component {
 
     // save model to redux store
     saveProject() {
-        console.log('saveProject gets called + this.state', this.state)
-        // const id = uuidV4();
         const project = { name: this.state.name };
         this.props.saveProject(project);
         this.toggleShowName();
@@ -46,7 +43,6 @@ class ProjectForm extends Component {
 
     componentWillMount() {
         if(this.props.project.length) {
-            console.log('this.props.project', this.props.project[0])
             const project = this.props.project[0]
             this.setState({ name: project.name });
             this.toggleShowName();

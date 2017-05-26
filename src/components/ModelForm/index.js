@@ -111,9 +111,12 @@ class ModelForm extends Component {
         }
     }
 
+
+
     render() {
         const btnName = this.state.id ? 'Update model' : 'Save model';
         const onClickFn = this.state.id ? this.updateModel : this.saveModel;
+        // const btn = this.props.name ? 'Update' : 'Save';
 
 
         return (

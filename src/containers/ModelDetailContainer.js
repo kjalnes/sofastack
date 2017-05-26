@@ -20,23 +20,10 @@ class ModelDetailContainer extends Component {
                         model={this.findModel(this.props.models)}
                         saveModel={this.props.saveModel}
                         updateModel={this.props.updateModel} />
-                    <JSViewer
-                        model={this.findModel(this.props.models)}
-                        models={this.props.models}  />
+                    <JSViewer model={this.findModel(this.props.models)} />
                 </div>
                 <div className='row'>
                     <JSONViewer models={this.props.models} />
-                    <div className='col-xs-6 box'>
-                        <h3>Your models </h3>
-                        <ul>
-                        {   this.props.models ?
-                            this.props.models.map( (model, index) => {
-                                return <Link to={model.id} key={index}>{model.name}</Link>
-                            })
-                            : null
-                        }
-                        </ul>
-                    </div>
                 </div>
             </div>
         )
