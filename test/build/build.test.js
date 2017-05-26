@@ -94,10 +94,38 @@ describe('Build Project', () => {
   });
 
   it('has db conn', (done) => {
-    fs.pathExists(__dirname, '..', '..', 'build', 'built projects', 'test', 'server', 'db', 'conn.js')
+    fs.pathExists(path.join(__dirname, '..', '..', 'build', 'built projects', 'testProject', 'server', 'db', 'conn.js'))
     .then(status => expect(status).to.be.true)
     .then(() => done())
     .catch(done);
   });
 
+
+  it('has api index', (done) => {
+    fs.pathExists(path.join(__dirname, '..', '..', 'build', 'built projects', 'testProject', 'server', 'routes', 'api', 'index.js'))
+    .then(status => expect(status).to.be.true)
+    .then(() => done())
+    .catch(done);
+  });
+
+  it('has tests route', (done) => {
+    fs.pathExists(path.join(__dirname, '..', '..', 'build', 'built projects', 'testProject', 'server', 'routes', 'api', 'tests.js'))
+    .then(status => expect(status).to.be.true)
+    .then(() => done())
+    .catch(done);
+  });
+
+  it('has test2s route', (done) => {
+    fs.pathExists(path.join(__dirname, '..', '..', 'build', 'built projects', 'testProject', 'server', 'routes', 'api', 'test2s.js'))
+    .then(status => expect(status).to.be.true)
+    .then(() => done())
+    .catch(done);
+  });
+
+  it('has package json', (done) => {
+    fs.pathExists(path.join(__dirname, '..', '..', 'build', 'built projects', 'testProject', 'package.json'))
+    .then(status => expect(status).to.be.true)
+    .then(() => done())
+    .catch(done);
+  });
 });

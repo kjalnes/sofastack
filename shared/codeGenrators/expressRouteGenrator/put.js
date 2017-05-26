@@ -8,8 +8,8 @@ const put = ({name}) => {
     if (!obj){
       return res.sendStatus(404);
     }
-    return obj.update(obj)
-    .then(obj => res.json(obj));
+    return obj.update(body)
+    .then(updatedobj => res.json(updatedobj));
   })
   .catch(next);
 });`;

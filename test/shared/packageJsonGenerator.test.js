@@ -14,7 +14,7 @@ describe('Package.Json Genrator', () => {
   "license": "MIT",
   "scripts": {
     "start": "node index.js",
-    "start:local": "DATABASE_URL=postgres://localhost/${name} nodemon index.js",
+    "start:local": "DATABASE_URL=postgres://localhost/${name} node index.js",
   },
   "dependencies": {
     "body-parser": "^1.17.1",
