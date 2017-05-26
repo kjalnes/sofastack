@@ -92,6 +92,7 @@ class ModelForm extends Component {
     generateAttrs() {
         return this.state.attrs.map(attr => {
             const id = attr.id || uuidV4();
+            const _attr = { name: attr.name, type: attr.type, id}
             return <ModelAttr
                 saveAttr={this.saveAttr}
                 deleteAttr={this.deleteAttr}
@@ -99,7 +100,8 @@ class ModelForm extends Component {
                 name={attr.name}
                 type= {attr.type}
                 key={id}
-                id={id} />;
+                id={id}
+                attr={_attr} />;
         });
     }
 
@@ -112,6 +114,7 @@ class ModelForm extends Component {
     render() {
         const btnName = this.state.id ? 'Update model' : 'Save model';
         const onClickFn = this.state.id ? this.updateModel : this.saveModel;
+
 
         return (
             <div className='col-xs-6 box'>
