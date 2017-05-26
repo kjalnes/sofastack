@@ -8,8 +8,13 @@ const modelsReducer = (state = defaultState, action) =>{
         case SAVE_MODEL_SUCCESS:
             return [...state, action.model];
         case UPDATE_MODEL_SUCCESS:
-            console.log('state',state)
-            return [...state, action.models];
+            const models = state.map( model => {
+                if (model.id === action.model.id) {
+                    model = action.model
+                }
+                return model;
+            });
+            return [...models];
     }
       return state;
 };

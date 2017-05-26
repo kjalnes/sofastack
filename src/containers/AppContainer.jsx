@@ -3,7 +3,6 @@ import { Link } from 'react-router';
 import {connect} from 'react-redux';
 
 const AppContainer = ({children}) => {
-// <a className="navbar-brand" href="/"><span className='logo'>SOFA STACK</span></a>
   return (
   <div>
     <nav className="navbar navbar-default">
