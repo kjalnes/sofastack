@@ -14,11 +14,15 @@ describe('Package.Json Genrator', () => {
   "license": "MIT",
   "scripts": {
     "start": "node index.js",
-    "start:local": "DATABASE_URL=postgres://localhost/${name} node index.js",
+    "start:local": "npm run db-init & DATABASE_URL=postgres://localhost/${name} node index.js",
+    "db-init": "pg-init ${name}"
   },
   "dependencies": {
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
+    "fs-misc": "^2.0.0",
+    "pg": "^5.1.0",
+    "sequelize": "^3.23.3",
     "request": "^2.81.0"
   }
 }`;

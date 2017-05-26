@@ -3,7 +3,7 @@ const capitalizeFirstLetter = require('../../capitalizeFirstLetter');
 
 module.exports = (models) => {
   const reqStrs = models.map(model => req(model)).join('\n');
-  const modelExports = models.map(model => capitalizeFirstLetter(model.name)).join(',\n    ');
+  const modelExports = models.map(model => capitalizeFirstLetter(model.name) + 's').join(',\n    ');
   return `const conn = require('./conn');
 ${reqStrs}
 

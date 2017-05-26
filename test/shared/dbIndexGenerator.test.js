@@ -7,8 +7,8 @@ describe('dbIndexGenerator Genrator', () => {
     const models = [{name: 'test'}, {name: 'test2'}];
     const generatedCode = dbIndexGenerator(models);
     const expected = `const conn = require('./conn');
-const Test = require('./Test');
-const Test2 = require('./Test2');
+const Tests = require('./Test');
+const Test2s = require('./Test2');
 
 const sync = force => conn.sync({ force });
 
@@ -18,8 +18,8 @@ module.exports = {
   sync,
   seed,
   models: {
-    Test,
-    Test2
+    Tests,
+    Test2s
   }
 };`;
     expect(generatedCode).to.equal(expected);

@@ -9,7 +9,7 @@ const get = ({name}) => {
 router.get('/:id', (req, res, next) => {
   const {id} = req.params;
   db.models.${capitalizeFirstLetter(name)}s.findById(id)
-  .then(obj => ( obj ? obj.json(obj) : res.sendStatus(404)))
+  .then(obj => ( obj ? res.json(obj) : res.sendStatus(404)))
   .catch(next);
 });`;
 };

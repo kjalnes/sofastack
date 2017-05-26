@@ -10,8 +10,8 @@ describe('api Route Index Genrator', () => {
 const testRoutes = require('./tests');
 const test2Routes = require('./test2s');
 
-router.use('/', testRoutes);
-router.use('/', test2Routes);
+router.use('/tests', testRoutes);
+router.use('/test2s', test2Routes);
 
 module.exports = router;`;
     expect(generatedCode).to.equal(expected);
