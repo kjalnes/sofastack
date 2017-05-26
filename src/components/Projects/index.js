@@ -7,7 +7,6 @@ import uuidV4 from 'uuid/v4';
 
 class ProjectForm extends Component {
     constructor(props) {
-        console.log('props', props)
         super(props);
         this.state =  this.getDefaultState();
         // this.saveAttr = this.saveAttr.bind(this);
@@ -34,7 +33,7 @@ class ProjectForm extends Component {
         this.setState({ showProjectName: !this.state.showProjectName });
     }
 
-    // save model to redux store
+    // save project to redux store
     saveProject() {
         const project = { name: this.state.name };
         this.props.saveProject(project);

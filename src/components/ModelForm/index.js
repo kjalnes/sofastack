@@ -44,14 +44,12 @@ class ModelForm extends Component {
         attrs = attrs.map( _attr => {
             if(_attr.id === attr.id) {
                 _attr = attr;
-                console.log('attr is updated')
                 attrUpdated = true;
             }
             return _attr;
         });
 
         if(!attrUpdated) {
-            console.log('attr is not updated')
             attrs[ attrs.length - 1 ] = attr;
         }
 
@@ -81,9 +79,7 @@ class ModelForm extends Component {
 
     // update model in redux store
     updateModel() {
-        console.log('update model gets called')
         const { name, attrs, id } = this.state;
-        console.log('updated attr', attrs)
         const model = { name, attrs, id };
         this.props.updateModel(model);
         browserHistory.push(`/${id}`);
@@ -116,8 +112,6 @@ class ModelForm extends Component {
     render() {
         const btnName = this.state.id ? 'Update model' : 'Save model';
         const onClickFn = this.state.id ? this.updateModel : this.saveModel;
-        // const btn = this.props.name ? 'Update' : 'Save';
-
 
         return (
             <div className='col-xs-6 box'>
