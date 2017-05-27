@@ -10,7 +10,7 @@ const attrs = {
 ${attrs}
 };
 
-const ${capitalizeFirstLetter(name)} = dbInstance.define(${name},attrs)
+const ${capitalizeFirstLetter(name)} = conn.define('${name}',attrs);
 
 module.exports = ${capitalizeFirstLetter(name)};`;
 };

@@ -3,16 +3,16 @@ const post = require('./post');
 const put = require('./put');
 const del = require('./delete');
 
-module.exports = (obj) => `const router = require('express').Router();
+module.exports = (model) => `const router = require('express').Router();
 const db = require('../../db');
 
-${get(obj)}
+${get(model)}
 
-${post(obj)}
+${post(model)}
 
-${put(obj)}
+${put(model)}
 
-${del(obj)}
+${del(model)}
 
 module.exports = router;
 `;
