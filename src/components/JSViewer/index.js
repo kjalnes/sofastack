@@ -1,49 +1,56 @@
 import React, { Component } from 'react';
 import ace from 'brace';
 import 'brace/mode/javascript';
-import 'brace/theme/solarized_light';
+import 'brace/theme/monokai';
 import sequelizeGenerator from '../../../shared/codeGenrators/sequelizeGenrator';
 import expressRouteGenerator from '../../../shared/codeGenrators/expressRouteGenrator';
 
 class JSViewer extends Component {
     constructor(props) {
         super(props);
+        this.state = { view: 'model' }
         this.editor = null;
         this.element = null;
-        this.generateCode = this.generateCode.bind(this);
         this.generateOutput = this.generateOutput.bind(this);
+        this.onClick = this.onClick.bind(this);
     }
 
-    generateCode(fn, models) {
-        return models.map( model => fn(model)).join(`\n`);
+    generateOutput(model, view) {
+        let code = view === 'model'
+        ? sequelizeGenerator(model)
+        : expressRouteGenerator(model);
+        this.editor.setValue(code);
     }
 
-    generateOutput(models) {
-        const sequelizeCode = this.generateCode(sequelizeGenerator, models);
-        const expressCode = this.generateCode(expressRouteGenerator, models);
-        this.editor.setValue(sequelizeCode + `\n\n` + expressCode);
+    onClick(view, ev) {
+        ev.preventDefault();
+        this.setState({view});
     }
 
     componentDidMount() {
         this.editor = ace.edit(this.element);
         this.editor.$blockScrolling = Infinity;
         this.editor.getSession().setMode('ace/mode/javascript');
-        this.editor.setTheme('ace/theme/solarized_light');
+        this.editor.setTheme('ace/theme/monokai');
         this.editor.setOptions({
             readOnly: true,
             hScrollBarAlwaysVisible: true,
             vScrollBarAlwaysVisible: true,
             minLines: 19,
-            maxLines: 20
+            maxLines: 19
         });
 
-        this.generateOutput(this.props.models);
+        if(this.props.model) {
+            this.generateOutput(this.props.model, this.state.view);
+        }
     }
 
-    //will need to change to check uuid. Might need to research didUpdate vs will
-    componentWillUpdate(nextProps) {
-        if(nextProps.models !== this.props.models) {
-            this.generateOutput(nextProps.models);
+    componentWillUpdate(nextProps, nextState) {
+        if(nextProps.model !== this.props.model) {
+            this.generateOutput(nextProps.model, this.state.view);
+        }
+        if(nextState.view !== this.state.view) {
+            this.generateOutput(this.props.model, nextState.view);
         }
     }
 
@@ -52,9 +59,15 @@ class JSViewer extends Component {
     }
 
     render() {
+        const classNameModels = this.state.view === 'model' ? 'active' : '';
+        const classNameRoutes = this.state.view === 'routes' ? 'active' : '';
         return (
             <div className='col-xs-6 box'>
                 <h3>JavaScript</h3>
+                <ul className="nav nav-tabs">
+                  <li onClick={ this.onClick.bind(null, 'model')} className={classNameModels}><a href="#">Model</a></li>
+                  <li onClick={ this.onClick.bind(null, 'routes')} className={classNameRoutes}><a href="#">Routes</a></li>
+                </ul>
                 <div ref={(el) => {this.element = el;}}></div>
             </div>
         )

@@ -1,33 +1,36 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { browserHistory, Link } from 'react-router';
 import ModelForm from '../components/ModelForm/';
 import JSViewer from '../components/JSViewer';
 import JSONViewer from '../components/JSONViewer';
 import { connect } from 'react-redux';
-import { saveModel } from '../actions/model';
+import { saveModel, updateModel } from '../actions/model';
 
-const ModelDetailContainer = (props) => {
-    return (
-        <div>
-            <div className='row'>
-                <ModelForm saveModel={ props.saveModel } />
-                <JSViewer models={ props.models } />
-            </div>
-            <div className='row'>
-                <JSONViewer models={ props.models } />
-                <div className='col-xs-6 box'>
-                    <h3>Your models </h3>
-                    <ul>
-                    { props.models ? props.models.map( (model, index) => <li key={index}>{model.name}</li>) : null }
-                    </ul>
-                    { props.models.length ? <button className='btn btn-default'>Download zip</button>: null }
+class ModelDetailContainer extends Component {
+
+    findModel(models) {
+        return models.find(model => model.id === this.props.params.id);
+    }
+
+    render() {
+        return (
+            <div>
+                <div className='row'>
+                    <ModelForm
+                        model={this.findModel(this.props.models)}
+                        saveModel={this.props.saveModel}
+                        updateModel={this.props.updateModel} />
+                    <JSViewer model={this.findModel(this.props.models)} />
+                </div>
+                <div className='row'>
+                    <JSONViewer models={this.props.models} />
                 </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
 
-
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
     return {
         models: state.models
     }
@@ -35,9 +38,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        saveModel: (model)=> dispatch(saveModel(model))
+        saveModel: (model) => dispatch(saveModel(model)),
+        updateModel: (model) => dispatch(updateModel(model))
     }
 };
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(ModelDetailContainer);

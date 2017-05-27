@@ -1,14 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router';
 import {connect} from 'react-redux';
 
 const AppContainer = ({children}) => {
-
   return (
   <div>
     <nav className="navbar navbar-default">
   <div className="container-fluid">
     <div className="navbar-header">
-      <a className="navbar-brand" href="#"><span className='logo'>SOFA STACK</span> - Cushioning for the Lazy Dev</a>
+        <Link className="navbar-brand" to='/'>SOFA STACK  - Cushioning for the Lazy Dev</Link>
     </div>
     <ul className="nav navbar-nav" />
   </div>
