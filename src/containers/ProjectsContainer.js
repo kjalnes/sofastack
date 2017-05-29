@@ -8,7 +8,7 @@ const ProjectContainer = (props) => {
     return (
         <div>
             <div className='row'>
-                <div className='project-name'>
+                <div className='well project-details center-block'>
                     <ProjectForm
                         models={props.models}
                         saveProject={ props.saveProject }

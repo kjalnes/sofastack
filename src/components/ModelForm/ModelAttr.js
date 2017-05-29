@@ -26,13 +26,6 @@ class ModelAttr extends Component {
         this.props.deleteAttr(this.state.id)
     }
 
-    // componentWillMount() {
-    //     if(this.props.attr) {
-    //         console.log('this.props.attr exist',this.props.attr)
-    //         this.setState(this.props.attr);
-    //     }
-    // }
-
     render() {
         const btn = this.props.name ? 'Update' : 'Save';
 
