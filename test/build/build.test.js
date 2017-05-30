@@ -45,6 +45,7 @@ describe('Build Project', () => {
 
   afterEach((done) => {
     fs.emptyDir(path.join(__dirname, '..', '..', 'build', 'built projects'))
+    .then(() => fs.emptyDir(path.join(__dirname, '..', '..', 'build', 'zips')))
   .then(() => done())
   .catch(done);
   });
@@ -124,6 +125,13 @@ describe('Build Project', () => {
 
   it('has package json', (done) => {
     fs.pathExists(path.join(__dirname, '..', '..', 'build', 'built projects', 'testProject', 'package.json'))
+    .then(status => expect(status).to.be.true)
+    .then(() => done())
+    .catch(done);
+  });
+
+  it('make zips', (done) => {
+    fs.pathExists(path.join(__dirname, '..', '..', 'build', 'zips', 'testProject.zip'))
     .then(status => expect(status).to.be.true)
     .then(() => done())
     .catch(done);
