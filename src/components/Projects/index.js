@@ -35,15 +35,13 @@ class ProjectForm extends Component {
 
     // save project to redux store
     saveProject() {
-        const project = { name: this.state.name };
-        this.props.saveProject(project);
+        this.props.saveProject(this.state.name);
         this.toggleInput();
     }
 
     componentWillMount() {
-        if(this.props.project.length) {
-            const project = this.props.project[0]
-            this.setState({ name: project.name });
+        if(this.props.name) {
+            this.setState({ name: this.props.name });
             this.toggleInput();
         }
     }
