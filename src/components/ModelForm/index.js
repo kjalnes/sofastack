@@ -16,7 +16,7 @@ class ModelForm extends Component {
         this.saveModel = this.saveModel.bind(this);
         this.updateModel = this.updateModel.bind(this);
         this.onChange = this.onChange.bind(this);
-        this.toggleShowName = this.toggleShowName.bind(this);
+        this.toggleInput = this.toggleInput.bind(this);
     }
 
     getDefaultState() {
@@ -25,7 +25,7 @@ class ModelForm extends Component {
             attrs: [{}],
             id: null,
             showBtn: false,
-            showModelName: false
+            showInput: true
         };
     }
 
@@ -33,8 +33,8 @@ class ModelForm extends Component {
         this.setState({ [ type ] : ev.target.value });
     }
 
-    toggleShowName() {
-        this.setState({ showModelName: !this.state.showModelName });
+    toggleInput() {
+        this.setState({ showInput: !this.state.showInput });
     }
 
     saveAttr(attr) {
@@ -103,10 +103,16 @@ class ModelForm extends Component {
 
     componentDidMount() {
         if(this.props.model) {
-            this.setState(this.props.model);
+            const newState = Object.assign({}, this.props.model, { showBtn: true });
+            this.setState(newState);
         }
     }
 
+    componentWillUpdate(nextProps, nextState) {
+        if (nextProps.model !== this.props.model) {
+            this.setState(nextProps.model);
+        }
+    }
 
 
     render() {
@@ -119,21 +125,17 @@ class ModelForm extends Component {
                 <div className='model-form'>
                     <div>
                         <ModelName
-                            showModelName={this.state.showModelName}
-                            toggleShowName={this.toggleShowName}
+                            showInput={this.state.showInput}
+                            toggleInput={this.toggleInput}
                             name={this.state.name}
                             onChange={this.onChange} />
                         <hr />
                         <ModelLabels />
                         { this.generateAttrs() }
-                        { this.state.showBtn ?
-                            <button onClick={this.addNewAttr} className='btn btn-primary'>+</button>
-                            :
-                            null
-                        }
+                        { this.state.showBtn ? <button onClick={this.addNewAttr} className='btn btn-primary'>+</button> : null }
                     </div>
                     <br />
-                    <button onClick={onClickFn} className='btn btn-default pull-right model-save-btn'>{btnName}</button>
+                    <button onClick={onClickFn} className='btn btn-default model-save-btn'>{btnName}</button>
                 </div>
             </div>
         );

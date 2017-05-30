@@ -14,14 +14,14 @@ class ProjectForm extends Component {
         // this.deleteAttr = this.deleteAttr.bind(this);
         this.saveProject = this.saveProject.bind(this);
         this.onChange = this.onChange.bind(this);
-        this.toggleShowName = this.toggleShowName.bind(this);
+        this.toggleInput = this.toggleInput.bind(this);
     }
 
     getDefaultState() {
         return {
             name: '',
             showBtn: false,
-            showProjectName: false
+            showInput: true
         };
     }
 
@@ -29,39 +29,43 @@ class ProjectForm extends Component {
         this.setState({ name : ev.target.value });
     }
 
-    toggleShowName() {
-        this.setState({ showProjectName: !this.state.showProjectName });
+    toggleInput() {
+        this.setState({ showInput: !this.state.showInput });
     }
 
     // save project to redux store
     saveProject() {
         const project = { name: this.state.name };
         this.props.saveProject(project);
-        this.toggleShowName();
+        this.toggleInput();
     }
 
     componentWillMount() {
         if(this.props.project.length) {
             const project = this.props.project[0]
             this.setState({ name: project.name });
-            this.toggleShowName();
+            this.toggleInput();
         }
     }
 
     render() {
         return (
-            <div className='project-page'>
-                <h3>Your Project</h3>
-                <div className=''>
-                    { this.state.showProjectName ?
-                        <div>
-                            <h4>{this.state.name }</h4>
-                            <button onClick={this.toggleShowName} className='btn btn-default project-edit-btn'>Edit</button>
+            <div className=''>
+                <h3>Project Overview</h3>
+                <div className='row'>
+                    { this.state.showInput ?
+                        <div className='col-xs-12'>
+                            <input
+                            onChange={this.onChange}
+                            className='form-control inline project-name'
+                            value={this.state.name}
+                            placeholder='Project name'/>
+                            <button onClick={this.saveProject} className='btn btn-default project-save-btn'>Save</button>
                         </div>
                         :
-                        <div className=''>
-                            <input onChange={this.onChange}/><br />
-                            <button onClick={this.saveProject} className='btn btn-default project-save-btn'>Save</button>
+                        <div className='col-xs-12'>
+                            <h4 className='inline'>{this.state.name }</h4>
+                            <button onClick={this.toggleInput} type='button' className='btn btn-default'><span className="glyphicon glyphicon-pencil"></span></button>
                         </div>
                     }
                 </div>

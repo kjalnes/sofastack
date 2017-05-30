@@ -1,6 +1,5 @@
-const defaultState ={ name: ''};
-
 import { SAVE_PROJECT_NAME_SUCCESS } from '../constants';
+const defaultState ={ name: ''};
 
 const projectPropsReducer = (state = defaultState, action) =>{
     switch(action.type) {
@@ -11,7 +10,3 @@ const projectPropsReducer = (state = defaultState, action) =>{
 };
 
 export default projectPropsReducer;
-
-
-
-

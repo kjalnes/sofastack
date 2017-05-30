@@ -6,11 +6,6 @@ import store from './store';
 import App from './containers/AppContainer.jsx';
 import ModelDetailContainer from './containers/ModelDetailContainer';
 import ProjectsContainer from './containers/ProjectsContainer';
-import Home from './components/Home';
-
-
-
-
 
 const root = document.getElementById('root');
 
