@@ -12,7 +12,7 @@ const ProjectContainer = (props) => {
                     <ProjectForm
                         models={props.models}
                         saveProject={ props.saveProject }
-                        project={props.project} />
+                        name={props.name} />
                     <ModelsList models={props.models} />
                 </div>
             </div>
@@ -22,7 +22,7 @@ const ProjectContainer = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        project: state.project,
+        name: state.name,
         models:state.models
     }
 };
