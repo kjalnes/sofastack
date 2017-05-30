@@ -136,4 +136,16 @@ describe('Build Project', () => {
     .then(() => done())
     .catch(done);
   });
+
+  it('has obj as expected', (done) => {
+    build(testObj)
+    .then(({projectFolder, zip, cleanup}) => {
+      expect(projectFolder).to.eq(path.join(__dirname, '..', '..', 'build', 'temp', 'testProject'));
+      expect(zip).to.eq(path.join(__dirname, '..', '..', 'build', 'zips', 'testProject.zip'));
+      expect(cleanup).to.be.a('function');
+      done();
+    })
+    .catch(done);
+
+  });
 });
