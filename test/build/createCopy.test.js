@@ -11,20 +11,20 @@ describe('Create Copy', () => {
   });
 
   afterEach((done) => {
-    fs.emptyDir(path.join(__dirname, '..', '..', 'build', 'built projects'))
+    fs.emptyDir(path.join(__dirname, '..', '..', 'build', 'temp'))
   .then(() => done())
   .catch(done);
   });
 
   it('makes the parent folder as expected', (done) => {
-    fs.pathExists(__dirname, '..', '..', 'build', 'built projects', 'test')
+    fs.pathExists(__dirname, '..', '..', 'build', 'temp', 'test')
     .then(status => expect(status).to.be.true)
     .then(() => done())
     .catch(done);
   });
 
   it('has index.js', (done) => {
-    fs.pathExists(__dirname, '..', '..', 'build', 'built projects', 'test', 'index.js')
+    fs.pathExists(__dirname, '..', '..', 'build', 'temp', 'test', 'index.js')
     .then(status => expect(status).to.be.true)
     .then(() => done())
     .catch(done);
