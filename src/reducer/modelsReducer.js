@@ -1,7 +1,6 @@
+import { SAVE_MODEL_SUCCESS, UPDATE_MODEL_SUCCESS } from '../constants';
 const defaultState = [];
 const defaultModel ={ name: '', attrs: [], id: null };
-
-import { SAVE_MODEL_SUCCESS, UPDATE_MODEL_SUCCESS } from '../constants';
 
 const modelsReducer = (state = defaultState, action) =>{
     switch(action.type) {

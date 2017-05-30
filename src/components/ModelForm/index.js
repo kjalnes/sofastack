@@ -103,8 +103,8 @@ class ModelForm extends Component {
 
     componentDidMount() {
         if(this.props.model) {
-            this.setState(this.props.model);
-            this.setState({showBtn: true});
+            const newState = Object.assign({}, this.props.model, { showBtn: true });
+            this.setState(newState);
         }
     }
 

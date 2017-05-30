@@ -16,9 +16,9 @@ class JSViewer extends Component {
     }
 
     generateOutput(model, view) {
-        let code = view === 'model'
-        ? sequelizeGenerator(model)
-        : expressRouteGenerator(model);
+        let code = view === 'model' ?
+            sequelizeGenerator(model) :
+            expressRouteGenerator(model);
         this.editor.setValue(code);
     }
 
