@@ -12,7 +12,7 @@ app.post('/', (req, res, next) => {
 app.get('/', (req, res, next) => {
   const {name} = req.query;
   const path = build.zip(name);
-  res.download(path, name + '.zip', () => {
+  res.download(path, () => {
     build.cleanup(name);
   });
 });
