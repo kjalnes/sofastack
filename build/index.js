@@ -7,7 +7,8 @@ const makeZip = require('./makeZip');
 const path = require('path');
 const fs = require('fs-extra');
 
-module.exports = ({name, models}) => {
+
+const fun = ({name, models}) => {
   const projectFolder = projectRoute(name);
   const zip = path.join(__dirname, 'zips', name + '.zip');
   return createCopy(name)
@@ -21,3 +22,8 @@ module.exports = ({name, models}) => {
       cleanup: () => Promise.all([fs.remove(projectFolder), fs.remove(zip)])
     }));
 };
+
+fun.cleanup = (name) => Promise.all([fs.remove(projectRoute(name)), fs.remove(projectRoute.zip(name))]);
+fun.zip = (name) => projectRoute.zip(name);
+fun.path = (name) => projectRoute(name);
+module.exports = fun;

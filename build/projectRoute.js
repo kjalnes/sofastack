@@ -1,3 +1,4 @@
 const path = require('path');
-
-module.exports = (name) => path.join(__dirname, 'temp', name);
+const route =  (name) => path.join(__dirname, 'temp', name);
+route.zip = (name) => path.join(__dirname, 'zips', name + '.zips');
+module.exports = route;
