@@ -2,9 +2,9 @@ import React from 'react';
 import ProjectForm from '../components/Projects';
 import ModelsList from '../components/Projects/ModelsList';
 import { connect } from 'react-redux';
-import { saveProjectName, downloadZip } from '../actions/project';
+import { saveProjectName, deleteProjectName, downloadZip } from '../actions/project';
 
-const ProjectContainer = ({models, saveProject, name }) => {
+const ProjectContainer = ({models, saveProject, deleteProject, name, project }) => {
     const clickZip = () => downloadZip({ name, models });
     return (
         <div>
@@ -13,7 +13,9 @@ const ProjectContainer = ({models, saveProject, name }) => {
                     <ProjectForm
                         models={models}
                         saveProject={ saveProject }
-                        name={name} />
+                        deleteProject={ deleteProject }
+                        name={name}
+                        project={project} />
                     <ModelsList
                         models={models}
                         clickZip={clickZip} />
@@ -25,6 +27,7 @@ const ProjectContainer = ({models, saveProject, name }) => {
 
 const mapStateToProps = (state) => {
     return {
+        project: state.project,
         name: state.name,
         models:state.models
     }
@@ -32,7 +35,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        saveProject: (project)=> dispatch(saveProjectName(project))
+        saveProject: (project)=> dispatch(saveProjectName(project)),
+        deleteProject: (project)=> dispatch(deleteProjectName(project))
     }
 };
 
