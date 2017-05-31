@@ -13,6 +13,7 @@ class ProjectForm extends Component {
         // this.addNewAttr = this.addNewAttr.bind(this);
         // this.deleteAttr = this.deleteAttr.bind(this);
         this.saveProject = this.saveProject.bind(this);
+        this.deleteProject = this.deleteProject.bind(this);
         this.onChange = this.onChange.bind(this);
         this.toggleInput = this.toggleInput.bind(this);
     }
@@ -39,6 +40,14 @@ class ProjectForm extends Component {
         this.toggleInput();
     }
 
+    deleteProject() {
+        this.setState(this.getDefaultState());
+        const project = { name: null };
+        this.props.deleteProject(project);
+        // this.toggleShowName();
+    }
+
+
     componentWillMount() {
         if(this.props.name) {
             this.setState({ name: this.props.name });
@@ -59,6 +68,8 @@ class ProjectForm extends Component {
                             value={this.state.name}
                             placeholder='Project name'/>
                             <button onClick={this.saveProject} className='btn btn-default project-save-btn'>Save</button>
+                            <button onClick={this.deleteProject} className='btn btn-default project-edit-btn'>Delete</button>
+
                         </div>
                         :
                         <div className='col-xs-12'>

@@ -5,6 +5,8 @@ const projectPropsReducer = (state = defaultState, action) =>{
     switch(action.type) {
         case SAVE_PROJECT_NAME_SUCCESS:
             return action.name;
+        case  DELETE_PROJECT_NAME_SUCCESS:
+            return action.name;
     }
     return state;
 };

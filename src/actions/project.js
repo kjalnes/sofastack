@@ -16,5 +16,10 @@ const saveProjectName = (name) => ({
   name
 });
 
-export { saveProjectName, downloadZip };
+const deleteProjectName = (name) => ({
+    type: DELETE_PROJECT_NAME_SUCCESS,
+    name:null
+});
+
+export { saveProjectName, downloadZip,deleteProjectName };
 
