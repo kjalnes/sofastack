@@ -20,7 +20,11 @@ export default function ModelsList (props){
             }
             <br />
             <button className='btn btn-default'><Link to='create'>Add new model</Link></button>
-            { props.models.length ? <button className='btn btn-default'>Download zip</button> : null }
+            { props.models.length ?
+                <button onClick={ props.clickZip } className='btn btn-default'>Download zip</button> :
+                null
+            }
         </div>
     );
 }
+

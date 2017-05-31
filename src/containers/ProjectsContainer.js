@@ -2,18 +2,21 @@ import React from 'react';
 import ProjectForm from '../components/Projects';
 import ModelsList from '../components/Projects/ModelsList';
 import { connect } from 'react-redux';
-import { saveProjectName } from '../actions/project';
+import { saveProjectName, downloadZip } from '../actions/project';
 
-const ProjectContainer = (props) => {
+const ProjectContainer = ({models, saveProject, name }) => {
+    const clickZip = () => downloadZip({ name, models });
     return (
         <div>
             <div className='row'>
                 <div className='well project-details center-block'>
                     <ProjectForm
-                        models={props.models}
-                        saveProject={ props.saveProject }
-                        name={props.name} />
-                    <ModelsList models={props.models} />
+                        models={models}
+                        saveProject={ saveProject }
+                        name={name} />
+                    <ModelsList
+                        models={models}
+                        clickZip={clickZip} />
                 </div>
             </div>
         </div>
