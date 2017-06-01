@@ -1,28 +1,19 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import ModelsList from './ModelsList';
-// import ModelName from './ModelName';
-// import ModelLabels from './ModelLabels';
 import uuidV4 from 'uuid/v4';
 
 class ProjectForm extends Component {
     constructor(props) {
         super(props);
-        this.state =  this.getDefaultState();
-        // this.saveAttr = this.saveAttr.bind(this);
-        // this.addNewAttr = this.addNewAttr.bind(this);
-        // this.deleteAttr = this.deleteAttr.bind(this);
-        this.saveProject = this.saveProject.bind(this);
-        this.onChange = this.onChange.bind(this);
-        this.toggleInput = this.toggleInput.bind(this);
-    }
-
-    getDefaultState() {
-        return {
+        this.state = {
             name: '',
             showBtn: false,
             showInput: true
         };
+        this.saveProject = this.saveProject.bind(this);
+        this.onChange = this.onChange.bind(this);
+        this.toggleInput = this.toggleInput.bind(this);
     }
 
     onChange(ev) {
@@ -62,7 +53,7 @@ class ProjectForm extends Component {
                         </div>
                         :
                         <div className='col-xs-12'>
-                            <h4 className='inline'>{this.state.name }</h4>
+                            <h4 className='inline'>{this.state.name}</h4>
                             <button onClick={this.toggleInput} type='button' className='btn btn-default'><span className="glyphicon glyphicon-pencil"></span></button>
                         </div>
                     }
