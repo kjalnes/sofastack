@@ -1,4 +1,4 @@
-import { SAVE_MODEL_SUCCESS, UPDATE_MODEL_SUCCESS } from '../constants';
+import { SAVE_MODEL_SUCCESS, UPDATE_MODEL_SUCCESS, DELETE_MODEL_SUCCESS } from '../constants';
 
 const updateModel = (model) => ({
     type: UPDATE_MODEL_SUCCESS,
@@ -10,7 +10,9 @@ const saveModel = (model) => ({
     model
 });
 
+const deleteModel = (id) => ({
+    type: DELETE_MODEL_SUCCESS,
+    id
+});
 
-
-
-export { saveModel, updateModel };
+export { saveModel, updateModel, deleteModel };

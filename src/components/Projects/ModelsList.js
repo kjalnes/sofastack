@@ -1,16 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-export default function ModelsList (props){
+export default function ModelsList ({models, deleteModel, clickZip, }){
+    function onClickDelete(id) {
+        deleteModel(id);
+    }
+
     return (
         <div className=''>
-            { props.models.length ?
+            { models.length ?
                 <div>
                     <h3>Your models</h3>
                     <ul>
                     {
-                        props.models.map( (model, index) => {
-                            return <Link to={model.id} key={index}><h4>{model.name}</h4></Link>
+                        models.map( (model, index) => {
+                            return <div key={index}>
+                                <Link to={model.id} className='inline'><h4>{model.name}</h4></Link>
+                                    <span onClick={ onClickDelete.bind(null, model.id) } className='glyphicon glyphicon-remove models-list-icon'></span>
+                                </div>
                         })
                     }
                     </ul>
@@ -20,8 +27,8 @@ export default function ModelsList (props){
             }
             <br />
             <button className='btn btn-default'><Link to='create'>Add new model</Link></button>
-            { props.models.length ?
-                <button onClick={ props.clickZip } className='btn btn-default'>Download zip</button> :
+            { models.length ?
+                <button onClick={ clickZip } className='btn btn-default'>Download zip</button> :
                 null
             }
         </div>
