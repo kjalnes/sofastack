@@ -5,11 +5,16 @@ import ModelLabels from './ModelLabels';
 import uuidV4 from 'uuid/v4';
 import { browserHistory } from 'react-router';
 
-
 class ModelForm extends Component {
     constructor(props) {
         super(props);
-        this.state =  this.getDefaultState();
+        this.state =  {
+            name: '',
+            attrs: [{}],
+            id: null,
+            showBtn: false,
+            showInput: true
+        };
         this.saveAttr = this.saveAttr.bind(this);
         this.addNewAttr = this.addNewAttr.bind(this);
         this.deleteAttr = this.deleteAttr.bind(this);
@@ -17,16 +22,6 @@ class ModelForm extends Component {
         this.updateModel = this.updateModel.bind(this);
         this.onChange = this.onChange.bind(this);
         this.toggleInput = this.toggleInput.bind(this);
-    }
-
-    getDefaultState() {
-        return {
-            name: '',
-            attrs: [{}],
-            id: null,
-            showBtn: false,
-            showInput: true
-        };
     }
 
     onChange(type, ev) {
@@ -38,10 +33,8 @@ class ModelForm extends Component {
     }
 
     saveAttr(attr) {
-        let attrs = this.state.attrs;
         let attrUpdated = false;
-
-        attrs = attrs.map( _attr => {
+        let attrs = this.state.attrs.map( _attr => {
             if(_attr.id === attr.id) {
                 _attr = attr;
                 attrUpdated = true;
@@ -57,14 +50,11 @@ class ModelForm extends Component {
     }
 
     addNewAttr() {
-        let attrs = this.state.attrs;
-        attrs.push({});
-        this.setState({ showBtn: false, attrs });
+        this.setState({ showBtn: false, attrs: this.state.attrs.concat({}) });
     }
 
     deleteAttr(id) {
-        let attrs = this.state.attrs;
-        attrs = attrs.filter(attr => attr.id !== id);
+        let attrs = this.state.attrs.filter(attr => attr.id !== id);
         this.setState({ attrs });
     }
 
@@ -88,7 +78,7 @@ class ModelForm extends Component {
     generateAttrs() {
         return this.state.attrs.map(attr => {
             const id = attr.id || uuidV4();
-            const _attr = { name: attr.name, type: attr.type, id}
+            const _attr = { name: attr.name, type: attr.type, id};
             return <ModelAttr
                 saveAttr={this.saveAttr}
                 deleteAttr={this.deleteAttr}
@@ -118,7 +108,6 @@ class ModelForm extends Component {
     render() {
         const btnName = this.state.id ? 'Update model' : 'Save model';
         const onClickFn = this.state.id ? this.updateModel : this.saveModel;
-
         return (
             <div className='col-xs-6 box'>
                 <h3>Create Sequelize Model</h3>

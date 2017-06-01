@@ -6,7 +6,10 @@ import { saveProjectName, downloadZip } from '../actions/project';
 import { deleteModel } from '../actions/model';
 
 const ProjectContainer = ({models, saveProject, name, deleteModel }) => {
-    const clickZip = () => downloadZip({ name, models });
+    const clickZip = () => {
+        console.log( 'name, models', name, models)
+        downloadZip({ name, models })
+    };
     return (
         <div>
             <div className='row'>
