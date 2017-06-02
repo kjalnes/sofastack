@@ -1,10 +1,10 @@
 const request = require('request');
 
-module.exports = (accessKey, repoName, user, path, contents) => new Promise((reject, resolve) => {
+module.exports = (accessKey, fullName, path, contents) => new Promise((reject, resolve) => {
 
   request({
     method: 'POST',
-    uri: `https://api.github.com/repos/${user}/${repo}/contents/${path}?access_token=` + accessKey,
+    uri: `https://api.github.com/repos/${fullName}/contents/${path}?access_token=` + accessKey,
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/vnd.github.v3+json',
