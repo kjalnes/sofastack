@@ -11,7 +11,8 @@ module.exports = (accessKey, name) => new Promise((reject, resolve) => {
       'User-Agent': 'sofa stack'
     },
     body: JSON.stringify({
-      name
+      name,
+      description: 'CRUD API made by Sofa Stack'
     })
   }, (err, gitResponse, body) => {
     if (err){
