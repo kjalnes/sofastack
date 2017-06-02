@@ -30,7 +30,6 @@ passport.use(new GitHubStrategy(gitConfig,
   }
 ));
 
-
 app.use(passport.initialize());
 
 app.get('/auth/github',
