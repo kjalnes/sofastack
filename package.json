@@ -27,6 +27,7 @@
     "express": "^4.15.2",
     "express-session": "^1.15.3",
     "fs-extra": "^3.0.1",
+    "jquery": "^3.2.1",
     "jsoneditor": "^5.6.0",
     "passport": "^0.3.2",
     "passport-github": "^1.1.0",

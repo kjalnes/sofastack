@@ -7,21 +7,24 @@ import { deleteModel } from '../actions/model';
 
 const ProjectContainer = ({models, saveProject, name, deleteModel }) => {
     const clickZip = () => {
-        console.log( 'name, models', name, models)
         downloadZip({ name, models })
     };
     return (
-        <div>
-            <div className='row'>
-                <div className='well project-details center-block'>
-                    <ProjectForm
-                        models={models}
-                        saveProject={ saveProject }
-                        name={name} />
-                    <ModelsList
-                        models={models}
-                        clickZip={clickZip}
-                        deleteModel={deleteModel} />
+        <div id="page-content-wrapper">
+            <div className="page-content">
+                <div className="container-fluid">
+                    <div className='row'>
+                        <div className='well project-details'>
+                            <ProjectForm
+                                models={models}
+                                saveProject={ saveProject }
+                                name={name} />
+                            <ModelsList
+                                models={models}
+                                clickZip={clickZip}
+                                deleteModel={deleteModel} />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
