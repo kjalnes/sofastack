@@ -1,7 +1,7 @@
 import Folder from '../../shared/build/Folder';
 import {expect} from 'chai';
 
-describe.only('Build Code', () => {
+describe('Build Code', () => {
   describe('Folder', () => {
 
     it('can add a file', () => {
