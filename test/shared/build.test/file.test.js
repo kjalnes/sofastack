@@ -55,15 +55,13 @@ abc
   });
 
   it('can only make a file with only footer', () => {
-    const footer = {test: ['test', 'test2'], abc: 123};
+    const footer = {test: '123'};
     const file = new File({footer});
-    expect(file.toString()).to.eql(`module.exports = {
-  test: [
-    'test',
-    'test2'
-  ],
-  abc: 123
-};`);
+    expect(file.toString()).to.eql(`const exportObj = {};
+
+exportObj.test = 123;
+
+module.exports = exportObj;`);
   });
 
 });
