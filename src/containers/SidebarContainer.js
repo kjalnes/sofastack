@@ -5,10 +5,12 @@ import { connect } from 'react-redux';
 import { saveProjectName, downloadZip } from '../actions/project';
 import { deleteModel } from '../actions/model';
 
-const ProjectContainer = ({models, saveProject, name, deleteModel }) => {
+const SidebarContainer = ({ models, saveProject, name, deleteModel }) => {
+
     const clickZip = () => {
         downloadZip({ name, models })
     };
+
     return (
             <div className=''>
                 <ProjectForm
@@ -38,4 +40,4 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProjectContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(SidebarContainer);
