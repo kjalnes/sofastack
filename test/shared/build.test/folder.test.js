@@ -1,16 +1,15 @@
-import Folder from '../../shared/build/Folder';
+import Folder from '../../../shared/build/Folder';
 import {expect} from 'chai';
 
-describe('Build Code', () => {
-  describe('Folder', () => {
+describe('Folder', () => {
 
-    it('can add a file', () => {
+  it('can add a file', () => {
       const folder = new Folder();
       folder.add('index.js', 'abc');
       expect(folder['index.js']).to.eql('abc');
     });
 
-    it('can add a folder and add a file', () => {
+  it('can add a folder and add a file', () => {
       const folder = new Folder();
       folder.add('/test/index.js', 'abc');
       expect(folder.test).to.be.exist;
@@ -18,7 +17,7 @@ describe('Build Code', () => {
       expect(folder.test['index.js']).to.eql('abc');
     });
 
-    it('can add 2 folders and add a file', () => {
+  it('can add 2 folders and add a file', () => {
       const folder = new Folder();
       folder.add('/test/test2/index.js', 'abc');
       expect(folder.test).to.be.exist;
@@ -27,7 +26,7 @@ describe('Build Code', () => {
     });
 
 
-    it('can delete a folder a file', () => {
+  it('can delete a folder a file', () => {
       const folder = new Folder();
       folder.add('/test/index.js', 'abc');
       folder.delete('/test/index.js');
@@ -35,5 +34,4 @@ describe('Build Code', () => {
       expect(folder.test['index.js']).to.not.exist;
     });
 
-  });
 });

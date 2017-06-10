@@ -29,7 +29,7 @@ Folder.prototype.get = function(path, content){
   }
 
   if (!this[key] && path.length === 0 && content){
-    this[key] = content;
+    this[key] = content.toString();
   }
   return this[key];
 };
