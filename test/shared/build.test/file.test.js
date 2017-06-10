@@ -1,7 +1,7 @@
 import File from '../../../shared/build/File';
 import {expect} from 'chai';
 
-describe.only('File', () => {
+describe('File', () => {
 
   it('can make headers', () => {
     const headers = {test: 'test', Test: 'test2'};
@@ -52,6 +52,18 @@ require('test2');
 
 abc
 123`);
+  });
+
+  it('can only make a file with only footer', () => {
+    const footer = {test: ['test', 'test2'], abc: 123};
+    const file = new File({footer});
+    expect(file.toString()).to.eql(`module.exports = {
+  test: [
+    'test',
+    'test2'
+  ],
+  abc: 123
+};`);
   });
 
 });

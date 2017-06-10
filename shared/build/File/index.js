@@ -1,9 +1,12 @@
+const stringifyObject = require('stringify-object');
+
 const File = function({headers, body, footer}){
   this.headers = headers || {};
   this.body = body || {};
   this.footer = footer || {};
 };
 
+//requires and imports
 File.prototype.getHeader = function(){
   const header = [];
   let headers = this.headers;
@@ -19,6 +22,7 @@ File.prototype.getHeader = function(){
   return header.join('\n');
 };
 
+//actual code
 File.prototype.getBody = function(){
   const body = [];
   let bodyStrs = this.body;
@@ -26,10 +30,20 @@ File.prototype.getBody = function(){
     if (typeof bodyStrs[key] === 'string'){
       body.push(bodyStrs[key]);
     } else {
-      body.push(bodyStrs[key]());
+      body.push(bodyStrs[key](this));
     }
   }
   return body.join('\n');
+};
+
+//export
+File.prototype.getFooter = function(){
+  if (Object.keys(this.footer).length){
+    return `module.exports = ${stringifyObject(this.footer, {indent: '  ', singleQuotes: true})};`;
+  }
+
+
+  return '';
 };
 
 File.prototype.toString = function(){
@@ -39,11 +53,11 @@ File.prototype.toString = function(){
   }
   file = this.body ? file + this.getBody() : file;
 
-  // if (Object.keys(this.body).length && Object.keys(this.footer).length){
-  //   file = file + '\n\n';
-  // }
+  if (Object.keys(this.body).length && Object.keys(this.footer).length){
+    file = file + '\n\n';
+  }
 
-  // file = this.footer ? file + this.footer : file;
+  file = this.footer ? file + this.getFooter() : file;
   return file;
 };
 
