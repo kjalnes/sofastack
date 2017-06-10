@@ -39,7 +39,7 @@ const test2 = require('test2');`);
   });
 
   it('can only make a body twice', () => {
-    const file = new File({body: {a: 'abc', b: '123'}});
+    const file = new File({body: {a: 'abc', b: () => '123'}});
     expect(file.toString()).to.eql(`abc
 123`);
   });
