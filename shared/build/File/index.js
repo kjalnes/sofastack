@@ -9,9 +9,9 @@ File.prototype.getHeader = function(){
   let headers = this.headers;
   for (let key in headers){
     if (!Array.isArray(headers[key])){
-      header.push(`const ${key} = require(${headers[key]})`);
+      header.push(`const ${key} = require('${headers[key]}');`);
     } else {
-      header.push(`require(${headers[key]})`);
+      header.push(`require('${headers[key]}');`);
     }
   }
   return header.join('\n');
@@ -31,3 +31,5 @@ File.prototype.toString = function(){
   file = this.footer ? file + this.footer : file;
   return file;
 };
+
+module.exports = File;
