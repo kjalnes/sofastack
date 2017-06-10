@@ -17,4 +17,19 @@ const Test = require('test2');`);
     expect(file.toString()).to.eql(`const test = require('test');
 const Test = require('test2');`);
   });
+
+  it('can do only imports', () => {
+    const headers = {test: ['test', 'test2']};
+    const file = new File({headers});
+    expect(file.toString()).to.eql(`require('test');
+require('test2');`);
+  });
+
+  it('can mix and match', () => {
+    const headers = {test: ['test', 'test2'], test2: 'test2'};
+    const file = new File({headers});
+    expect(file.toString()).to.eql(`require('test');
+require('test2');
+const test2 = require('test2');`);
+  });
 });

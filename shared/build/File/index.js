@@ -11,7 +11,9 @@ File.prototype.getHeader = function(){
     if (!Array.isArray(headers[key])){
       header.push(`const ${key} = require('${headers[key]}');`);
     } else {
-      header.push(`require('${headers[key]}');`);
+      headers[key].forEach(item =>
+        header.push(`require('${item}');`)
+      );
     }
   }
   return header.join('\n');
