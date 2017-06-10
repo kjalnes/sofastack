@@ -1,7 +1,11 @@
 const Folder = function(){
 };
 
-Folder.prototype.pathCheck = function(path){
+Folder.isFolder = function(obj){
+  return obj instanceof Folder;
+};
+
+Folder.pathCheck = function(path){
   if (!Array.isArray(path)){
     path = path.split('/');
 
@@ -12,24 +16,22 @@ Folder.prototype.pathCheck = function(path){
   return path;
 };
 
+
 Folder.prototype.get = function(path, content){
-  path = this.pathCheck(path);
-  let current = this;
-  while (path.length){
-    let key = path.shift();
-    if (!current[key] && !content){
-      return current;
-    } else if (!current[key] && path.length === 0){
-      current[key] = content;
-    } else if (!current[key]){
-      current[key] = new Folder();
-    }
-    current = current[key];
+  path = Folder.pathCheck(path);
+  let key =  path.shift();
+
+  if (!this[key] && path.length){
+    this[key] = new Folder();
   }
-  if (content){
-    current = content;
+  if (Folder.isFolder(this[key]) && path.length){
+    return this[key].get(path, content);
   }
-  return current;
+
+  if (!this[key] && path.length === 0 && content){
+    this[key] = content;
+  }
+  return this[key];
 };
 
 Folder.prototype.add = function (path, content = new Folder()){
@@ -38,7 +40,7 @@ Folder.prototype.add = function (path, content = new Folder()){
 
 
 Folder.prototype.delete = function(path){
-  path = this.pathCheck(path);
+  path = Folder.pathCheck(path);
   let current = this;
   while (path.length){
     let key = path.shift();
