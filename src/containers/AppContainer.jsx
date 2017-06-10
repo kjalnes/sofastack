@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import Header from '../components/global/Header';
-import Sidebar from '../components/global/Sidebar';
+import SidebarContainer from './SidebarContainer';
 
 class AppContainer extends Component {
     constructor(props) {
@@ -19,7 +19,10 @@ class AppContainer extends Component {
         return (
             <div id="wrapper" className={sidebarClass}>
                 <Header toggleSidebar={this.toggleSidebar} />
-                <Sidebar />
+                <div id="sidebar-wrapper">
+                    <SidebarContainer />
+                </div>
+
                 {this.props.children}
             </div>
         );
