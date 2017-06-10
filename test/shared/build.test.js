@@ -17,6 +17,15 @@ describe('Build Code', () => {
       expect(folder.test['index.js']).to.eql('abc');
     });
 
+    it.only('can add 2 folder and add a file', () => {
+      const folder = new Folder();
+      folder.add('/test/test2/index.js', 'abc');
+      expect(folder.test).to.be.exist;
+      expect(folder.test.test2).to.be.exist;
+      expect(folder.test.test2['index.js']).to.eql('abc');
+    });
+
+
     it('can delete a folder a file', () => {
       const folder = new Folder();
       folder.add('/test/index.js', 'abc');
