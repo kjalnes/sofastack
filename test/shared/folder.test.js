@@ -1,8 +1,7 @@
 import Folder from '../../shared/build/Folder';
 import {expect} from 'chai';
 
-describe('Build Code', () => {
-  describe('Folder', () => {
+describe('Folder', () => {
 
     it('can add a file', () => {
       const folder = new Folder();
@@ -36,4 +35,3 @@ describe('Build Code', () => {
     });
 
   });
-});
