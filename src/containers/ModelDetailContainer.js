@@ -14,16 +14,17 @@ class ModelDetailContainer extends Component {
 
     render() {
         return (
-            <div>
-                <div className='row'>
-                    <ModelForm
-                        model={this.findModel(this.props.models)}
-                        saveModel={this.props.saveModel}
-                        updateModel={this.props.updateModel} />
-                    <JSViewer model={this.findModel(this.props.models)} />
-                </div>
-                <div className='row'>
-                    <JSONViewer models={this.props.models} />
+            <div className='page-content-wrapper'>
+                <div className="page-content">
+                    <div className="container-fluid">
+                        <div className="row">
+                            <ModelForm
+                                model={this.findModel(this.props.models)}
+                                saveModel={this.props.saveModel}
+                                updateModel={this.props.updateModel} />
+                            <JSViewer model={this.findModel(this.props.models)} />
+                        </div>
+                    </div>
                 </div>
             </div>
         )
@@ -44,3 +45,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ModelDetailContainer);
+
+
+
+

@@ -64,7 +64,8 @@ class ModelForm extends Component {
         const id = this.state.id || uuidV4();
         const model = { name, attrs, id };
         this.props.saveModel(model);
-        browserHistory.push(`/${id}`);
+        // browserHistory.push(`/${id}`);
+        browserHistory.push(`/`);
     }
 
     // update model in redux store
