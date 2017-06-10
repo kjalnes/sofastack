@@ -38,23 +38,25 @@ class ProjectForm extends Component {
     }
 
     render() {
+        const classNameTitle = this.props.name ? 'hide' : 'sidebar-title';
         return (
             <div className=''>
-                <h3>Project Overview</h3>
-                <div className='row'>
+                <div className=''>
                     { this.state.showInput ?
-                        <div className='col-xs-12'>
+                        <div className='project-detail'>
+                        <h4 className='sidebar-title'>Your Project</h4>
                             <input
                             onChange={this.onChange}
                             className='form-control inline project-name'
                             value={this.state.name}
                             placeholder='Project name'/>
-                            <button onClick={this.saveProject} className='btn btn-default project-save-btn'>Save</button>
+                            <span onClick={this.saveProject} className='glyphicon glyphicon-plus'></span>
                         </div>
                         :
-                        <div className='col-xs-12'>
+                        <div className='project-name'>
                             <h4 className='inline'>{this.state.name}</h4>
-                            <button onClick={this.toggleInput} type='button' className='btn btn-default'><span className="glyphicon glyphicon-pencil"></span></button>
+                            <span onClick={this.toggleInput} className="glyphicon glyphicon-pencil"></span>
+                            <hr className='custom-hr' />
                         </div>
                     }
                 </div>

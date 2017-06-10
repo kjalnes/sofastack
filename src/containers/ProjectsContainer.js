@@ -10,24 +10,16 @@ const ProjectContainer = ({models, saveProject, name, deleteModel }) => {
         downloadZip({ name, models })
     };
     return (
-        <div id="page-content-wrapper">
-            <div className="page-content">
-                <div className="container-fluid">
-                    <div className='row'>
-                        <div className='well project-details'>
-                            <ProjectForm
-                                models={models}
-                                saveProject={ saveProject }
-                                name={name} />
-                            <ModelsList
-                                models={models}
-                                clickZip={clickZip}
-                                deleteModel={deleteModel} />
-                        </div>
-                    </div>
-                </div>
+            <div className=''>
+                <ProjectForm
+                    models={models}
+                    saveProject={ saveProject }
+                    name={name} />
+                <ModelsList
+                    models={models}
+                    clickZip={clickZip}
+                    deleteModel={deleteModel} />
             </div>
-        </div>
     )
 }
 

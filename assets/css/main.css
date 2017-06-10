@@ -1,3 +1,21 @@
+body {
+  font-family: 'Helvetica';
+  color: #999999;
+}
+
+
+a, .btn-text {
+  color: grey;
+}
+
+a:hover, , .btn-text:hover {
+  color: #ff9e9e;
+  text-decoration: none;
+}
+
+
+
+
 .model-form-btn {
     margin: 3px;
 }
@@ -33,9 +51,6 @@ div#JSviewer {
     padding: 20px;
 }
 
-.project-details {
-    width: 50%;
-}
 
 .inline {
     display: inline-block;
@@ -90,7 +105,7 @@ input.form-control.inline.project-name {
 }
 
 .sidebar-nav {
-  position: absolute;
+  /*position: absolute;*/
   top: 0;
   width: 250px;
   list-style: none;
@@ -111,7 +126,7 @@ input.form-control.inline.project-name {
 }
 
 .sidebar-nav li a span:before {
-  position: absolute;
+  /*position: absolute;*/
   left: 0;
   color: #41484c;
   text-align: center;
@@ -176,4 +191,87 @@ input.form-control.inline.project-name {
     #menu-toggle {
       display: inline-block;
     }
+}
+
+/*sidebar styles */
+.project-name {
+  text-align: center;
+}
+
+input.form-control.inline.project-name {
+    display: inline;
+    width:  88%;
+}
+
+.project-detail {
+    margin: 0 10px;
+}
+
+.models {
+    margin: 44px 0;
+}
+
+.models h4.sidebar-title {
+    text-decoration: underline;
+}
+
+.sidebar-models-list {
+    top: 0;
+    width: 250px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.model-item {
+    text-align: center;
+}
+
+.models-link {
+    color: #999999;
+    display: block;
+    text-decoration: none;
+}
+
+span.models-glyphicon {
+    margin-left: 10px;
+}
+
+.models-link:hover, li.models-link:hover, li.models-link a:hover {
+  text-decoration: none;
+  color: #fff !important;
+}
+
+li.models-link:hover {
+  background: rgba(255,255,255,0.2);
+  color: #fff !important;
+  text-decoration: none;
+}
+
+h4.sidebar-title {
+    text-align: center;
+}
+
+hr.custom-hr {
+    border-top: 1px dotted darkgrey;
+    margin: 0 15px;
+}
+
+/* custom btn */
+.btn-custom-1 {
+    background-color: transparent;
+}
+
+.btn-custom-1:hover {
+    background-color: transparent;
+    color: #ff9e9e !important;
+}
+
+.glyphicon {
+    color: #ff9e9e;
+}
+
+.glyphicon:hover {
+  color: #ffd1d1;
+  cursor: pointer;
 }
