@@ -39,7 +39,16 @@ File.prototype.getBody = function(){
 //export
 File.prototype.getFooter = function(){
   if (Object.keys(this.footer).length){
-    return `module.exports = ${stringifyObject(this.footer, {indent: '  ', singleQuotes: true})};`;
+    let exportsStr = [];
+    let footer = this.footer;
+    for (let key in footer){
+      exportsStr.push(`exportObj.${key} = ${footer[key]};`);
+    }
+    return `const exportObj = {};
+
+${exportsStr.join('\n')}
+
+module.exports = exportObj;`;
   }
 
 
