@@ -12,7 +12,6 @@ export default function ModelsList ({models, deleteModel, setActiveModel, clickZ
     function deleteModel(id) {
         setActiveModel(null);
         deleteModel(id);
-        browserHistory.push(`/`);
     }
 
     return (

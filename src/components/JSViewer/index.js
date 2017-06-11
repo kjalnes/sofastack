@@ -4,6 +4,8 @@ import 'brace/mode/javascript';
 import 'brace/theme/monokai';
 import sequelizeGenerator from '../../../shared/codeGenrators/sequelizeGenrator';
 import expressRouteGenerator from '../../../shared/codeGenrators/expressRouteGenrator';
+import { Link, browserHistory } from 'react-router';
+
 
 class JSViewer extends Component {
     constructor(props) {
@@ -46,12 +48,17 @@ class JSViewer extends Component {
     }
 
     componentWillUpdate(nextProps, nextState) {
+        if(nextProps.model !== this.props.model && nextProps.model === undefined) {
+            browserHistory.push(`/`);
+        }
         if(nextProps.model !== this.props.model && nextProps.model !== undefined) {
             this.generateOutput(nextProps.model, this.state.view);
         }
         if(nextState.view !== this.state.view && nextProps.model !== undefined) {
             this.generateOutput(this.props.model, nextState.view);
         }
+
+
     }
 
     componentWillUnmount() {

@@ -11,11 +11,7 @@ class ModelDetailContainer extends Component {
 
     findModel(models) {
         if(this.props.active) {
-            const model = models.find(model => model.id === this.props.active);
-            console.log('findmodel called', model)
-            return model
-        } else {
-            return null
+                return models.find(model => model.id === this.props.active);
         }
     }
 
