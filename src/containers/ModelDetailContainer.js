@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import ModelForm from '../components/ModelForm/';
 import JSViewer from '../components/JSViewer';
-import JSONViewer from '../components/JSONViewer';
-import JSEditor from '../components/JSViewer/JSEditor';
 import { connect } from 'react-redux';
 import { saveModel, updateModel } from '../actions/model';
 import { setActiveModel } from '../actions/project';
 
 class ModelDetailContainer extends Component {
-
 
     findModel(models) {
         if(this.props.active) {
@@ -38,7 +35,6 @@ class ModelDetailContainer extends Component {
                                         updateModel={this.props.updateModel}
                                         setActiveModel={this.props.setActiveModel} />
                                     </div>
-                                    <div className="panel-footer">Panel Footer</div>
                                 </div>
                             </div>
                             <div className="panel panel-default">
@@ -49,13 +45,12 @@ class ModelDetailContainer extends Component {
                                 </div>
                                 <div id="collapse2" className="panel-collapse collapse">
                                     <div className="panel-body">
-                                        <JSEditor
+                                        <JSViewer
                                             model={this.findModel(this.props.models)}
                                             models={this.props.models}
                                             active={this.props.active}
                                             codeCat='sequelize' />
                                     </div>
-                                    <div className="panel-footer">Panel Footer</div>
                                 </div>
                             </div>
                             <div className="panel panel-default">
@@ -66,13 +61,12 @@ class ModelDetailContainer extends Component {
                                 </div>
                                 <div id="collapse3" className="panel-collapse collapse">
                                     <div className="panel-body">
-                                        <JSEditor
+                                        <JSViewer
                                             model={this.findModel(this.props.models)}
                                             models={this.props.models}
                                             active={this.props.active}
                                             codeCat='express' />
                                     </div>
-                                    <div className="panel-footer">Panel Footer</div>
                                 </div>
                             </div>
                         </div>
