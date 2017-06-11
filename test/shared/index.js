@@ -7,4 +7,5 @@ describe('Shared Code', () => {
     require('./dbIndexGenerator.test');
     require('./apiRouteIndexGenerator.test');
   });
+  require('./build.test');
 });
