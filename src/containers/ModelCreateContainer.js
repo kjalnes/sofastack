@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import ModelForm from '../components/ModelForm/';
 import JSViewer from '../components/JSViewer';
-// import JSEditor from '../components/JSViewer/JSEditor';
-// import JSONViewer from '../components/JSONViewer';
 import { connect } from 'react-redux';
 import { saveModel, updateModel } from '../actions/model';
 import { setActiveModel } from '../actions/project';
