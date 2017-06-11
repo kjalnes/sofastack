@@ -115,23 +115,20 @@ class ModelForm extends Component {
         const btnName = this.state.id ? 'Update model' : 'Save model';
         const onClickFn = this.state.id ? this.updateModel : this.saveModel;
         return (
-            <div className='col-xs-6 box'>
-                <h3>Create Sequelize Model</h3>
-                <div className='model-form'>
-                    <div>
-                        <ModelName
-                            showInput={this.state.showInput}
-                            toggleInput={this.toggleInput}
-                            name={this.state.name}
-                            onChange={this.onChange} />
-                        <hr />
-                        <ModelLabels />
-                        { this.generateAttrs() }
-                        { this.state.showBtn ? <button onClick={this.addNewAttr} className='btn btn-primary'>+</button> : null }
-                    </div>
-                    <br />
-                    <button onClick={onClickFn} className='btn btn-default model-save-btn'>{btnName}</button>
+            <div className=''>
+                <div>
+                    <ModelName
+                        showInput={this.state.showInput}
+                        toggleInput={this.toggleInput}
+                        name={this.state.name}
+                        onChange={this.onChange} />
+                    <hr />
+                    <ModelLabels />
+                    { this.generateAttrs() }
+                    { this.state.showBtn ? <button onClick={this.addNewAttr} className='btn btn-primary'>+</button> : null }
                 </div>
+                <br />
+                <button onClick={onClickFn} className='btn btn-default model-save-btn'>{btnName}</button>
             </div>
         );
     }

@@ -275,3 +275,14 @@ hr.custom-hr {
   color: #ffd1d1;
   cursor: pointer;
 }
+
+
+.model-item:active {
+    background-color: rgba(255,255,255,0.2);
+}
+
+.page-content-wrapper {
+    margin-top: 51px;
+}
+
+
