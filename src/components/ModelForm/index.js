@@ -115,9 +115,8 @@ class ModelForm extends Component {
         const btnName = this.state.id ? 'Update model' : 'Save model';
         const onClickFn = this.state.id ? this.updateModel : this.saveModel;
         return (
-            <div className='col-xs-6 box'>
+            <div className=''>
                 <h3>Create Sequelize Model</h3>
-                <div className='model-form'>
                     <div>
                         <ModelName
                             showInput={this.state.showInput}
@@ -131,7 +130,6 @@ class ModelForm extends Component {
                     </div>
                     <br />
                     <button onClick={onClickFn} className='btn btn-default model-save-btn'>{btnName}</button>
-                </div>
             </div>
         );
     }
