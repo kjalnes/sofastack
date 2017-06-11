@@ -64,8 +64,10 @@ class ModelForm extends Component {
         const id = this.state.id || uuidV4();
         const model = { name, attrs, id };
         this.props.saveModel(model);
-        // browserHistory.push(`/${id}`);
-        browserHistory.push(`/`);
+        // dispatch id to active in redux store
+        this.props.setActiveModel(id);
+        browserHistory.push(`/${id}`);
+        // browserHistory.push(`/create`);
     }
 
     // update model in redux store
@@ -73,6 +75,7 @@ class ModelForm extends Component {
         const { name, attrs, id } = this.state;
         const model = { name, attrs, id };
         this.props.updateModel(model);
+        this.props.setActiveModel(id);
         browserHistory.push(`/${id}`);
     }
 
@@ -99,9 +102,11 @@ class ModelForm extends Component {
         }
     }
 
-    componentWillUpdate(nextProps, nextState) {
-        if (nextProps.model !== this.props.model) {
-            this.setState(nextProps.model);
+    componentWillUpdate(nextProps) {
+        if(nextProps !== this.props) {
+            const newState = Object.assign({}, nextProps.model, { showBtn: false,
+            showInput: true });
+            this.setState(newState);
         }
     }
 

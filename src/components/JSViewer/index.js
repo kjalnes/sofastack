@@ -46,10 +46,10 @@ class JSViewer extends Component {
     }
 
     componentWillUpdate(nextProps, nextState) {
-        if(nextProps.model !== this.props.model) {
+        if(nextProps.model !== this.props.model && nextProps.model !== undefined) {
             this.generateOutput(nextProps.model, this.state.view);
         }
-        if(nextState.view !== this.state.view) {
+        if(nextState.view !== this.state.view && nextProps.model !== undefined) {
             this.generateOutput(this.props.model, nextState.view);
         }
     }

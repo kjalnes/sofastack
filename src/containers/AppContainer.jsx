@@ -22,7 +22,6 @@ class AppContainer extends Component {
                 <div id="sidebar-wrapper">
                     <SidebarContainer />
                 </div>
-
                 {this.props.children}
             </div>
         );
