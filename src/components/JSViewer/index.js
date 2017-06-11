@@ -6,27 +6,20 @@ import sequelizeGenerator from '../../../shared/codeGenrators/sequelizeGenrator'
 import expressRouteGenerator from '../../../shared/codeGenrators/expressRouteGenrator';
 import { Link, browserHistory } from 'react-router';
 
-
-class JSViewer extends Component {
+class JSEditor extends Component {
     constructor(props) {
         super(props);
         this.state = { view: 'model' }
         this.editor = null;
         this.element = null;
         this.generateOutput = this.generateOutput.bind(this);
-        this.onClick = this.onClick.bind(this);
     }
 
-    generateOutput(model, view) {
-        let code = view === 'model' ?
+    generateOutput(model) {
+        let code = this.props.codeCat === 'sequelize' ?
             sequelizeGenerator(model) :
             expressRouteGenerator(model);
         this.editor.setValue(code);
-    }
-
-    onClick(view, ev) {
-        ev.preventDefault();
-        this.setState({view});
     }
 
     componentDidMount() {
@@ -43,7 +36,7 @@ class JSViewer extends Component {
         });
 
         if(this.props.model) {
-            this.generateOutput(this.props.model, this.state.view);
+            this.generateOutput(this.props.model);
         }
     }
 
@@ -52,13 +45,8 @@ class JSViewer extends Component {
             browserHistory.push(`/`);
         }
         if(nextProps.model !== this.props.model && nextProps.model !== undefined) {
-            this.generateOutput(nextProps.model, this.state.view);
+            this.generateOutput(nextProps.model);
         }
-        if(nextState.view !== this.state.view && nextProps.model !== undefined) {
-            this.generateOutput(this.props.model, nextState.view);
-        }
-
-
     }
 
     componentWillUnmount() {
@@ -66,20 +54,13 @@ class JSViewer extends Component {
     }
 
     render() {
-        const classNameModels = this.state.view === 'model' ? 'active' : '';
-        const classNameRoutes = this.state.view === 'routes' ? 'active' : '';
         return (
             <div className='col-xs-6 box'>
-                <h3>JavaScript</h3>
-                <ul className="nav nav-tabs">
-                  <li onClick={ this.onClick.bind(null, 'model')} className={classNameModels}><a href="#">Model</a></li>
-                  <li onClick={ this.onClick.bind(null, 'routes')} className={classNameRoutes}><a href="#">Routes</a></li>
-                </ul>
                 <div ref={(el) => {this.element = el;}}></div>
             </div>
         )
     }
 }
 
-export default JSViewer;
+export default JSEditor;
 

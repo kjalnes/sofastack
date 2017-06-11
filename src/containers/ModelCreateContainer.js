@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import ModelForm from '../components/ModelForm/';
 import JSViewer from '../components/JSViewer';
-// import JSEditor from '../components/JSViewer/JSEditor';
-// import JSONViewer from '../components/JSONViewer';
 import { connect } from 'react-redux';
 import { saveModel, updateModel } from '../actions/model';
 import { setActiveModel } from '../actions/project';
@@ -58,25 +56,3 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ModelCreateContainer);
-
-
-
-
-
-        // return (
-        //     <div className='page-content-wrapper'>
-        //         <div className="page-content">
-        //             <div className="container-fluid">
-        //                 <div className="row">
-        //                     <ModelForm
-        //                         model={null}
-        //                         saveModel={this.props.saveModel}
-        //                         updateModel={this.props.updateModel}
-        //                         setActiveModel={this.props.setActiveModel} />
-        //                     <JSViewer
-        //                         model={null} />
-        //                 </div>
-        //             </div>
-        //         </div>
-        //     </div>
-        // )
