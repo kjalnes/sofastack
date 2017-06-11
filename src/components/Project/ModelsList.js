@@ -1,7 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 
-export default function ModelsList ({models, deleteModel, clickZip, }){
+
+export default function ModelsList ({models, deleteModel, setActiveModel, clickZip }){
+
+    function selectModel(id) {
+        setActiveModel(id);
+        browserHistory.push(`/${id}`);
+    }
+
+    function deleteModel(id) {
+        setActiveModel(null);
+        deleteModel(id);
+    }
 
     return (
         <div className=''>
@@ -12,8 +23,8 @@ export default function ModelsList ({models, deleteModel, clickZip, }){
                     {
                         models.map( (model, index) => {
                             return <li key={index} className='models-link'>
-                                <div className='model-item'><Link to={model.id} className='inline'><h4>{model.name}</h4></Link>
-                                <span onClick={ deleteModel.bind(null, model.id) } className='glyphicon glyphicon-remove models-glyphicon'></span></div>
+                                <div className='model-item'><span onClick={()=> selectModel(model.id)} className='inline'><h4>{model.name}</h4></span>
+                                <span onClick={()=> deleteModel(model.id)} className='glyphicon glyphicon-remove models-glyphicon'></span></div>
                                 <hr className='custom-hr' />
                             </li>
                         })
@@ -23,11 +34,10 @@ export default function ModelsList ({models, deleteModel, clickZip, }){
                 : null
             }
             <br />
-            <button className='btn btn-custom-1 btn-default btn-outline waves-effect center-block'><Link to='create' className='btn-text'>ADD MODEL</Link></button>
+
             { models.length ? <button onClick={ clickZip } className='btn btn-custom-1 btn-default btn-outline waves-effect center-block'><span className='btn-text'>DOWNLOAD</span></button> : null }
         </div>
     );
 }
-
 
 

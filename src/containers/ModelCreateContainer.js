@@ -6,14 +6,7 @@ import { connect } from 'react-redux';
 import { saveModel, updateModel } from '../actions/model';
 import { setActiveModel } from '../actions/project';
 
-class ModelDetailContainer extends Component {
-
-
-    findModel(models) {
-        if(this.props.active) {
-                return models.find(model => model.id === this.props.active);
-        }
-    }
+class ModelCreateContainer extends Component {
 
     render() {
         return (
@@ -22,14 +15,12 @@ class ModelDetailContainer extends Component {
                     <div className="container-fluid">
                         <div className="row">
                             <ModelForm
-                                model={this.findModel(this.props.models)}
+                                model={null}
                                 saveModel={this.props.saveModel}
                                 updateModel={this.props.updateModel}
                                 setActiveModel={this.props.setActiveModel} />
                             <JSViewer
-                                model={this.findModel(this.props.models)}
-                                models={this.props.models}
-                                active={this.props.active} />
+                                model={null} />
                         </div>
                     </div>
                 </div>
@@ -53,7 +44,7 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ModelDetailContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(ModelCreateContainer);
 
 
 

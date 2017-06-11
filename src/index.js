@@ -5,6 +5,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import store from './store';
 import App from './containers/AppContainer.jsx';
 import ModelDetailContainer from './containers/ModelDetailContainer';
+import ModelCreateContainer from './containers/ModelCreateContainer';
 import SidebarContainer from './containers/SidebarContainer';
 
 const root = document.getElementById('root');
@@ -12,6 +13,7 @@ const root = document.getElementById('root');
 const RenderStuff = (<Provider store = {store}>
    <Router history={ browserHistory }>
     <Route path="/" component={ App }>
+        <Route path="/create" component={ ModelCreateContainer } />
         <Route path="/:id" component={ ModelDetailContainer } />
     </Route>
    </Router>

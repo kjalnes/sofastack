@@ -41,25 +41,23 @@ class ProjectForm extends Component {
         const classNameTitle = this.props.name ? 'hide' : 'sidebar-title';
         return (
             <div className=''>
-                <div className=''>
-                    { this.state.showInput ?
-                        <div className='project-detail'>
-                        <h4 className='sidebar-title'>Your Project</h4>
-                            <input
-                            onChange={this.onChange}
-                            className='form-control inline project-name'
-                            value={this.state.name}
-                            placeholder='Project name'/>
-                            <span onClick={this.saveProject} className='glyphicon glyphicon-plus'></span>
-                        </div>
-                        :
-                        <div className='project-name'>
-                            <h4 className='inline'>{this.state.name}</h4>
-                            <span onClick={this.toggleInput} className="glyphicon glyphicon-pencil"></span>
-                            <hr className='custom-hr' />
-                        </div>
-                    }
-                </div>
+                { this.state.showInput ?
+                    <div className='project-detail'>
+                    <h4 className='sidebar-title'>Your Project</h4>
+                        <input
+                        onChange={this.onChange}
+                        className='form-control inline project-name'
+                        value={this.state.name}
+                        placeholder='Project name'/>
+                        <span onClick={this.saveProject} className='glyphicon glyphicon-plus'></span>
+                    </div>
+                    :
+                    <div className='project-name'>
+                        <h4 className='inline'>{this.state.name}</h4>
+                        <span onClick={this.toggleInput} className="glyphicon glyphicon-pencil"></span>
+                        <hr className='custom-hr' />
+                    </div>
+                }
             </div>
         );
     }
