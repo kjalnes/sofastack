@@ -6,8 +6,10 @@ const modelsReducer = (state = defaultState, action) =>{
         case SAVE_MODEL_SUCCESS:
             return [...state, action.model];
         case UPDATE_MODEL_SUCCESS:
+            console.log(action);
             return state.map( model => {
                 if (model.id === action.model.id) {
+                    console.log('found a match')
                     model = action.model
                 }
                 return model;

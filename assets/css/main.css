@@ -14,8 +14,6 @@ a:hover, , .btn-text:hover {
 }
 
 
-
-
 .model-form-btn {
     margin: 3px;
 }
@@ -259,6 +257,15 @@ hr.custom-hr {
 
 /* custom btn */
 .btn-custom-1 {
+    background-color: transparent;
+}
+
+.btn-custom-1:hover {
+    background-color: transparent;
+    color: #ff9e9e !important;
+}
+
+.btn-custom-1 {;
     background-color: transparent;
 }
 

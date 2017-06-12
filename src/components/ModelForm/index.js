@@ -10,7 +10,7 @@ class ModelForm extends Component {
         super(props);
         this.state =  {
             name: '',
-            attrs: [{name: '', type:''}],
+            attrs: [{name: '', type:'STRING'}],
             id: null,
             showBtn: false,
             showInput: true
@@ -33,15 +33,8 @@ class ModelForm extends Component {
     }
 
     updateAttr(idx, _type, value) {
-        // console.log('idx', idx)
-        // console.log('this.state.attrs[0]', this.state.attrs[0])
-        // console.log('_type', _type)
-        // console.log('value', value)
-
         let attrs = this.state.attrs.map( (_attr, _idx) => {
-            // console.log('_attr', _attr)
             if(_idx === idx) {
-                console.log('_attr', _attr)
                 _attr[_type] = value;
             }
             return _attr;
@@ -50,24 +43,24 @@ class ModelForm extends Component {
     }
 
     addAttr() {
-        const attr = { name: '', type: ''};
+        const attr = { name: '', type: 'STRING'};
         this.setState({ showBtn: false, attrs: this.state.attrs.concat(attr) });
     }
 
     deleteAttr(idx) {
-        // console.log('idx', idx)
         let attrs = this.state.attrs.filter( (attr, _idx) => _idx !== idx);
         this.setState({ attrs });
+        // this.updateModel(attrs);
     }
 
     // save model to redux store
     saveModel() {
+        // needs to remove any emptu atts before sending off to redux
         const { name, attrs } = this.state;
         const id = this.state.id || uuidV4();
         const model = { name, attrs, id };
         this.props.saveModel(model);
         this.props.setActiveModel(id);
-        // needs to save attr if any
         browserHistory.push(`/${id}`);
     }
 
