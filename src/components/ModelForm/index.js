@@ -12,7 +12,6 @@ class ModelForm extends Component {
             name: '',
             attrs: [{name: '', type:'STRING'}],
             id: null,
-            showBtn: false,
             showInput: true
         };
         this.addAttr = this.addAttr.bind(this);
@@ -44,19 +43,23 @@ class ModelForm extends Component {
 
     addAttr() {
         const attr = { name: '', type: 'STRING'};
-        this.setState({ showBtn: false, attrs: this.state.attrs.concat(attr) });
+        this.setState({ attrs: this.state.attrs.concat(attr) });
     }
 
     deleteAttr(idx) {
         let attrs = this.state.attrs.filter( (attr, _idx) => _idx !== idx);
         this.setState({ attrs });
-        // this.updateModel(attrs);
+    }
+
+    validateAttrs(attrs) {
+        return attrs.filter( attr => attr.name !== '');
     }
 
     // save model to redux store
     saveModel() {
         // needs to remove any emptu atts before sending off to redux
-        const { name, attrs } = this.state;
+        const name = this.state.name;
+        const attrs = this.validateAttrs(this.state.attrs);
         const id = this.state.id || uuidV4();
         const model = { name, attrs, id };
         this.props.saveModel(model);
@@ -66,7 +69,8 @@ class ModelForm extends Component {
 
     // update model in redux store
     updateModel() {
-        const { name, attrs, id } = this.state;
+        const { name, id } = this.state;
+        const attrs = this.validateAttrs(this.state.attrs);
         const model = { name, attrs, id };
         this.props.updateModel(model);
         this.props.setActiveModel(id);
@@ -86,21 +90,19 @@ class ModelForm extends Component {
 
     componentDidMount() {
         if(this.props.model) {
-            const newState = Object.assign({}, this.props.model, { showBtn: true });
+            const newState = Object.assign({}, this.props.model);
             this.setState(newState);
         }
     }
 
     componentWillUpdate(nextProps) {
         if(nextProps !== this.props) {
-            const newState = Object.assign({}, nextProps.model, { showBtn: false,
-            showInput: true });
+            const newState = Object.assign({}, nextProps.model, { showInput: true });
             this.setState(newState);
         }
     }
 
     render() {
-        console.log('this.state.attrs',this.state.attrs)
         const btnName = this.state.id ? 'Update model' : 'Save model';
         const onClickFn = this.state.id ? this.updateModel : this.saveModel;
         return (
