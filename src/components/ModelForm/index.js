@@ -10,18 +10,18 @@ class ModelForm extends Component {
         super(props);
         this.state =  {
             name: '',
-            attrs: [{}],
+            attrs: [{name: '', type:''}],
             id: null,
             showBtn: false,
             showInput: true
         };
-        this.saveAttr = this.saveAttr.bind(this);
-        this.addNewAttr = this.addNewAttr.bind(this);
+        this.addAttr = this.addAttr.bind(this);
         this.deleteAttr = this.deleteAttr.bind(this);
         this.saveModel = this.saveModel.bind(this);
         this.updateModel = this.updateModel.bind(this);
         this.onChange = this.onChange.bind(this);
         this.toggleInput = this.toggleInput.bind(this);
+        this.updateAttr = this.updateAttr.bind(this);
     }
 
     onChange(type, ev) {
@@ -32,29 +32,31 @@ class ModelForm extends Component {
         this.setState({ showInput: !this.state.showInput });
     }
 
-    saveAttr(attr) {
-        let attrUpdated = false;
-        let attrs = this.state.attrs.map( _attr => {
-            if(_attr.id === attr.id) {
-                _attr = attr;
-                attrUpdated = true;
+    updateAttr(idx, _type, value) {
+        // console.log('idx', idx)
+        // console.log('this.state.attrs[0]', this.state.attrs[0])
+        // console.log('_type', _type)
+        // console.log('value', value)
+
+        let attrs = this.state.attrs.map( (_attr, _idx) => {
+            // console.log('_attr', _attr)
+            if(_idx === idx) {
+                console.log('_attr', _attr)
+                _attr[_type] = value;
             }
             return _attr;
         });
-
-        if(!attrUpdated) {
-            attrs[ attrs.length - 1 ] = attr;
-        }
-
-        this.setState({ showBtn: true, attrs });
+        this.setState(attrs);
     }
 
-    addNewAttr() {
-        this.setState({ showBtn: false, attrs: this.state.attrs.concat({}) });
+    addAttr() {
+        const attr = { name: '', type: ''};
+        this.setState({ showBtn: false, attrs: this.state.attrs.concat(attr) });
     }
 
-    deleteAttr(id) {
-        let attrs = this.state.attrs.filter(attr => attr.id !== id);
+    deleteAttr(idx) {
+        // console.log('idx', idx)
+        let attrs = this.state.attrs.filter( (attr, _idx) => _idx !== idx);
         this.setState({ attrs });
     }
 
@@ -64,10 +66,9 @@ class ModelForm extends Component {
         const id = this.state.id || uuidV4();
         const model = { name, attrs, id };
         this.props.saveModel(model);
-        // dispatch id to active in redux store
         this.props.setActiveModel(id);
+        // needs to save attr if any
         browserHistory.push(`/${id}`);
-        // browserHistory.push(`/create`);
     }
 
     // update model in redux store
@@ -80,18 +81,13 @@ class ModelForm extends Component {
     }
 
     generateAttrs() {
-        return this.state.attrs.map(attr => {
-            const id = attr.id || uuidV4();
-            const _attr = { name: attr.name, type: attr.type, id};
+        return this.state.attrs.map( (attr, idx) => {
+            const _attr = { name: attr.name, type: attr.type, idx:idx };
             return <ModelAttr
-                saveAttr={this.saveAttr}
+                key={idx}
+                attr={_attr}
                 deleteAttr={this.deleteAttr}
-                onChange={this.onChange}
-                name={attr.name}
-                type= {attr.type}
-                key={id}
-                id={id}
-                attr={_attr} />;
+                updateAttr={this.updateAttr} />;
         });
     }
 
@@ -110,8 +106,8 @@ class ModelForm extends Component {
         }
     }
 
-
     render() {
+        console.log('this.state.attrs',this.state.attrs)
         const btnName = this.state.id ? 'Update model' : 'Save model';
         const onClickFn = this.state.id ? this.updateModel : this.saveModel;
         return (
@@ -125,9 +121,9 @@ class ModelForm extends Component {
                     <hr />
                     <ModelLabels />
                     { this.generateAttrs() }
-                    { this.state.showBtn ? <button onClick={this.addNewAttr} className='btn btn-primary'>+</button> : null }
                 </div>
                 <br />
+                <button onClick={this.addAttr} className='btn btn-primary'>+</button>
                 <button onClick={onClickFn} className='btn btn-default model-save-btn'>{btnName}</button>
             </div>
         );
@@ -135,3 +131,4 @@ class ModelForm extends Component {
 }
 
 export default ModelForm;
+
