@@ -2,11 +2,9 @@ import React from 'react';
 import { Link, browserHistory } from 'react-router';
 
 
-// danni's version:
-//export default function ModelsList ({name, models, deleteModel, setActiveModel, clickZip, addModel}){
-// kris' version:
+
 export default function ModelsList (props){
-    const { models, deleteModel, setActiveModel, clickZip } = props;
+    const { name, models, deleteModel, setActiveModel, clickZip, addModel } = props;
 
     const selectModel = (id) => {
         setActiveModel(id);
@@ -39,7 +37,7 @@ export default function ModelsList (props){
             }
             { models.length ?
                 <div className='models'>
-                    
+
                     <ul className='sidebar-models-list'>
                     { generateModelsList(models) }
                     </ul>
