@@ -1,4 +1,7 @@
-const Folder = function(){
+const Folder = function(parent){
+  Object.defineProperty(this, 'parent', {enumerable: false,
+    value: parent || null,
+    configurable: true });
 };
 
 Folder.isFolder = function(obj){
@@ -22,14 +25,15 @@ Folder.prototype.get = function(path, content){
   let key =  path.shift();
 
   if (!this[key] && path.length){
-    this[key] = new Folder();
+    this[key] = new Folder(this);
   }
   if (Folder.isFolder(this[key]) && path.length){
     return this[key].get(path, content);
   }
 
   if (!this[key] && path.length === 0 && content){
-    this[key] = content.toString();
+    content.parent = this;
+    this[key] = content;
   }
   return this[key];
 };

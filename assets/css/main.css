@@ -326,6 +326,15 @@ hr.custom-hr {
     color: #ff9e9e !important;
 }
 
+.btn-custom-1 {;
+    background-color: transparent;
+}
+
+.btn-custom-1:hover {
+    background-color: transparent;
+    color: #ff9e9e !important;
+}
+
 .glyphicon {
     color: #ff9e9e;
 }

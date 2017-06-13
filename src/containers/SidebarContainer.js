@@ -6,11 +6,11 @@ import { connect } from 'react-redux';
 import { saveProjectName, downloadZip, setActiveModel } from '../actions/project';
 import { deleteModel } from '../actions/model';
 
-const SidebarContainer = ({ models, saveProject, name, deleteModel, setActiveModel }) => {
+const SidebarContainer = (props) => {
 
-    const clickZip = () => {
-        downloadZip({ name, models })
-    };
+    const { models, saveProject, name, deleteModel, setActiveModel } = props;
+
+    const clickZip = () => downloadZip({ name, models });
 
     const addModel = () => {
         setActiveModel(null);
@@ -35,20 +35,16 @@ const SidebarContainer = ({ models, saveProject, name, deleteModel, setActiveMod
     )
 };
 
-const mapStateToProps = (state) => {
-    return {
-        name: state.name,
-        models:state.models
-    }
-};
+const mapStateToProps = (state) => ({
+    name: state.name,
+    models:state.models
+});
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        saveProject: (project) => dispatch(saveProjectName(project)),
-        deleteModel: (id) => dispatch(deleteModel(id)),
-        setActiveModel: (id) => dispatch(setActiveModel(id))
-    }
-};
+const mapDispatchToProps = (dispatch) => ({
+    saveProject: (project) => dispatch(saveProjectName(project)),
+    deleteModel: (id) => dispatch(deleteModel(id)),
+    setActiveModel: (id) => dispatch(setActiveModel(id))
+});
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(SidebarContainer);
