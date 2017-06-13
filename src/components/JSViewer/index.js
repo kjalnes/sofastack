@@ -43,6 +43,10 @@ class JSEditor extends Component {
 
     componentWillUpdate(nextProps, nextState) {
         if(nextProps.model !== this.props.model && nextProps.model === undefined) {
+
+            // console.log('this.props.model', this.props.model)
+            // console.log('nextProps.model', nextProps.model)
+            // console.log('this.props.active', this.props.active);
             browserHistory.push(`/`);
         }
         if(nextProps.model !== this.props.model && nextProps.model !== undefined) {
