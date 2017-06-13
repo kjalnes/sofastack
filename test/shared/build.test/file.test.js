@@ -1,7 +1,7 @@
 import File from '../../../shared/build/File';
 import {expect} from 'chai';
 
-describe.only('File', () => {
+describe('File', () => {
   let file;
 
   beforeEach(() => {
@@ -39,7 +39,7 @@ const test2 = require('test2');*123`);
   });
 
   it('can edit section on the fly', () => {
-    file.sections.reqs.test3 = 'test2';
+    file.sections.reqs.test3 = 'test3';
     expect(file.toString()).to.eql(`const test = require('test');
 const test2 = require('test2');
 const test3 = require('test3');
