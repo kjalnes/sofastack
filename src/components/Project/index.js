@@ -52,9 +52,9 @@ class ProjectForm extends Component {
                         <span onClick={this.saveProject} className='glyphicon glyphicon-plus'></span>
                     </div>
                     :
-                    <div className='project-name'>
-                        <h4 className='inline'>{this.state.name}</h4>
-                        <span onClick={this.toggleInput} className="glyphicon glyphicon-pencil"></span>
+                    <div className='project-name row'>
+                        <h4 className='sidebar-title col-md-9'>{this.state.name}</h4>
+                        <span onClick={this.toggleInput} className="glyphicon glyphicon-pencil col-md-3"></span>
                         <hr className='custom-hr' />
                     </div>
                 }

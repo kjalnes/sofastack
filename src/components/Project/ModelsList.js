@@ -2,6 +2,9 @@ import React from 'react';
 import { Link, browserHistory } from 'react-router';
 
 
+// danni's version:
+//export default function ModelsList ({name, models, deleteModel, setActiveModel, clickZip, addModel}){
+// kris' version:
 export default function ModelsList (props){
     const { models, deleteModel, setActiveModel, clickZip } = props;
 
@@ -27,9 +30,16 @@ export default function ModelsList (props){
 
     return (
         <div className=''>
+            {name ?
+                <div className='models row'>
+                    <h5 className='sidebar-title col-md-9'>Models</h5>
+                    <span onClick={addModel} className='glyphicon glyphicon-plus col-md-3'></span>
+                </div>
+                :null
+            }
             { models.length ?
                 <div className='models'>
-                    <h4 className='sidebar-title'>Models</h4>
+                    
                     <ul className='sidebar-models-list'>
                     { generateModelsList(models) }
                     </ul>

@@ -24,13 +24,13 @@ const SidebarContainer = (props) => {
                     saveProject={saveProject}
                     name={name} />
                 <ModelsList
+                    name={name}
                     models={models}
                     clickZip={clickZip}
                     deleteModel={deleteModel}
-                    setActiveModel={setActiveModel} />
-                <button onClick={addModel} className='btn btn-custom-1 btn-default btn-outline waves-effect center-block'>
-                    <span className='btn-text'>ADD MODEL</span>
-                </button>
+                    setActiveModel={setActiveModel} 
+                    addModel={addModel}/>
+                
             </div>
     )
 };

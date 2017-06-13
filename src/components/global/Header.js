@@ -15,7 +15,7 @@ const Header = ({toggleSidebar}) => {
                         <a onClick={toggleSidebar} id="menu-toggle" href="#" className="glyphicon glyphicon-align-justify btn-menu toggle">
                             <i className="fa fa-bars"></i>
                         </a>
-                        <a href="#">SOFA STACK  - Cushioning for the Lazy Dev</a>
+                        <a href="#" id='title'>SofaStack</a> <a id='sub'>Cushioning for the Lazy Dev</a>                    
                     </div>
                 </div>
             </div>
