@@ -1,5 +1,3 @@
-const stringifyObject = require('stringify-object');
-
 const File = function({headers, body, footer}){
   this.headers = headers || {};
   this.body = body || {};
