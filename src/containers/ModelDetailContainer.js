@@ -40,7 +40,7 @@ const ModelDetailContainer = (props) => {
                         <div className="panel panel-default">
                             <div className="panel-heading">
                                 <h4 className="panel-title">
-                                    <a data-toggle="collapse" href="#collapse2">JavaScript Sequelize Model</a>
+                                    <a data-toggle="collapse" href="#collapse2">Sequelize Model</a>
                                 </h4>
                             </div>
                             <div id="collapse2" className="panel-collapse collapse">
@@ -56,7 +56,7 @@ const ModelDetailContainer = (props) => {
                         <div className="panel panel-default">
                             <div className="panel-heading">
                                 <h4 className="panel-title">
-                                    <a data-toggle="collapse" href="#collapse3">JavaScript Routes</a>
+                                    <a data-toggle="collapse" href="#collapse3">Routes</a>
                                 </h4>
                             </div>
                             <div id="collapse3" className="panel-collapse collapse">
