@@ -29,7 +29,7 @@ module.exports = ${cap(this.name)};`;
 const req = File.makeSection(`const conn = require('./conn');
 const Sequelize = require('sequelize');`);
 
-const SequelizeModelFile = function({name, attrs, getters, setter, instanceMethods, classMethods}){
+const SequelizeModelFile = function({name = '', attrs = [], getters = [], setters = [], instanceMethods = [], classMethods = []}){
 
   return new File({req, attrs: makeAttrSection(attrs), model: makeModelSection(name)});
 };
