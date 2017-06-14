@@ -26,10 +26,19 @@ File.prototype.addSection = function(key, obj){
   this.order.push(key);
 };
 
-File.makeSection = function(str){
-  return {toString: function(){
-    return str;
-  }};
+File.makeSection = function(str, proto = {}){
+  if (typeof str === 'string') {
+    return {toString: function(){
+      return str;
+    }};
+  }
+  const constructor = function(data){
+    this.data = data;
+  };
+
+  constructor.prototype.toString = str;
+  Object.assign(constructor.prototype, proto);
+  return constructor;
 };
 
 module.exports = File;
