@@ -26,4 +26,10 @@ File.prototype.addSection = function(key, obj){
   this.order.push(key);
 };
 
+File.makeSection = function(str){
+  return {toString: function(){
+    return str;
+  }};
+};
+
 module.exports = File;
