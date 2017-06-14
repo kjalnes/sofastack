@@ -2,36 +2,36 @@
 const File = require('../File');
 const cap = require('../../capitalizeFirstLetter');
 
-const makeAttrSection = function(attrs){
-  attrs = Array.from(attrs);
-  attrs.toString = function(){
-    let stuff = this.map((mod) => {
+const AttrSection = (function(){
+
+  const mapAttr = function(){
+    return this.data.map((mod) => {
       return `  ${mod.name}: Sequelize.${mod.type}`;
     });
+  };
+  const toString = function(){
     return `const attrs = {
-${stuff.join(',\n')}
+${this.mapAttr().join(',\n')}
 };`;
   };
+  return File.makeSection(toString, {mapAttr});
+}());
 
-  return attrs;
-};
+const ModelSection = (function(){
+  const toString = function(){
+    return `const ${cap(this.data.name)} = conn.define('${this.data.name}',attrs);
 
-const makeModelSection = function(name){
-  name = {name};
-  name.toString = function(){
-    return `const ${cap(this.name)} = conn.define('${this.name}',attrs);
-
-module.exports = ${cap(this.name)};`;
+module.exports = ${cap(this.data.name)};`;
   };
-  return name;
-};
+  return File.makeSection(toString);
+}());
 
 const req = File.makeSection(`const conn = require('./conn');
 const Sequelize = require('sequelize');`);
 
 const SequelizeModelFile = function({name = '', attrs = [], getters = [], setters = [], instanceMethods = [], classMethods = []}){
 
-  return new File({req, attrs: makeAttrSection(attrs), model: makeModelSection(name)});
+  return new File({req, attrs: new AttrSection(attrs), model: new ModelSection({name})});
 };
 
 module.exports = SequelizeModelFile;
