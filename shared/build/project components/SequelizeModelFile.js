@@ -3,17 +3,18 @@ const File = require('../File');
 const cap = require('../../capitalizeFirstLetter');
 
 const AttrSection = (function(){
-
   const mapAttr = function(){
     return this.data.map((mod) => {
       return `  ${mod.name}: Sequelize.${mod.type}`;
     });
   };
+
   const toString = function(){
     return `const attrs = {
 ${this.mapAttr().join(',\n')}
 };`;
   };
+
   return File.makeSection(toString, {mapAttr});
 }());
 
