@@ -8,7 +8,7 @@ import { deleteModel } from '../actions/model';
 
 const SidebarContainer = (props) => {
 
-    const { models, saveProject, name, deleteModel, setActiveModel } = props;
+    const {  name, models, active, saveProject, deleteModel, setActiveModel } = props;
 
     const clickZip = () => downloadZip({ name, models });
 
@@ -24,20 +24,22 @@ const SidebarContainer = (props) => {
                     saveProject={saveProject}
                     name={name} />
                 <ModelsList
+                    active={active}
                     name={name}
                     models={models}
                     clickZip={clickZip}
                     deleteModel={deleteModel}
-                    setActiveModel={setActiveModel} 
+                    setActiveModel={setActiveModel}
                     addModel={addModel}/>
-                
+
             </div>
     )
 };
 
 const mapStateToProps = (state) => ({
     name: state.name,
-    models:state.models
+    models:state.models,
+    active: state.active
 });
 
 const mapDispatchToProps = (dispatch) => ({
