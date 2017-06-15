@@ -5,7 +5,7 @@ import 'brace/theme/monokai';
 import SequelizeModelFile from '../../../shared/build/project components/SequelizeModelFile';
 import expressRouteGenerator from '../../../shared/codeGenrators/expressRouteGenrator';
 import { Link, browserHistory } from 'react-router';
-
+import dbIndexFile from '../../../shared/build/project components/dbIndexFile';
 
 class JSEditor extends Component {
     constructor(props) {
@@ -19,8 +19,9 @@ class JSEditor extends Component {
     generateOutput(model) {
         let code = this.props.codeCat === 'sequelize' ?
             SequelizeModelFile(model).toString() :
-            expressRouteGenerator(model);
+            dbIndexFile(this.props.models).toString();
         this.editor.setValue(code);
+            // expressRouteGenerator(model);
     };
 
     componentDidMount() {
@@ -37,6 +38,7 @@ class JSEditor extends Component {
         });
 
         if(this.props.model) {
+            console.log(this.props.model)
             this.generateOutput(this.props.model);
         }
     };
