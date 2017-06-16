@@ -1,7 +1,7 @@
 import packageJsonGenerator from '../../../../shared/build/project components/PackageJson';
 import {expect} from 'chai';
 
-describe.only('Package.Json Genrator', () => {
+describe('Package.Json Genrator', () => {
 
   it('Makes Code As Expected', () => {
     const name = 'test';
