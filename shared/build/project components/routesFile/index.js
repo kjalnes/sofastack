@@ -5,8 +5,8 @@ const post = require('./post');
 const put = require('./put');
 const del = require('./delete');
 
-const reqs =  `const router = require('express').Router();
-const db = require('../../db');`;
+const reqs =  File.makeSection(`const router = require('express').Router();
+const db = require('../../db');`);
 
 const routesToString = function() {
     const model = this.data;
