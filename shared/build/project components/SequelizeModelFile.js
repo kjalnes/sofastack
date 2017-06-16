@@ -31,7 +31,6 @@ const req = File.makeSection(`const conn = require('./conn');
 const Sequelize = require('sequelize');`);
 
 const SequelizeModelFile = function({name = '', attrs = [], getters = [], setters = [], instanceMethods = [], classMethods = []}){
-
   return new File({req, attrs: new AttrSection(attrs), model: new ModelSection({name})});
 };
 

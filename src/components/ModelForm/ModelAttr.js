@@ -23,11 +23,12 @@ const ModelAttr = ({updateAttr, deleteAttr, attr, }) => {
                 </select>
             </div>
             <div className='col-xs-4'>
-                <button onClick={ ()=> deleteAttr(attr.idx)} className='btn btn-default'><span className='glyphicon glyphicon-remove'></span></button>
+                <i onClick={ ()=> deleteAttr(attr.idx)} className='fa fa-trash-o fa-lg attr-trash' aria-hidden='true'></i>
             </div>
         </div>
     )
 };
+
 
 export default ModelAttr;
 

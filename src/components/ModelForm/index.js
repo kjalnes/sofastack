@@ -126,7 +126,10 @@ class ModelForm extends Component {
                     { this.generateAttrs() }
                 </div>
                 <br />
-                <button onClick={this.addAttr} className='btn btn-primary'>+</button>
+                <button className='btn btn-default'><span onClick={this.addAttr} className='glyphicon glyphicon-plus'></span></button>
+                <br />
+                <br />
+                <br />
                 <button onClick={onClickFn} className='btn btn-default model-save-btn'>{btnName}</button>
             </div>
         );

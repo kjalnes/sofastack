@@ -10,7 +10,6 @@ File.prototype.toString = function(dilim){
   let file = '';
   for (let key in order){
     let name = order[key];
-    // console.log(this.sections[name].toString);
     if (this.sections[name]){
       file = file + this.sections[name].toString(this);
       if (key < order.length - 1){

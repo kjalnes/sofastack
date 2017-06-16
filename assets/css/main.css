@@ -1,9 +1,14 @@
 body{
-  background-image: linear-gradient(40deg, #f6d5d5 10%, #f0f0f0 100%);
+  /*background-image: linear-gradient(40deg, #f6d5d5 10%, #f0f0f0 100%);*/
+    background-image: linear-gradient(40deg, lightgrey 10%, #f0f0f0 100%);
+
 }
 .container-fluid {
     background-color: #f6d5d5;
     height: 60px;
+}
+span.titleAndSub {
+    margin-left: 30px;
 }
 
 #title {
@@ -29,9 +34,15 @@ body{
 #sub {
   font-family: 'Lora', serif;
   font-size: 18px;
-  color:#f0f0f0;
+  /*color:#f0f0f0;*/
+  color: darkgrey;
   font-style: italic;
   padding-left: 18px;
+}
+
+#sub:hover {
+  text-decoration: none;
+  font-style: normal;
 }
 
 .navbar-brand {
@@ -41,29 +52,62 @@ body{
     background-color: transparent;
 }
 
+.title-wrapper {
+    background-color: rgba(255,255,255,0.2);
+    padding: 0 15px;
+}
+
+
+span.dashboard {
+    /*margin: 0 15px;*/
+}
+
+span.dashboard h4 {
+    color: darkgray;
+}
+
+.glyphicon.glyphicon-home:hover {
+    cursor: inherit;
+}
+
+h4.inline {
+    margin-left: 10px;
+}
+
+span.title {
+    margin: 0 40px;
+}
+
+
 h4.sidebar-title {
     text-align: left;
-    padding-left: 50px;
-    padding-top: 20px;
-    padding-bottom: 10px;
     font-size: 24px;
     font-family: 'Lora', serif;
     color: #f0f0f0;
+    color: darkgrey;
 }
 
 h5.sidebar-title {
     text-align: left;
-    padding-left: 50px;
+    padding-top: 10px;
     font-size: 18px;
     font-family: 'Lora', serif;
     color: #f0f0f0;
 }
 
-.glyphicon-pencil{
-    padding-top: 20px;
-    padding-bottom: 10px;
-    margin-top: 15px;
-    margin-bottom: 10px;
+
+.project-title-wrapper {
+    height: 64px;
+}
+
+.models-glyph-plus {
+    margin-left: 10px;
+}
+
+
+span.glyphicon.glyphicon-pencil.inline {
+    margin-left: 10px;
+    color: darkgrey;
 }
 
 .btn-default {
@@ -90,9 +134,24 @@ a:hover, , .btn-text:hover {
     margin: 3px;
 }
 
+.attr-trash {
+  margin-top: 11px;
+}
+
+
 span.glyphicon.glyphicon-question-sign {
     margin-left: 6px;
 }
+
+.glyphicon {
+    color: #ff9e9e;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+
 
 .form-control {
     border-radius: 0px;
@@ -126,9 +185,6 @@ div#JSviewer {
     display: inline-block;
 }
 
-h4.inline {
-    margin-right: 10px;
-}
 
 input.form-control.inline.project-name {
     width: 80%;
@@ -257,13 +313,15 @@ input.form-control.inline.project-name {
 }
 
 /*sidebar styles */
-.project-name {
+/*.project-name {
   text-align: center;
-}
+}*/
 
 input.form-control.inline.project-name {
     display: inline;
     width:  88%;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .project-detail {
@@ -271,7 +329,7 @@ input.form-control.inline.project-name {
 }
 
 .models {
-    margin: 10px;
+    /*margin: 10px;*/
 }
 
 .models h4.sidebar-title {
@@ -287,7 +345,10 @@ input.form-control.inline.project-name {
 }
 
 .model-item {
-    text-align: center;
+    margin: 0 40px;
+    color: #f0f0f0;
+    font-size: 18px;
+    font-family: 'Lora', serif;
 }
 
 .models-link {
@@ -296,8 +357,16 @@ input.form-control.inline.project-name {
     text-decoration: none;
 }
 
-span.models-glyphicon {
+.models-trash {
     margin-left: 10px;
+    float: right;
+    padding-top: 10px;
+    color: darkgrey;
+}
+
+.models-trash:hover, .attr-trash:hover {
+  color: red;
+  cursor: pointer;
 }
 
 .models-link:hover, li.models-link:hover, li.models-link a:hover {
@@ -313,8 +382,21 @@ li.models-link:hover {
 
 hr.custom-hr {
     border-top: 1px dotted darkgrey;
-    margin: 0 15px;
+    margin: 0 40px;
+    clear: both;
 }
+
+
+
+
+/* custom tooltip */
+.custom-tooltip {
+  background-color: rgba(66,66,66,0.8) !important;
+  /*width: 20%;*/
+}
+
+
+
 
 /* custom btn */
 .btn-custom-1 {

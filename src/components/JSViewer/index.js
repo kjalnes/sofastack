@@ -3,9 +3,10 @@ import ace from 'brace';
 import 'brace/mode/javascript';
 import 'brace/theme/monokai';
 import SequelizeModelFile from '../../../shared/build/project components/SequelizeModelFile';
-import expressRouteGenerator from '../../../shared/codeGenrators/expressRouteGenrator';
 import { Link, browserHistory } from 'react-router';
-
+import dbIndexFile from '../../../shared/build/project components/dbIndexFile';
+import routesFile from '../../../shared/build/project components/routesFile/';
+import PackageJson from '../../../shared/build/project components/PackageJson';
 
 class JSEditor extends Component {
     constructor(props) {
@@ -17,9 +18,14 @@ class JSEditor extends Component {
     };
 
     generateOutput(model) {
-        let code = this.props.codeCat === 'sequelize' ?
-            SequelizeModelFile(model).toString() :
-            expressRouteGenerator(model);
+        let code;
+        if(this.props.codeCat === 'sequelize') {
+            code = SequelizeModelFile(model).toString()
+        } else if(this.props.codeCat === 'express') {
+            code = routesFile(model).toString()
+        } else {
+            code = PackageJson(this.props.name).toString()
+        }
         this.editor.setValue(code);
     };
 
