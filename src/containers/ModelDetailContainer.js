@@ -6,7 +6,7 @@ import { saveModel, updateModel } from '../actions/model';
 import { setActiveModel } from '../actions/project';
 
 const ModelDetailContainer = (props) => {
-    const { active, models, saveModel, updateModel, setActiveModel } = props;
+    const { active, models, saveModel, updateModel, setActiveModel, name } = props;
 
     const findModel = (models) => {
         if(active) {
@@ -69,6 +69,23 @@ const ModelDetailContainer = (props) => {
                                 </div>
                             </div>
                         </div>
+                        <div className="panel panel-default">
+                            <div className="panel-heading">
+                                <h4 className="panel-title">
+                                    <a data-toggle="collapse" href="#collapse4">Package.json</a>
+                                </h4>
+                            </div>
+                            <div id="collapse4" className="panel-collapse collapse">
+                                <div className="panel-body">
+                                    <JSViewer
+                                        name={name}
+                                        model={findModel(models)}
+                                        models={models}
+                                        active={active}
+                                        codeCat='packagejson' />
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -78,7 +95,9 @@ const ModelDetailContainer = (props) => {
 
 const mapStateToProps = (state, ownProps) => ({
     models: state.models,
-    active: state.active
+    active: state.active,
+    name: state.name
+
 });
 
 const mapDispatchToProps = (dispatch) => ({
