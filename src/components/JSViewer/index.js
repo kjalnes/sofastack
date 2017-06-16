@@ -43,7 +43,6 @@ class JSEditor extends Component {
         });
 
         if(this.props.model) {
-            console.log(this.props.model)
             this.generateOutput(this.props.model);
         }
     };

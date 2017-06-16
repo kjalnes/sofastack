@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, browserHistory } from 'react-router';
+import ReactTooltip from 'react-tooltip';
 
 export default function ModelsList (props){
     const { name, models, active, deleteModel, setActiveModel, clickZip, addModel } = props;
@@ -17,22 +18,27 @@ export default function ModelsList (props){
         deleteModel(id);
     };
 
+
+
     const generateModelsList = (models) => {
         return models.map( (model, idx) => {
             return <li key={idx} className='models-link'>
-                <div className='model-item'><span onClick={()=> selectModel(model.id)} className='inline'><h4>{model.name}</h4></span>
-                <span onClick={()=> _deleteModel(model.id)} className='glyphicon glyphicon-remove models-glyphicon'></span></div>
+                <div className='model-item'><span onClick={()=> selectModel(model.id)} className='inline'><h5>{model.name}</h5></span>
+                <i onClick={()=> _deleteModel(model.id)} className='fa fa-trash-o models-trash' aria-hidden='true'></i></div>
                 <hr className='custom-hr' />
             </li>
         });
     };
 
+
     return (
         <div className=''>
             {name ?
-                <div className='models row'>
-                    <h5 className='sidebar-title col-md-9'>Models</h5>
-                    <span onClick={addModel} className='glyphicon glyphicon-plus col-md-3'></span>
+                <div className='title-wrapper'>
+                    <span className='models-title'><h4 className='sidebar-title inline'>Models</h4></span>
+
+                    <span onClick={addModel} className='glyphicon glyphicon-plus models-glyph-plus' data-tip='Add new model'></span>
+                    <ReactTooltip place='right' effect='solid' type='light' />
                 </div>
                 :null
             }
