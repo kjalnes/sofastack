@@ -1,10 +1,8 @@
 import React from 'react';
 import { Link, browserHistory } from 'react-router';
 
-
-
 export default function ModelsList (props){
-    const { name, models, deleteModel, setActiveModel, clickZip, addModel } = props;
+    const { name, models, active, deleteModel, setActiveModel, clickZip, addModel } = props;
 
     const selectModel = (id) => {
         setActiveModel(id);
@@ -12,7 +10,10 @@ export default function ModelsList (props){
     };
 
     const _deleteModel = (id) => {
-        setActiveModel(null);
+        if(active === id) {
+            browserHistory.push('/')
+            setActiveModel(null);
+        }
         deleteModel(id);
     };
 

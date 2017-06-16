@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ace from 'brace';
 import 'brace/mode/javascript';
 import 'brace/theme/monokai';
-import sequelizeGenerator from '../../../shared/codeGenrators/sequelizeGenrator';
+import SequelizeModelFile from '../../../shared/build/project components/SequelizeModelFile';
 import expressRouteGenerator from '../../../shared/codeGenrators/expressRouteGenrator';
 import { Link, browserHistory } from 'react-router';
 
@@ -18,7 +18,7 @@ class JSEditor extends Component {
 
     generateOutput(model) {
         let code = this.props.codeCat === 'sequelize' ?
-            sequelizeGenerator(model) :
+            SequelizeModelFile(model).toString() :
             expressRouteGenerator(model);
         this.editor.setValue(code);
     };
@@ -42,13 +42,6 @@ class JSEditor extends Component {
     };
 
     componentWillUpdate(nextProps, nextState) {
-        if(nextProps.model !== this.props.model && nextProps.model === undefined) {
-
-            // console.log('this.props.model', this.props.model)
-            // console.log('nextProps.model', nextProps.model)
-            // console.log('this.props.active', this.props.active);
-            browserHistory.push(`/`);
-        }
         if(nextProps.model !== this.props.model && nextProps.model !== undefined) {
             this.generateOutput(nextProps.model);
         }
