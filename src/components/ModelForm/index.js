@@ -111,7 +111,7 @@ class ModelForm extends Component {
     };
 
     render() {
-        const btnName = this.state.id ? 'Update model' : 'Save model';
+        const btnName = this.state.id ? 'UPDATE MODEL' : 'SAVE MODEL';
         const onClickFn = this.state.id ? this.updateModel : this.saveModel;
         return (
             <div>
@@ -126,11 +126,11 @@ class ModelForm extends Component {
                     { this.generateAttrs() }
                 </div>
                 <br />
-                <button className='btn btn-default'><span onClick={this.addAttr} className='glyphicon glyphicon-plus'></span></button>
+                <button onClick={this.addAttr} className='btn btn-default'><span className='glyphicon glyphicon-plus'></span></button>
                 <br />
                 <br />
                 <br />
-                <button onClick={onClickFn} className='btn btn-default model-save-btn'>{btnName}</button>
+                <button onClick={onClickFn} className='btn btn-default btn-custom-2'>{btnName}</button>
             </div>
         );
     }

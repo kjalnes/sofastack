@@ -21,6 +21,9 @@ class AppContainer extends Component {
                 <Header toggleSidebar={this.toggleSidebar} />
                 <div id="sidebar-wrapper">
                     <SidebarContainer />
+                    <div className='sidebar-footer'>
+                        HI IM A FOOTER
+                    </div>
                 </div>
                 {this.props.children}
             </div>

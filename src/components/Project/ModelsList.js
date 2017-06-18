@@ -22,11 +22,26 @@ export default function ModelsList (props){
 
     const generateModelsList = (models) => {
         return models.map( (model, idx) => {
-            return <li key={idx} className='models-link'>
-                <div className='model-item'><span onClick={()=> selectModel(model.id)} className='inline'><h5>{model.name}</h5></span>
-                <i onClick={()=> _deleteModel(model.id)} className='fa fa-trash-o models-trash' aria-hidden='true'></i></div>
-                <hr className='custom-hr' />
-            </li>
+            let activeClass = model.id === active ? 'fa fa-long-arrow-right' : '';
+
+            return (
+                <li key={idx} className='models-link'>
+                    <div className='model-item-container'>
+                        <div className='model-item-icon-container model-item-icon-arrow'>
+                            <i className={activeClass} aria-hidden='true'></i>
+                        </div>
+                        <div className='model-item'>
+                            <span onClick={()=> selectModel(model.id)} className='inline'>
+                                <h5>{model.name}</h5>
+                            </span>
+                            <div className='model-item-icon-container'>
+                                <i onClick={()=> _deleteModel(model.id)} className='fa fa-trash-o models-trash' aria-hidden='true'></i>
+                            </div>
+                        </div>
+                    </div>
+                    <hr className='custom-hr' />
+                </li>
+            );
         });
     };
 
@@ -53,7 +68,7 @@ export default function ModelsList (props){
             }
             <br />
             { models.length ?
-                <button onClick={ clickZip } className='btn btn-custom-1 btn-default btn-outline center-block'><span className='btn-text'>DOWNLOAD</span></button> :
+                <button onClick={ clickZip } className='btn btn-custom-2 btn-default center-block btn-download'>DOWNLOAD ZIP</button> :
                 null
             }
         </div>
