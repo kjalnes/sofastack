@@ -4,6 +4,7 @@ import ModelName from './ModelName';
 import ModelLabels from './ModelLabels';
 import uuidV4 from 'uuid/v4';
 import { browserHistory } from 'react-router';
+import ReactTooltip from 'react-tooltip';
 
 class ModelForm extends Component {
     constructor(props) {
@@ -126,11 +127,12 @@ class ModelForm extends Component {
                     { this.generateAttrs() }
                 </div>
                 <br />
-                <button onClick={this.addAttr} className='btn btn-default'><span className='glyphicon glyphicon-plus'></span></button>
+                <button onClick={this.addAttr} className='btn btn-default' data-tip='Add attribute'><span className='glyphicon glyphicon-plus'></span></button>
+                <ReactTooltip place='right' effect='solid' className='custom-tooltip' />
                 <br />
                 <br />
                 <br />
-                <button onClick={onClickFn} className='btn btn-default btn-custom-2'>{btnName}</button>
+                <button onClick={onClickFn} className='btn btn-default btn-custom-3'>{btnName}</button>
             </div>
         );
     }

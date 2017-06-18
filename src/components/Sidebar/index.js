@@ -42,7 +42,7 @@ class ProjectForm extends Component {
         return (
             <div>
                 <div className='title-wrapper'>
-                    <span className='dashboard'><h4 className='sidebar-title inline'>Dashboard</h4></span>
+                    <h4 className='sidebar-title inline'>Manage Project</h4>
                 </div>
                 { this.state.showInput ?
                     <div className='project-detail row'>

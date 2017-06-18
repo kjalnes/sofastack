@@ -58,15 +58,6 @@ span.titleAndSub {
 }
 
 
-span.dashboard {
-    /*margin: 0 15px;*/
-}
-
-span.dashboard h4 {
-    color: darkgray;
-}
-
-
 
 h4.inline {
     margin-left: 10px;
@@ -219,10 +210,17 @@ input.form-control.inline.project-name {
   width: 250px;
   background: #424242;
   position: fixed;
-  height: 100%;
+  height: calc(100% - 61px);
   overflow-y: auto;
   z-index: 1000;
   transition: all 0.4s ease 0s;
+}
+
+.sidebar-wrapper-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
 
 #wrapper.active {
@@ -445,9 +443,24 @@ hr.custom-hr {
     color: #ff9e9e !important;
 }
 
+.btn-custom-3 {
+    background-color: lightgrey;
+    border-radius: 0px;
+    border-color: darkgrey;
+}
+
+.btn-custom-3:hover {
+  background-color: lightgrey;
+  color:#ff9e9e !important;
+}
+
 .btn-download {
   color: darkgrey;
+  margin: 15px auto;
+  width: 170px;
+  color: lightgray;
 }
+
 .glyphicon {
     color: #ff9e9e;
 }

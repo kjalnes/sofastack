@@ -18,8 +18,6 @@ export default function ModelsList (props){
         deleteModel(id);
     };
 
-
-
     const generateModelsList = (models) => {
         return models.map( (model, idx) => {
             let activeClass = model.id === active ? 'fa fa-long-arrow-right' : '';
@@ -50,7 +48,7 @@ export default function ModelsList (props){
         <div className=''>
             {name ?
                 <div className='title-wrapper'>
-                    <span className='models-title'><h4 className='sidebar-title inline'>Models</h4></span>
+                    <h4 className='sidebar-title inline'>Models</h4>
 
                     <span onClick={addModel} className='glyphicon glyphicon-plus models-glyph-plus' data-tip='Add new model'></span>
                     <ReactTooltip place='right' effect='solid' type='light' />
@@ -65,11 +63,6 @@ export default function ModelsList (props){
                     </ul>
                 </div>
                 : null
-            }
-            <br />
-            { models.length ?
-                <button onClick={ clickZip } className='btn btn-custom-2 btn-default center-block btn-download'>DOWNLOAD ZIP</button> :
-                null
             }
         </div>
     );
