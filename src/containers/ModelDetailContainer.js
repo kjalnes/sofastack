@@ -13,7 +13,6 @@ const ModelDetailContainer = (props) => {
             return models.find(model => model.id === active);
         }
     };
-
     return (
         <div className='page-content-wrapper'>
             <div className="page-content">
