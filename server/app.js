@@ -7,14 +7,13 @@ const routes = require('./routes');
 const session = require('express-session');
 
 app.use(session({
-  secret: 'kitty',
-  name: 'summer',
+  secret: 'i am lazy',
+  name: 'cushion',
   resave: false,
   saveUninitialized: true
 }));
 
 //set up passport
-
 const passport = require('passport');
 var GitHubStrategy = require('passport-github').Strategy;
 
