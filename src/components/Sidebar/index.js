@@ -38,26 +38,29 @@ class ProjectForm extends Component {
     }
 
     render() {
+        const classNameTitle = this.props.name ? 'hide' : 'sidebar-title';
         return (
-            <div className=''>
-                <h3>Project Overview</h3>
-                <div className='row'>
-                    { this.state.showInput ?
-                        <div className='col-xs-12'>
-                            <input
-                            onChange={this.onChange}
-                            className='form-control inline project-name'
-                            value={this.state.name}
-                            placeholder='Project name'/>
-                            <button onClick={this.saveProject} className='btn btn-default project-save-btn'>Save</button>
-                        </div>
-                        :
-                        <div className='col-xs-12'>
-                            <h4 className='inline'>{this.state.name}</h4>
-                            <button onClick={this.toggleInput} type='button' className='btn btn-default'><span className="glyphicon glyphicon-pencil"></span></button>
-                        </div>
-                    }
+            <div>
+                <div className='title-wrapper'>
+                    <h4 className='sidebar-title inline'>Manage Project</h4>
                 </div>
+                { this.state.showInput ?
+                    <div className='project-detail row'>
+                        <input
+                        onChange={this.onChange}
+                        className='form-control inline project-name'
+                        value={this.state.name}
+                        placeholder='App name'/>
+                        <span onClick={this.saveProject} className='glyphicon glyphicon-plus'></span>
+                    </div>
+                    :
+                    <div className='project-title-wrapper'>
+                        <span className='title'><h5 className='sidebar-title inline'>{this.state.name}</h5>
+
+                        <span onClick={this.toggleInput} className="glyphicon glyphicon-pencil inline"></span></span>
+                        <hr className='custom-hr' />
+                    </div>
+                }
             </div>
         );
     }

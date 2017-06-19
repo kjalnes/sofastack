@@ -2,30 +2,32 @@ import React, { Component } from 'react';
 import ace from 'brace';
 import 'brace/mode/javascript';
 import 'brace/theme/monokai';
-import sequelizeGenerator from '../../../shared/codeGenrators/sequelizeGenrator';
-import expressRouteGenerator from '../../../shared/codeGenrators/expressRouteGenrator';
+import SequelizeModelFile from '../../../shared/build/project components/SequelizeModelFile';
+import { Link, browserHistory } from 'react-router';
+import dbIndexFile from '../../../shared/build/project components/dbIndexFile';
+import routesFile from '../../../shared/build/project components/routesFile/';
+import PackageJson from '../../../shared/build/project components/PackageJson';
 
-class JSViewer extends Component {
+class JSEditor extends Component {
     constructor(props) {
         super(props);
         this.state = { view: 'model' }
         this.editor = null;
         this.element = null;
         this.generateOutput = this.generateOutput.bind(this);
-        this.onClick = this.onClick.bind(this);
-    }
+    };
 
-    generateOutput(model, view) {
-        let code = view === 'model' ?
-            sequelizeGenerator(model) :
-            expressRouteGenerator(model);
+    generateOutput(model) {
+        let code;
+        if(this.props.codeCat === 'sequelize') {
+            code = SequelizeModelFile(model).toString()
+        } else if(this.props.codeCat === 'express') {
+            code = routesFile(model).toString()
+        } else {
+            code = PackageJson(this.props.name).toString()
+        }
         this.editor.setValue(code);
-    }
-
-    onClick(view, ev) {
-        ev.preventDefault();
-        this.setState({view});
-    }
+    };
 
     componentDidMount() {
         this.editor = ace.edit(this.element);
@@ -41,38 +43,28 @@ class JSViewer extends Component {
         });
 
         if(this.props.model) {
-            this.generateOutput(this.props.model, this.state.view);
+            this.generateOutput(this.props.model);
         }
-    }
+    };
 
     componentWillUpdate(nextProps, nextState) {
-        if(nextProps.model !== this.props.model) {
-            this.generateOutput(nextProps.model, this.state.view);
+        if(nextProps.model !== this.props.model && nextProps.model !== undefined) {
+            this.generateOutput(nextProps.model);
         }
-        if(nextState.view !== this.state.view) {
-            this.generateOutput(this.props.model, nextState.view);
-        }
-    }
+    };
 
     componentWillUnmount() {
         this.editor.destroy();
-    }
+    };
 
     render() {
-        const classNameModels = this.state.view === 'model' ? 'active' : '';
-        const classNameRoutes = this.state.view === 'routes' ? 'active' : '';
         return (
-            <div className='col-xs-6 box'>
-                <h3>JavaScript</h3>
-                <ul className="nav nav-tabs">
-                  <li onClick={ this.onClick.bind(null, 'model')} className={classNameModels}><a href="#">Model</a></li>
-                  <li onClick={ this.onClick.bind(null, 'routes')} className={classNameRoutes}><a href="#">Routes</a></li>
-                </ul>
+            <div className='box'>
                 <div ref={(el) => {this.element = el;}}></div>
             </div>
         )
-    }
+    };
 }
 
-export default JSViewer;
+export default JSEditor;
 

@@ -1,4 +1,4 @@
-import { SAVE_PROJECT_NAME_SUCCESS } from '../constants';
+import { SAVE_PROJECT_NAME_SUCCESS, SET_ACTIVE } from '../constants';
 import axios from 'axios';
 
 function recursiveToLowerCase(obj) {
@@ -27,5 +27,12 @@ const saveProjectName = (name) => ({
   name
 });
 
-export { saveProjectName, downloadZip };
+const setActiveModel = (id) => ({
+  type: SET_ACTIVE,
+  id
+});
+
+
+
+export { saveProjectName, downloadZip, setActiveModel };
 
