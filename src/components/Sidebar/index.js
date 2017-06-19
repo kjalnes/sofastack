@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import ModelsList from './ModelsList';
 import uuidV4 from 'uuid/v4';
 
-class ProjectForm extends Component {
+class Sidebar extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -66,5 +66,5 @@ class ProjectForm extends Component {
     }
 }
 
-export default ProjectForm;
+export default Sidebar;
 

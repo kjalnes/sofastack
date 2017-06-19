@@ -1,6 +1,6 @@
 import React from 'react';
 import { browserHistory, Link } from 'react-router';
-import ProjectForm from '../components/Sidebar';
+import Sidebar from '../components/Sidebar';
 import ModelsList from '../components/Sidebar/ModelsList';
 import SidebarFooter from '../components/Sidebar/SidebarFooter';
 import { connect } from 'react-redux';
@@ -21,7 +21,7 @@ const SidebarContainer = (props) => {
     return (
         <div className='sidebar-wrapper-container'>
             <div className=''>
-                <ProjectForm
+                <Sidebar
                     models={models}
                     saveProject={saveProject}
                     name={name} />
