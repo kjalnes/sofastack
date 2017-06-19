@@ -1,7 +1,8 @@
 import React from 'react';
 import { browserHistory, Link } from 'react-router';
-import ProjectForm from '../components/Project';
-import ModelsList from '../components/Project/ModelsList';
+import ProjectForm from '../components/Sidebar';
+import ModelsList from '../components/Sidebar/ModelsList';
+import SidebarFooter from '../components/Sidebar/SidebarFooter';
 import { connect } from 'react-redux';
 import { saveProjectName, downloadZip, setActiveModel } from '../actions/project';
 import { deleteModel } from '../actions/model';
@@ -18,6 +19,7 @@ const SidebarContainer = (props) => {
     };
 
     return (
+        <div className='sidebar-wrapper-container'>
             <div className=''>
                 <ProjectForm
                     models={models}
@@ -31,8 +33,11 @@ const SidebarContainer = (props) => {
                     deleteModel={deleteModel}
                     setActiveModel={setActiveModel}
                     addModel={addModel}/>
-
             </div>
+            <SidebarFooter
+                models={models}
+                clickZip={clickZip}/>
+        </div>
     )
 };
 
