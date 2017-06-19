@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactTooltip from 'react-tooltip';
 
-
 const ModelLabels = () => {
     return (
         <div className='row'>

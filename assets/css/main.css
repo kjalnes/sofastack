@@ -58,17 +58,6 @@ span.titleAndSub {
 }
 
 
-span.dashboard {
-    /*margin: 0 15px;*/
-}
-
-span.dashboard h4 {
-    color: darkgray;
-}
-
-.glyphicon.glyphicon-home:hover {
-    cursor: inherit;
-}
 
 h4.inline {
     margin-left: 10px;
@@ -110,6 +99,12 @@ span.glyphicon.glyphicon-pencil.inline {
     color: darkgrey;
 }
 
+span.glyphicon.glyphicon-pencil:hover {
+    color: #ff9e9e;
+}
+
+
+
 .btn-default {
     background-color: transparent;
     border-color: #f0f0f0;
@@ -119,6 +114,11 @@ span.glyphicon.glyphicon-pencil.inline {
 #menu-toggle {
     color: #f0f0f0;
     padding:10px;
+}
+
+a#menu-toggle:hover {
+    color: #ff9e9e;
+    text-decoration: none;
 }
 
 a, .btn-text {
@@ -210,10 +210,17 @@ input.form-control.inline.project-name {
   width: 250px;
   background: #424242;
   position: fixed;
-  height: 100%;
+  height: calc(100% - 61px);
   overflow-y: auto;
   z-index: 1000;
   transition: all 0.4s ease 0s;
+}
+
+.sidebar-wrapper-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
 
 #wrapper.active {
@@ -345,10 +352,30 @@ input.form-control.inline.project-name {
 }
 
 .model-item {
-    margin: 0 40px;
     color: #f0f0f0;
     font-size: 18px;
     font-family: 'Lora', serif;
+    width: 170px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.model-item h5 {
+  cursor: pointer;
+}
+
+.model-item-container {
+  display: flex;
+}
+
+.model-item-icon-arrow {
+  width: 40px;
+}
+
+.model-item-icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .models-link {
@@ -358,9 +385,6 @@ input.form-control.inline.project-name {
 }
 
 .models-trash {
-    margin-left: 10px;
-    float: right;
-    padding-top: 10px;
     color: darkgrey;
 }
 
@@ -408,13 +432,33 @@ hr.custom-hr {
     color: #ff9e9e !important;
 }
 
-.btn-custom-1 {;
+.btn-custom-2 {
     background-color: transparent;
+    border-radius: 0;
+    border: 1px solid lightgrey;
 }
 
-.btn-custom-1:hover {
+.btn-custom-2:hover {
     background-color: transparent;
     color: #ff9e9e !important;
+}
+
+.btn-custom-3 {
+    background-color: lightgrey;
+    border-radius: 0px;
+    border-color: darkgrey;
+}
+
+.btn-custom-3:hover {
+  background-color: lightgrey;
+  color:#ff9e9e !important;
+}
+
+.btn-download {
+  color: darkgrey;
+  margin: 15px auto;
+  width: 170px;
+  color: lightgray;
 }
 
 .glyphicon {
