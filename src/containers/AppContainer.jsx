@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import Header from '../components/global/Header';
-import Welcome from '../components/global/Welcome';
 import SidebarContainer from './SidebarContainer';
+import HomePageContainer from './HomePageContainer';
+
 
 class AppContainer extends Component {
     constructor(props) {
@@ -23,9 +24,7 @@ class AppContainer extends Component {
                 <div id="sidebar-wrapper">
                     <SidebarContainer />
                 </div>
-                <div id="pic-wrapper">
-                    <Welcome toggleSidebar={this.toggleSidebar}/>
-                </div>
+                <HomePageContainer />
                 {this.props.children}
             </div>
         );

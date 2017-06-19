@@ -1,15 +1,11 @@
 import React from 'react';
 
-const Welcome = (prop)=>{
+const Welcome = ()=>{
+	console.log('welcommme')
 	return (
-		<div>
-			<div id="home-img">
-				<p id="home-txt">Get your code ready</p>
-				<button id="home-start" onClick={prop.toggleSidebar}>Start</button>
-			</div>
-			<div>
-				
-			</div>
+		<div id="home-img">
+			<p id="home-txt">Get your code ready</p>
+			<button id="home-start">Start</button>
 		</div>
 	)
 }
