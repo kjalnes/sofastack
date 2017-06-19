@@ -51,7 +51,7 @@ class ProjectForm extends Component {
                         className='form-control inline project-name'
                         value={this.state.name}
                         placeholder='App name'/>
-                        <Link to='/create'><span onClick={this.saveProject} className='glyphicon glyphicon-plus'></span></Link>
+                        <span onClick={this.saveProject} className='glyphicon glyphicon-plus'></span>
                     </div>
                     :
                     <div className='project-title-wrapper'>
