@@ -1,12 +1,13 @@
 body{
   /*background-image: linear-gradient(40deg, #f6d5d5 10%, #f0f0f0 100%);*/
     background-image: linear-gradient(40deg, lightgrey 10%, #f0f0f0 100%);
-
 }
+
 .container-fluid {
     background-color: #f6d5d5;
     height: 60px;
 }
+
 span.titleAndSub {
     margin-left: 30px;
 }
@@ -34,7 +35,6 @@ span.titleAndSub {
 #sub {
   font-family: 'Lora', serif;
   font-size: 18px;
-  /*color:#f0f0f0;*/
   color: darkgrey;
   font-style: italic;
   padding-left: 18px;
@@ -45,19 +45,27 @@ span.titleAndSub {
   font-style: normal;
 }
 
+.navbar-header {
+    width: 100%;
+}
+
 .navbar-brand {
+    width: 100%;
     height: 60px;
     padding: 10px;
     line-height: 35px;
     background-color: transparent;
 }
 
+.sofa-logo {
+    float: right;
+    transition:all 1s ease;
+}
+
 .title-wrapper {
     background-color: rgba(255,255,255,0.2);
     padding: 0 15px;
 }
-
-
 
 h4.inline {
     margin-left: 10px;
@@ -66,7 +74,6 @@ h4.inline {
 span.title {
     margin: 0 40px;
 }
-
 
 h4.sidebar-title {
     text-align: left;
@@ -84,7 +91,6 @@ h5.sidebar-title {
     color: #f0f0f0;
 }
 
-
 .project-title-wrapper {
     height: 64px;
 }
@@ -92,7 +98,6 @@ h5.sidebar-title {
 .models-glyph-plus {
     margin-left: 10px;
 }
-
 
 span.glyphicon.glyphicon-pencil.inline {
     margin-left: 10px;
@@ -103,8 +108,6 @@ span.glyphicon.glyphicon-pencil:hover {
     color: #ff9e9e;
 }
 
-
-
 .btn-default {
     background-color: transparent;
     border-color: #f0f0f0;
@@ -114,12 +117,21 @@ span.glyphicon.glyphicon-pencil:hover {
 #menu-toggle {
     color: #f0f0f0;
     padding:10px;
+    text-decoration: none !important;
 }
 
-a#menu-toggle:hover {
-    color: #ff9e9e;
-    text-decoration: none;
+#menu-toggle:hover, #menu-toggle:active {
+    color: #ff9e9e !important;
+    text-decoration: none !important;
+    transition: 0.5s;
+    -webkit-transform: scale(1.3);
+    -ms-transform: scale(1.3);
+    transform: scale(1.3);
+    -webkit-transform: rotateZ(-90deg);
+    -ms-transform: rotateZ(-90deg);
+    transform: rotateZ(-90deg);
 }
+
 
 a, .btn-text {
   color: grey;
@@ -138,7 +150,6 @@ a:hover, , .btn-text:hover {
   margin-top: 11px;
 }
 
-
 span.glyphicon.glyphicon-question-sign {
     margin-left: 6px;
 }
@@ -150,8 +161,6 @@ span.glyphicon.glyphicon-question-sign {
     left: 0;
     right: 0;
 }
-
-
 
 .form-control {
     border-radius: 0px;
@@ -196,7 +205,6 @@ input.form-control.inline.project-name {
     color: red;
 }
 
-
 /* sidebar styles */
 #wrapper {
   padding-left: 250px;
@@ -238,7 +246,6 @@ input.form-control.inline.project-name {
 }
 
 .sidebar-nav {
-  /*position: absolute;*/
   top: 0;
   width: 250px;
   list-style: none;
@@ -259,7 +266,6 @@ input.form-control.inline.project-name {
 }
 
 .sidebar-nav li a span:before {
-  /*position: absolute;*/
   left: 0;
   color: #41484c;
   text-align: center;
@@ -294,36 +300,6 @@ input.form-control.inline.project-name {
   background: none;
 }
 
-@media (max-width:767px) {
-    #wrapper {
-      padding-left: 0;
-    }
-
-    #sidebar-wrapper {
-      left: 0;
-    }
-
-    #wrapper.active {
-      position: relative;
-      left: 250px;
-    }
-
-    #wrapper.active #sidebar-wrapper {
-      left: 250px;
-      width: 250px;
-      transition: all 0.4s ease 0s;
-    }
-
-    #menu-toggle {
-      display: inline-block;
-    }
-}
-
-/*sidebar styles */
-/*.project-name {
-  text-align: center;
-}*/
-
 input.form-control.inline.project-name {
     display: inline;
     width:  88%;
@@ -333,10 +309,6 @@ input.form-control.inline.project-name {
 
 .project-detail {
     margin: 0 10px;
-}
-
-.models {
-    /*margin: 10px;*/
 }
 
 .models h4.sidebar-title {
@@ -402,6 +374,7 @@ li.models-link:hover {
   background: rgba(255,255,255,0.2);
   color: #fff !important;
   text-decoration: none;
+  box-shadow: inset 0 0 0 1px lightgrey;
 }
 
 hr.custom-hr {
@@ -410,17 +383,10 @@ hr.custom-hr {
     clear: both;
 }
 
-
-
-
 /* custom tooltip */
 .custom-tooltip {
   background-color: rgba(66,66,66,0.8) !important;
-  /*width: 20%;*/
 }
-
-
-
 
 /* custom btn */
 .btn-custom-1 {
@@ -470,7 +436,6 @@ hr.custom-hr {
   cursor: pointer;
 }
 
-
 .model-item:active {
     background-color: rgba(255,255,255,0.2);
 }
@@ -479,4 +444,28 @@ hr.custom-hr {
     margin-top: 51px;
 }
 
+@media (max-width:767px) {
+    #wrapper {
+      padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+      left: 0;
+    }
+
+    #wrapper.active {
+      position: relative;
+      left: 250px;
+    }
+
+    #wrapper.active #sidebar-wrapper {
+      left: 250px;
+      width: 250px;
+      transition: all 0.4s ease 0s;
+    }
+
+    #menu-toggle {
+      display: inline-block;
+    }
+}
 

@@ -24,7 +24,7 @@ const ModelDetailContainer = (props) => {
                         <div className="panel panel-default">
                             <div className="panel-heading">
                                 <h4 className="panel-title">
-                                    <a data-toggle="collapse" href="#collapse1">Sequelize Model Form</a>
+                                    <a data-toggle="collapse" href="#collapse1">Sequelize Model Form </a>
                                 </h4>
                             </div>
                             <div id="collapse1" className="panel-collapse collapse in">
