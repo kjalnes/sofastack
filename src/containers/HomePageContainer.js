@@ -5,11 +5,11 @@ import { saveModel, updateModel } from '../actions/model';
 import { setActiveModel } from '../actions/project';
 
 const HomePageContainer = (props) => {
-    const { models, active, name} = props;
+    const { models, active, name, toggleSidebar } = props;
     return (
         <div>
-        { !name&&!models.length ? 
-            <Welcome />:null
+        { !name&&!models.length ?
+            <Welcome toggleSidebar={toggleSidebar} />:null
         }
         </div>
     );
