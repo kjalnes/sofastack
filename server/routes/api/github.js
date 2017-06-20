@@ -1,8 +1,13 @@
 const app = require('express').Router();
 const makeRepo = require('../../github/makeRepo');
 const addFile = require('../../github/addFile');
-// const build = require('../../../build');
-
+const bluebird = require('bluebird');
+const cap = require('../../../shared/capitalizeFirstLetter');
+const expressRouteGenerator = require('../../../shared/codeGenrators/expressRouteGenrator');
+const apiRouteIndexGenerator = require('../../../shared/codeGenrators/apiRouteIndexGenerator');
+const sequelizeGenrator = require('../../../shared/codeGenrators/sequelizeGenrator');
+const dbIndexGenerator = require('../../../shared/codeGenrators/dbIndexGenerator');
+const packageJsonGenerator = require('../../../shared/codeGenrators/packageJsonGenerator');
 app.post('/', (req, res, next) => {
   const project = req.body;
   console.log(req.session);
@@ -67,6 +72,57 @@ db.seed(seed)
       addFile(gitKey, result.full_name, 'README.md', `# Sofastack Generated Project
 This project was generated using [SofaStack](https://github.com/kjalnes/sofastack)
 `))
+.then(() =>       addFile(gitKey, result.full_name, 'server/app.js', `const express = require('express');
+const path = require('path');
+const bodyParser = require('body-parser');
+const app = express();
+const routes = require('./routes');
+
+app.use(bodyParser.json());
+
+app.use('/vendor', express.static(path.join(__dirname, '..', 'node_modules')));
+app.use(routes);
+app.get('/', (req, res, next) => res.sendFile(path.join(__dirname, '..', 'index.html')));
+
+module.exports = app;`))
+.then(() => addFile(gitKey, result.full_name, 'server/routes/index.js', `const router = require('express').Router();
+const apiRoutes = require('./api');
+
+router.use('/api', apiRoutes);
+
+module.exports = router;
+`))
+.then(() => {
+  let prom = bluebird.resolve(true);
+  project.models.forEach((model) => {
+    prom = prom.then(() =>
+    addFile(gitKey, result.full_name, 'server/routes/api/' + model.name + 's.js',
+    expressRouteGenerator(model)));
+  });
+  return prom.then(() =>
+    addFile(gitKey, result.full_name, 'server/routes/api/index.js',
+    apiRouteIndexGenerator(project.models)));
+})
+.then(() => addFile(gitKey, result.full_name, 'server/db/conn.js', `const Sequelize = require('sequelize');
+
+const conn = new Sequelize(process.env.DATABASE_URL, {
+  logging: false
+});
+
+module.exports = conn;
+`))
+.then(() => {
+  let prom = bluebird.resolve(true);
+  project.models.forEach((model) => {
+    prom = prom.then(() =>
+    addFile(gitKey, result.full_name, 'server/db/' + cap(model.name) + '.js',
+    sequelizeGenrator(model)));
+  });
+  return prom.then(() =>
+    addFile(gitKey, result.full_name, 'server/db/index.js',
+    dbIndexGenerator(project.models)));
+})
+.then(() => addFile(gitKey, result.full_name, 'package.json', packageJsonGenerator(project.name)))
 .then(() => res.json({name: result.full_name}));
   });
   // build(project)
