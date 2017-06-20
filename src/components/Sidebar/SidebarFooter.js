@@ -11,7 +11,6 @@ const SidebarFooter = ({ models, clickZip, postToGit }) => {
                     </div>
                     <button onClick={ clickZip } className="btn btn-custom-2 btn-default center-block btn-download">DOWNLOAD ZIP</button>
                     <button  onClick={ postToGit } className="btn btn-custom-2 btn-default center-block btn-download">DEPLOY TO GITHUB</button>
-                    <button className="btn btn-custom-2 btn-default center-block btn-download">DEPLOY TO HEROKU</button>
                 </div>
                       :
                 null
