@@ -1,4 +1,5 @@
 import { SAVE_PROJECT_NAME_SUCCESS, SET_ACTIVE } from '../constants';
+import { browserHistory } from 'react-router';
 import axios from 'axios';
 
 function recursiveToLowerCase(obj) {
@@ -27,8 +28,8 @@ const postToGit = (state) => {
   state = recursiveToLowerCase(state);
   return axios.post(`/api/github`, state)
     .then((stuff) => {
-      console.log(stuff);
-    //   window.location = `/api/zip?name=${state.name}`;
+      console.log('stuff.data.name', stuff.data.name);
+      window.location.href = `https://www.github.com/${stuff.data.name}`;
     });
 };
 

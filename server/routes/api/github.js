@@ -8,12 +8,17 @@ const apiRouteIndexGenerator = require('../../../shared/codeGenrators/apiRouteIn
 const sequelizeGenrator = require('../../../shared/codeGenrators/sequelizeGenrator');
 const dbIndexGenerator = require('../../../shared/codeGenrators/dbIndexGenerator');
 const packageJsonGenerator = require('../../../shared/codeGenrators/packageJsonGenerator');
+
 app.post('/', (req, res, next) => {
+  const projectName = req.body.name;
+  let githubUser;
   const project = req.body;
   console.log(req.session);
   const gitKey = req.session.keys.github;
   makeRepo(gitKey, project.name)
   .then((result) => {
+    githubUser = result.full_name;
+    console.log()
     addFile(gitKey, result.full_name, '.gitignore', `# Logs
 logs
 *.log
@@ -123,7 +128,7 @@ module.exports = conn;
     dbIndexGenerator(project.models)));
 })
 .then(() => addFile(gitKey, result.full_name, 'package.json', packageJsonGenerator(project.name)))
-.then(() => res.json({name: result.full_name}));
+.then(() => res.json({name: result.full_name}))
   });
   // build(project)
   // .then(({projectFolder, zip}) => {
