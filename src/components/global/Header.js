@@ -1,7 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
-const Header = ({toggleSidebar, name}) => {
+const Header = ({toggleSidebar}) => {
     return (
         <nav className="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div className="container-fluid">
@@ -15,11 +14,7 @@ const Header = ({toggleSidebar, name}) => {
                     <div className="navbar-brand">
                         <a onClick={toggleSidebar} id="menu-toggle" href="#" className=" menu glyphicon glyphicon-align-justify btn-menu toggle">
                         </a>
-                        <span className='titleAndSub'><a href="/" id='title'>SofaStack</a> <a id='sub'>Cushioning for the Lazy Dev</a></span>
-
-                        {
-                            name  ?  <span className='sofa-logo'>Logo</span> : null
-                        }
+                        <span className='titleAndSub'><a href="/" id='title'>SofaStack</a></span>
                     </div>
                 </div>
             </div>
@@ -27,9 +22,7 @@ const Header = ({toggleSidebar, name}) => {
     );
 }
 
-const mapStateToProps = ({name}) => ({ name });
-
-export default connect(mapStateToProps)(Header);
+export default Header;
 
 
 
