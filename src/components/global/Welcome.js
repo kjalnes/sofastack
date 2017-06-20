@@ -4,12 +4,19 @@ class Welcome extends Component {
     constructor(props) {
         super(props);
         this.state = {showBubble: false}
-        this.click = this.click.bind(this);
+        this.clickLogin = this.clickLogin.bind(this);
+        this.clickStart = this.clickStart.bind(this);
     }
 
-    click() {
+    clickLogin() {
+        localStorage.setItem('showSidear', 'true');
+        window.location = '/auth/github';
+    }
+
+    clickStart() {
         this.setState({ showBubble: !this.state.showBubble });
         this.props.toggleSidebar();
+        localStorage.setItem('showSidear', 'false');
     }
 
     render() {
@@ -27,7 +34,11 @@ class Welcome extends Component {
                 }
                 <div id="home-img">
                     <p id="home-txt">Cushioning for the lazy developer</p>
-                    <button onClick={ ()=> this.click()} id="home-start">Start</button>
+
+                    {
+                        localStorage.getItem('showSidear') === 'true' ?
+                        <button onClick={ ()=> this.clickStart()} id="home-start">Start</button> :
+                        <button onClick={ ()=> this.clickLogin()} id="home-start">Login</button>}
                 </div>
             </div>
         )
