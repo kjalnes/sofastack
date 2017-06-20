@@ -4,23 +4,24 @@ import Sidebar from '../components/Sidebar';
 import ModelsList from '../components/Sidebar/ModelsList';
 import SidebarFooter from '../components/Sidebar/SidebarFooter';
 import { connect } from 'react-redux';
-import { saveProjectName, downloadZip, setActiveModel } from '../actions/project';
+import { saveProjectName, downloadZip, setActiveModel, postToGit } from '../actions/project';
 import { deleteModel } from '../actions/model';
 
 const SidebarContainer = (props) => {
 
-    const {  name, models, active, saveProject, deleteModel, setActiveModel } = props;
+  const {  name, models, active, saveProject, deleteModel, setActiveModel } = props;
 
-    const clickZip = () => downloadZip({ name, models });
+  const clickZip = () => downloadZip({ name, models });
+  const gitPost = () => postToGit({ name, models });
 
-    const addModel = () => {
-        setActiveModel(null);
-        browserHistory.push('/create');
-    };
+  const addModel = () => {
+    setActiveModel(null);
+    browserHistory.push('/create');
+  };
 
-    return (
-        <div className='sidebar-wrapper-container'>
-            <div className=''>
+  return (
+        <div className="sidebar-wrapper-container">
+            <div className="">
                 <Sidebar
                     models={models}
                     saveProject={saveProject}
@@ -32,25 +33,26 @@ const SidebarContainer = (props) => {
                     clickZip={clickZip}
                     deleteModel={deleteModel}
                     setActiveModel={setActiveModel}
-                    addModel={addModel}/>
+                    addModel={addModel} />
             </div>
             <SidebarFooter
                 models={models}
-                clickZip={clickZip}/>
+                postToGit = {gitPost}
+                clickZip={clickZip} />
         </div>
-    )
+  );
 };
 
 const mapStateToProps = (state) => ({
-    name: state.name,
-    models:state.models,
-    active: state.active
+  name: state.name,
+  models: state.models,
+  active: state.active
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    saveProject: (project) => dispatch(saveProjectName(project)),
-    deleteModel: (id) => dispatch(deleteModel(id)),
-    setActiveModel: (id) => dispatch(setActiveModel(id))
+  saveProject: (project) => dispatch(saveProjectName(project)),
+  deleteModel: (id) => dispatch(deleteModel(id)),
+  setActiveModel: (id) => dispatch(setActiveModel(id)),
 });
 
 
