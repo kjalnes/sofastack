@@ -24,7 +24,7 @@ class AppContainer extends Component {
                 <div id="sidebar-wrapper">
                     <SidebarContainer />
                 </div>
-                <HomePageContainer />
+                <HomePageContainer toggleSidebar={this.toggleSidebar} />
                 {this.props.children}
             </div>
         );
