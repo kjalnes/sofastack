@@ -1,6 +1,6 @@
 const request = require('request');
 
-module.exports = (accessKey, name) => new Promise((reject, resolve) => {
+module.exports = (accessKey, name) => new Promise((resolve, reject) => {
 
   request({
     method: 'POST',
@@ -18,7 +18,7 @@ module.exports = (accessKey, name) => new Promise((reject, resolve) => {
     if (err){
       return reject(err);
     }
-    return resolve(body);
+    return resolve(JSON.parse(body));
   });
 
 });
