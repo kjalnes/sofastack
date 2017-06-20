@@ -2,15 +2,15 @@ import { SAVE_PROJECT_NAME_SUCCESS, SET_ACTIVE } from '../constants';
 import axios from 'axios';
 
 function recursiveToLowerCase(obj) {
-    for(var key in obj) {
-        if(typeof obj[key] === 'object') {
-            recursiveToLowerCase(obj[key]);
-        } else {
-            obj[key] = obj[key].toLowerCase();
-        }
+  for (var key in obj) {
+    if (typeof obj[key] === 'object') {
+      recursiveToLowerCase(obj[key]);
+    } else {
+      obj[key] = obj[key].toLowerCase();
     }
-    return obj;
-};
+  }
+  return obj;
+}
 
 /* post creates file based on redux store */
 /* window.location triggers download zip window based on path */
@@ -19,6 +19,16 @@ const downloadZip = (state) => {
   return axios.post(`/api/zip`, state)
     .then( () => {
       window.location = `/api/zip?name=${state.name}`;
+    });
+};
+
+const postToGit = (state) => {
+  console.log(123);
+  state = recursiveToLowerCase(state);
+  return axios.post(`/api/github`, state)
+    .then((stuff) => {
+      console.log(stuff);
+    //   window.location = `/api/zip?name=${state.name}`;
     });
 };
 
@@ -33,6 +43,5 @@ const setActiveModel = (id) => ({
 });
 
 
-
-export { saveProjectName, downloadZip, setActiveModel };
+export { saveProjectName, downloadZip, setActiveModel, postToGit };
 
