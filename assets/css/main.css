@@ -36,7 +36,7 @@ body{
 }
 
 span.titleAndSub {
-    margin-left: 30px;
+    margin-left: 9px;
 }
 
 #title {
@@ -471,6 +471,46 @@ hr.custom-hr {
     margin-top: 51px;
 }
 
+
+
+/* bubble test */
+.speech-bubble {
+    background: white;
+    border-radius: .4em;
+    font-family: 'Raleway',sans-serif;
+    font-size: 18px;
+    text-align: center;
+    padding: 21px;
+    background: white;
+    border-radius: .4em;
+    position: absolute;
+    width: 480px;
+    height: 159px;
+    margin-left: 36%;
+    margin-top: -199px;
+}
+
+.speech-bubble:after {
+  transition: 2s ease;
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border: 24px solid transparent;
+  border-top-color: white;
+  border-bottom: 0;
+  border-left: 0;
+  margin-left: -12px;
+  margin-bottom: -24px;
+}
+
+
+h2 {
+    font-family: 'Raleway',sans-serif;
+}
+
 @media (max-width:767px) {
     #wrapper {
       padding-left: 0;
@@ -495,4 +535,3 @@ hr.custom-hr {
       display: inline-block;
     }
 }
-

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import ModelsList from './ModelsList';
 import uuidV4 from 'uuid/v4';
+import ReactTooltip from 'react-tooltip';
+
 
 class Sidebar extends Component {
     constructor(props) {
@@ -51,7 +53,8 @@ class Sidebar extends Component {
                         className='form-control inline project-name'
                         value={this.state.name}
                         placeholder='App name'/>
-                        <Link to='/create'><span onClick={this.saveProject} className='glyphicon glyphicon-plus'></span></Link>
+                        <Link to='/create'><span onClick={this.saveProject} className='glyphicon glyphicon-plus' data-tip='Name your project'></span></Link>
+                        <ReactTooltip place='right' effect='solid' type='light' />
                     </div>
                     :
                     <div className='project-title-wrapper'>
