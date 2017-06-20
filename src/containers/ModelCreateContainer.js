@@ -12,8 +12,8 @@ const ModelCreateContainer = (props) => {
             <div className='page-content-wrapper'>
                 <div className="page-content">
                     <div className="container">
-                        <h2>Build your sofa stack</h2>
-                        <p>Bacon ipsum dolor amet turducken alcatra ham hock, ribeye beef ribs ball tip ham kielbasa boudin jerky pork swine. Pork loin tail meatball, boudin short ribs tongue kevin turkey swine beef ribs chicken salami prosciutto. Biltong jerky pork chop tongue, ground round bacon salami andouille. Swine ham turducken alcatra pig bacon chicken ham hock corned beef filet mignon strip steak frankfurter kielbasa landjaeger short loin.</p>
+                        <h2>Add Some Cushions to Your SofaStack</h2>
+                        <p>The form below helps you build your models. Add attributes to your model and their types. We will take care of generating your SQL, Sequelize Code, and Express Routes.</p>
                         <div className="panel-group">
                             <div className="panel panel-default">
                                 <div className="panel-heading">
