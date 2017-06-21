@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { browserHistory, Link } from 'react-router';
 
 class Welcome extends Component {
     constructor(props) {
@@ -34,11 +35,11 @@ class Welcome extends Component {
                 }
                 <div id="home-img">
                     <p id="home-txt">Cushioning for the lazy developer</p>
-
                     {
                         localStorage.getItem('showSidear') === 'true' ?
                         <button onClick={ ()=> this.clickStart()} id="home-start">Start</button> :
-                        <button onClick={ ()=> this.clickLogin()} id="home-start">Login</button>}
+                        <button onClick={ ()=> this.clickLogin()} id="home-start">Login</button>
+                    }
                 </div>
             </div>
         )
