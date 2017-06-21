@@ -34,12 +34,27 @@ class Welcome extends Component {
                     : null
                 }
                 <div id="home-img">
-                    <p id="home-txt">Cushioning for the lazy developer</p>
+                    <p id="home-txt">Get Comfy With <br /> SofaStack</p>
+
                     {
                         localStorage.getItem('showSidear') === 'true' ?
                         <button onClick={ ()=> this.clickStart()} id="home-start">Start</button> :
                         <button onClick={ ()=> this.clickLogin()} id="home-start">Login</button>
                     }
+
+                    {
+                        !this.state.showBubble ?
+
+                        <div id = "bubble-img">
+                            <img src="../../assets/images/20.svg" id="s"></img>
+                            <img src="../../assets/images/50.svg" id="m"></img>
+                            <img src="../../assets/images/cloud.svg" id="l"></img>
+                            <p id="bub-txt">Cushioning for the lazy developer</p>
+                        </div> :
+                        null
+                    }
+
+
                 </div>
             </div>
         )
