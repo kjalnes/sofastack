@@ -10,17 +10,20 @@ class Welcome extends Component {
     }
 
     clickLogin() {
-        localStorage.setItem('showSidear', 'true');
+        localStorage.setItem('showSidear', 'false');
+        localStorage.setItem('showStartBtn', 'true');
         window.location = '/auth/github';
     }
 
     clickStart() {
         this.setState({ showBubble: !this.state.showBubble });
         this.props.toggleSidebar();
+        localStorage.setItem('showStartBtn', 'false');
         localStorage.setItem('showSidear', 'false');
     }
 
     render() {
+        console.log(localStorage.getItem('showSidear'))
         return (
             <div>
                 {
@@ -37,8 +40,12 @@ class Welcome extends Component {
                     <p id="home-txt">Get Comfy With <br /> SofaStack</p>
 
                     {
-                        localStorage.getItem('showSidear') === 'true' ?
-                        <button onClick={ ()=> this.clickStart()} id="home-start">Start</button> :
+                        localStorage.getItem('showSidear') === 'false' ?
+                            localStorage.getItem('showStartBtn') === 'true' ?
+                            <button onClick={ ()=> this.clickStart()} id="home-start">Start</button>
+                             :
+                            null
+                        :
                         <button onClick={ ()=> this.clickLogin()} id="home-start">Login</button>
                     }
 
