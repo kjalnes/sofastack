@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
+import { browserHistory, Link } from 'react-router';
 
 class Welcome extends Component {
     constructor(props) {
         super(props);
         this.state = {showBubble: false}
-        this.click = this.click.bind(this);
+        this.clickLogin = this.clickLogin.bind(this);
+        this.clickStart = this.clickStart.bind(this);
     }
 
-    click() {
+    clickLogin() {
+        localStorage.setItem('showSidear', 'true');
+        window.location = '/auth/github';
+    }
+
+    clickStart() {
         this.setState({ showBubble: !this.state.showBubble });
         this.props.toggleSidebar();
+        localStorage.setItem('showSidear', 'false');
     }
 
     render() {
@@ -26,8 +34,27 @@ class Welcome extends Component {
                     : null
                 }
                 <div id="home-img">
-                    <p id="home-txt">Cushioning for the lazy developer</p>
-                    <button onClick={ ()=> this.click()} id="home-start">Start</button>
+                    <p id="home-txt">Get Comfy With <br /> SofaStack</p>
+
+                    {
+                        localStorage.getItem('showSidear') === 'true' ?
+                        <button onClick={ ()=> this.clickStart()} id="home-start">Start</button> :
+                        <button onClick={ ()=> this.clickLogin()} id="home-start">Login</button>
+                    }
+
+                    {
+                        !this.state.showBubble ?
+
+                        <div id = "bubble-img">
+                            <img src="../../assets/images/20.svg" id="s"></img>
+                            <img src="../../assets/images/50.svg" id="m"></img>
+                            <img src="../../assets/images/cloud.svg" id="l"></img>
+                            <p id="bub-txt">Cushioning for the lazy developer</p>
+                        </div> :
+                        null
+                    }
+
+
                 </div>
             </div>
         )
