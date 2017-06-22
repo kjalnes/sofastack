@@ -9,7 +9,8 @@ body{
   width: 600px;
   height: 300px;
   margin-left: 45%;
-  margin-top: 300px;
+  /*margin-top: 300px;*/
+  margin-top: 340px;
 }
 
 #home-txt {
@@ -27,8 +28,20 @@ body{
   border-width: 1px;
   position: inherit;
   font-size: 24px;
-  right:50%;
+  right: 65%;
+  /*right:50%;*/
+  /*right: 95%;*/
+  /*text-align: center;*/
 }
+
+#home-start button {
+  background-color: transparent;
+  border-color: #424242;
+  border-width: 1px;
+  position: inherit;
+  font-size: 24px;
+}
+
 
 .container-fluid {
     background-color: #f6d5d5;

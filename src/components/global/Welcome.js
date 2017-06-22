@@ -10,17 +10,20 @@ class Welcome extends Component {
     }
 
     clickLogin() {
-        localStorage.setItem('showSidear', 'true');
+        localStorage.setItem('showSidear', 'false');
+        localStorage.setItem('showStartBtn', 'true');
         window.location = '/auth/github';
     }
 
     clickStart() {
         this.setState({ showBubble: !this.state.showBubble });
         this.props.toggleSidebar();
+        localStorage.setItem('showStartBtn', 'false');
         localStorage.setItem('showSidear', 'false');
     }
 
     render() {
+        console.log(localStorage.getItem('showSidear'))
         return (
             <div>
                 {
@@ -28,7 +31,7 @@ class Welcome extends Component {
                     <div className='speech-bubble'>
                         <div className='bubble-text'>
                             Hello!
-                            Let us help you create your Javascript CRUD node app skeleton. We provide tooltips to help you understand what is generated. When you are done we will deploy the generated code to your GitHub.
+                            Let us help you create your Javascript CRUD node app. We provide tooltips to help you understand what is being generated. When you are done we will deploy the generated code to your GitHub.
                         </div>
                     </div>
                     : null
@@ -37,9 +40,18 @@ class Welcome extends Component {
                     <p id="home-txt">Get Comfy With <br /> SofaStack</p>
 
                     {
-                        localStorage.getItem('showSidear') === 'true' ?
-                        <button onClick={ ()=> this.clickStart()} id="home-start">Start</button> :
-                        <button onClick={ ()=> this.clickLogin()} id="home-start">Login</button>
+                        localStorage.getItem('showSidear') === 'false' ?
+                            localStorage.getItem('showStartBtn') === 'true' ?
+                            <div id='home-start'>
+                                <p> You are logged in to GitHub </p>
+                                <button onClick={ ()=> this.clickStart()} >Start</button>
+                            </div>
+                             :
+                            null
+                        :
+                        <div id='home-start'>
+                            <button onClick={ ()=> this.clickLogin()} >Login to GitHub</button>
+                        </div>
                     }
 
                     {

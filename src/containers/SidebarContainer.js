@@ -12,7 +12,10 @@ const SidebarContainer = (props) => {
   const {  name, models, active, saveProject, deleteModel, setActiveModel } = props;
 
   const clickZip = () => downloadZip({ name, models });
-  const gitPost = () => postToGit({ name, models });
+  const gitPost = () => {
+    postToGit({ name, models });
+    localStorage.clear();
+  };
 
   const addModel = () => {
     setActiveModel(null);

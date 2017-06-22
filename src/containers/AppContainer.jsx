@@ -17,6 +17,7 @@ class AppContainer extends Component {
     }
 
     render() {
+
         const sidebarClass = this.state.showSidebar ? 'active' : '';
         return (
             <div id="wrapper" className={sidebarClass}>
