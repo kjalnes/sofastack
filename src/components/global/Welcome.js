@@ -31,7 +31,7 @@ class Welcome extends Component {
                     <div className='speech-bubble'>
                         <div className='bubble-text'>
                             Hello!
-                            Let us help you create your Javascript CRUD node app skeleton. We provide tooltips to help you understand what is generated. When you are done we will deploy the generated code to your GitHub.
+                            Let us help you create your Javascript CRUD node app. We provide tooltips to help you understand what is being generated. When you are done we will deploy the generated code to your GitHub.
                         </div>
                     </div>
                     : null
@@ -42,11 +42,16 @@ class Welcome extends Component {
                     {
                         localStorage.getItem('showSidear') === 'false' ?
                             localStorage.getItem('showStartBtn') === 'true' ?
-                            <button onClick={ ()=> this.clickStart()} id="home-start">Start</button>
+                            <div id='home-start'>
+                                <p> You are logged in to GitHub </p>
+                                <button onClick={ ()=> this.clickStart()} >Start</button>
+                            </div>
                              :
                             null
                         :
-                        <button onClick={ ()=> this.clickLogin()} id="home-start">Login</button>
+                        <div id='home-start'>
+                            <button onClick={ ()=> this.clickLogin()} >Login to GitHub</button>
+                        </div>
                     }
 
                     {
